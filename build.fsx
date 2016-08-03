@@ -71,6 +71,7 @@ Target "run" (fun _ ->
 
 Target "deploy" (fun _ ->
   let wwwroot = "../wwwroot"
+  CleanDir wwwroot
   ensureDirectory (wwwroot </> "bin")
   CopyRecursive "bin" (wwwroot </> "bin") false |> ignore
   CopyFile (wwwroot </> "web.config") "web.config"
