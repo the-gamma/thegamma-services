@@ -48,7 +48,7 @@ type Data =
     CountriesByIndex : IDictionary<uint16, Country>
     IndicatorsByIndex : IDictionary<uint16, Indicator>
     YearsByIndex : IDictionary<uint16, Year>
-    Data : IReadOnlyCollection<DataPoint> 
+    Data : DataPoint[]
     Topics : IDictionary<string, Topic> }
 
 module Serializer = 

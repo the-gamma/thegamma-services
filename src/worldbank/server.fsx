@@ -1,10 +1,14 @@
-﻿#nowarn "1104"
-#I "../../../packages/samples"
+#if INTERACTIVE
+#I "../../packages"
 #r "System.Xml.Linq.dll"
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
 #load "domain.fs"
+#else
+module Services.WorldBank
+#endif
+#nowarn "1104"
 open System
 open System.IO
 open FSharp.Data

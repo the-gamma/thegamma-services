@@ -1,4 +1,4 @@
-﻿#I "../../../packages/samples"
+﻿#I "../../packages"
 #r "System.Xml.Linq.dll"
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"

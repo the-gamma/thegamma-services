@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------------
-// FAKE build script that hosts Suave servers defined in the various script files
+// Build script that hosts & auto-reloads servers from the various script files
 // --------------------------------------------------------------------------------------
 
-#r "../../packages/build/FAKE/tools/FakeLib.dll"
-#I "../../packages/samples"
+#I "../packages"
+#r "FAKE/tools/FakeLib.dll"
 #r "FSharp.Compiler.Service/lib/net45/FSharp.Compiler.Service.dll"
 #r "Suave/lib/net40/Suave.dll"
 
@@ -19,7 +19,7 @@ open Microsoft.FSharp.Compiler.Interactive.Shell
 // The following uses FileSystemWatcher to look for changes in 'app.fsx'. When
 // the file changes, we run `#load "app.fsx"` using the F# Interactive service
 // and then get the `App.app` value (top-level value defined using `let app = ...`).
-// The loaded WebPart is then hosted at localhost:8083.
+// The loaded WebPart is then hosted at localhost:10042.
 // --------------------------------------------------------------------------------------
 
 let sbOut = new Text.StringBuilder()
@@ -101,4 +101,3 @@ Async.Start(server)
 let watcher = sources |> WatchChanges (Seq.map (fun x -> x.FullPath) >> reloadAppServer)
 traceImportant "Waiting for app.fsx edits. Press any key to stop."
 System.Threading.Thread.Sleep(System.Threading.Timeout.Infinite)
-

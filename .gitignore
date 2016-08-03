@@ -5,6 +5,7 @@
 .fake
 .vs
 paket.exe
+paket.targets
 paket-files
 packages
 

@@ -1,9 +1,13 @@
-﻿#nowarn "1104"
-#I "../../../packages/samples"
+#if INTERACTIVE
+#I "../../packages"
 #r "System.Xml.Linq.dll"
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
+#else
+module Services.Olympics
+#endif
+#nowarn "1104"
 open System
 open System.IO
 open FSharp.Data

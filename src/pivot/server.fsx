@@ -1,7 +1,11 @@
-﻿#I "../../../packages/samples"
+#if INTERACTIVE
+﻿#I "../../packages"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Suave/lib/net40/Suave.dll"
+#else
+module Services.Pivot
+#endif
 open System
 open System.IO
 open System.Collections.Generic
