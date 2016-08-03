@@ -1,0 +1,15 @@
+*.suo
+*.bak
+.ionide.debug
+
+.fake
+.vs
+paket.exe
+paket-files
+packages
+
+temp
+bin
+obj
+
+src/worldbank/data
