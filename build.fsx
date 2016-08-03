@@ -76,4 +76,6 @@ Target "deploy" (fun _ ->
   CopyFile (wwwroot </> "web.config") "web.config"
 )
 
+"build" ==> "deploy"
+
 RunTargetOrDefault "run"
