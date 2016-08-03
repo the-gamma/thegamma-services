@@ -36,9 +36,10 @@ let handlePage s =
 let app =
   Writers.setHeader  "Access-Control-Allow-Origin" "*"
   >=> Writers.setHeader "Access-Control-Allow-Headers" "content-type,x-cookie"
-  >=> choose [ Filters.OPTIONS >=> Successful.OK "CORS approved"
-               Filters.pathScan "/%s/%s" (fst >> handlePage)  
-               Filters.pathScan "/%s" handlePage ]
+  >=> choose [ OPTIONS >=> Successful.OK "CORS approved"
+               path "/" >=> Successful.OK "TheGamma services are running..."
+               pathScan "/%s/%s" (fst >> handlePage)  
+               pathScan "/%s" handlePage ]
 
 let serverConfig =
   let portCmd = 
