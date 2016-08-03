@@ -1,4 +1,4 @@
-#if INTERACTIVE
+﻿#if INTERACTIVE
 #I "../../packages"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
@@ -45,7 +45,7 @@ let parseLine (line:string) =
        else [ for i in 0..2..choices.Length-1 -> (niceKey choices.[i], choices.[i+1]) ] }
         
 let lookup = 
-  File.ReadAllLines(__SOURCE_DIRECTORY__ + "/sample.dat")
+  File.ReadAllLines(__SOURCE_DIRECTORY__ + "/sample.txt")
   |> Seq.map parseLine
   |> Seq.map (fun p -> p.Key, p)
   |> dict
