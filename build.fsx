@@ -69,12 +69,26 @@ Target "run" (fun _ ->
 // Azure - deploy copies the binary to wwwroot/bin
 // --------------------------------------------------------------------------------------
 
+let newName prefix f = 
+  Seq.initInfinite (sprintf "%s_%d" prefix) |> Seq.skipWhile (f >> not) |> Seq.head
+
 Target "deploy" (fun _ ->
+  // Pick a subfolder that does not exist
   let wwwroot = "../wwwroot"
-  CleanDir wwwroot
-  ensureDirectory (wwwroot </> "bin")
-  CopyRecursive "bin" (wwwroot </> "bin") false |> ignore
-  CopyFile (wwwroot </> "web.config") "web.config"
+  let subdir = newName "deploy" (fun sub -> not (Directory.Exists(wwwroot </> sub)))
+  
+  // Deploy everything into new empty folder
+  let deployroot = wwwroot </> subdir
+  CleanDir deployroot
+  CleanDir (deployroot </> "bin")
+  CopyRecursive "bin" (deployroot </> "bin") false |> ignore
+  let config = File.ReadAllText("web.config").Replace("%DEPLOY_SUBDIRECTORY%", subdir)
+  File.WriteAllText(wwwroot </> "web.config", config)
+
+  // Try to delete previous folders, but ignore failures
+  for dir in Directory.GetDirectories(wwwroot) do
+    if Path.GetFileName(dir) <> subdir then 
+      try CleanDir dir; DeleteDir dir with _ -> ()
 )
 
 "build" ==> "deploy"

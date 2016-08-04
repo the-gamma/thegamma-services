@@ -33,32 +33,25 @@ let handlePage s =
   | true, part -> dropPrefix part
   | _ -> RequestErrors.NOT_FOUND "Page not found"
 
-let portCmd = 
-  System.Environment.GetCommandLineArgs() |> Seq.tryPick (fun s ->
-    if s.StartsWith("port=") then Some(int(s.Substring("port=".Length)))
-    else None )
-let portEnv = 
-  match Int32.TryParse(Environment.GetEnvironmentVariable "HTTP_PLATFORM_PORT") with
-  | true, port -> Some port
-  | _ -> None
+let app =
+  Writers.setHeader  "Access-Control-Allow-Origin" "*"
+  >=> Writers.setHeader "Access-Control-Allow-Headers" "content-type,x-cookie"
+  >=> choose [ OPTIONS >=> Successful.OK "CORS approved"
+               path "/" >=> Successful.OK "TheGamma services are running..."
+               pathScan "/%s/%s" (fst >> handlePage)
+               pathScan "/%s" handlePage ]
 
+// Start the server at port specified on the command line
 let serverConfig =
   let port = 
-    match portCmd, portEnv with
-    | Some p, _ | _, Some p -> p
-    | _ -> failwith "No port specified"
+    match System.Environment.GetCommandLineArgs() |> Seq.tryPick (fun s ->
+      if s.StartsWith("port=") then Some(int(s.Substring("port=".Length)))
+      else None ) with
+    | Some p -> p | _ -> failwith "No port specified"
 
   { Web.defaultConfig with
       homeFolder = Some __SOURCE_DIRECTORY__
       logger = Logging.Loggers.saneDefaultsFor Logging.LogLevel.Info
       bindings = [ HttpBinding.mkSimple HTTP "127.0.0.1" port ] }
-
-let app =
-  Writers.setHeader  "Access-Control-Allow-Origin" "*"
-  >=> Writers.setHeader "Access-Control-Allow-Headers" "content-type,x-cookie"
-  >=> choose [ OPTIONS >=> Successful.OK "CORS approved"
-               path "/" >=> Successful.OK (sprintf "TheGamma services are running...\nCMD: %A, ENV: %A" portCmd portEnv)
-               pathScan "/%s/%s" (fst >> handlePage)  
-               pathScan "/%s" handlePage ]
 
 Web.startWebServer serverConfig app
