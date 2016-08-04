@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{6348
 	ProjectSection(SolutionItems) = preProject
 		build.fsx = build.fsx
 		paket.dependencies = paket.dependencies
+		web.config = web.config
 	EndProjectSection
 EndProject
 Global

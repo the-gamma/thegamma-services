@@ -9,10 +9,7 @@ open System.IO
 open FSharp.Data
 
 System.Environment.CurrentDirectory <- __SOURCE_DIRECTORY__
-
 let fsiPath = "packages/FSharp.Compiler.Tools/tools/fsiAnyCpu.exe"
-let fscPath = "packages/FSharp.Compiler.Tools/tools/fsc.exe"
-let outPath = "bin/server.exe"
 
 // --------------------------------------------------------------------------------------
 // For deployed run - compile as an executable
@@ -38,7 +35,7 @@ let startServers () =
   ExecProcessWithLambdas
     (fun info -> 
         info.FileName <- System.IO.Path.GetFullPath fsiPath
-        info.Arguments <- "--load:src/run.fsx"
+        info.Arguments <- "--load:src/debug.fsx"
         info.WorkingDirectory <- __SOURCE_DIRECTORY__)
     TimeSpan.MaxValue false ignore ignore 
 
