@@ -75,9 +75,9 @@ type Facet<'T> =
 
 module Data = 
   let [<Literal>] Root = __SOURCE_DIRECTORY__ + "/medals-expanded.csv"
-  type Medals = CsvProvider<Root, Schema="Gold=int, Silver=int, Bronze=int, NOC->Country">
+  type Medals = CsvProvider<Root, Schema="Gold=int, Silver=int, Bronze=int">
   let olympics = Medals.GetSample().Rows
-  let headers = Medals.GetSample().Headers.Value |> Array.map (function "NOC" -> "Country" | s -> s)
+  let headers = Medals.GetSample().Headers.Value
               
   // http://www.topendsports.com/events/summer/countries/country-codes.htm
   type Codes = FSharp.Data.HtmlProvider<const(__SOURCE_DIRECTORY__ + "/countrycodes.html")>
@@ -95,7 +95,7 @@ module Data =
 
   let nocs = 
     olympics 
-    |> Seq.map (fun o -> o.Country) 
+    |> Seq.map (fun o -> o.Team) 
     |> Seq.distinct
     |> Seq.mapi (fun i s -> sprintf "noc-%d" i, s)
     |> dict
@@ -112,22 +112,22 @@ module Data =
 
   let facets : list<string * Facet<Medals.Row>> = 
     [ // Single-choice 
-      yield "city", Filter("city", false, fun r -> Some(sprintf "%s (%d)" r.City r.Edition, makeThingSchema "City" r.City))
+      yield "game", Filter("game", false, fun r -> Some(r.Games, makeThingSchema "City" r.Games))
       yield "medal", Filter("medal", false, fun r -> Some(r.Medal, noSchema))
       yield "gender", Filter("gender", false, fun r -> Some(r.Gender, noSchema))
-      yield "country", Filter("country", false, fun r -> let c = countries.[r.Country] in Some(c, makeThingSchema "Country" c))
+      yield "team", Filter("team", false, fun r -> let c = countries.[r.Team] in Some(c, makeThingSchema "Country" c))
 
       // Multi-choice
-      yield "cities", Filter("city", true, fun r -> Some(sprintf "%s (%d)" r.City r.Edition, makeThingSchema "City" r.City))
+      yield "games", Filter("game", true, fun r -> Some(r.Games, makeThingSchema "City" r.Games))
       yield "medals", Filter("medal", true, fun r -> Some(r.Medal, noSchema))
-      yield "countries", Filter("country", true, fun r -> let c = countries.[r.Country] in Some(c, makeThingSchema "Country" c))
+      yield "teams", Filter("teams", true, fun r -> let c = countries.[r.Team] in Some(c, makeThingSchema "Country" c))
 
       // Multi-level facet with/without multi-choice
       let athleteChoice multi =  
         [ for (KeyValue(k,v)) in nocs -> 
             let c = countries.[v]
             k, c, makeThingSchema "Country" c, Filter("athlete", multi, fun (r:Medals.Row) -> 
-              if r.Country = v then Some(r.Athlete, makeThingSchema "Person" r.Athlete) else None) ]
+              if r.Team = v then Some(r.Athlete, makeThingSchema "Person" r.Athlete) else None) ]
       let sportChoice multi = 
         [ for (KeyValue(k,v)) in sports -> 
             k, v, makeThingSchema "SportsEvent" v, Filter("event", multi, fun (r:Medals.Row) ->  
@@ -169,7 +169,7 @@ let (</>) (a:string) (b:string) =
   elif b = "" then "/" + a
   else "/" + a + "/" + b
 
-let intFields = set ["Edition"; "Gold"; "Silver"; "Bronze"]
+let intFields = set ["Gold"; "Silver"; "Bronze"]
 let (|Let|) a v = a, v
 
 let app =
