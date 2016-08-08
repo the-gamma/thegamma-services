@@ -198,8 +198,7 @@ let app =
             Seq.zip flds Data.headers 
             |> Seq.map (fun (fld, hdr) ->
                 hdr, 
-                if hdr = "Edition" then JsonValue.Number(decimal (fld :?> int))
-                elif hdr = "Country" then JsonValue.String(Data.countries.[fld :?> string])
+                if hdr = "Team" then JsonValue.String(Data.countries.[fld :?> string])
                 else JsonValue.String(string fld))
             |> Array.ofSeq
             |> JsonValue.Record )
