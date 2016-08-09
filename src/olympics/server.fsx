@@ -248,12 +248,15 @@ let app =
         |> Seq.filter (fun (facetKey, _) -> 
             selected |> Seq.forall (fun sel -> not (sel.StartsWith(facetKey))))
         |> Seq.map (fun (facetKey, facet) ->
-            let schema = 
+            let doc, schema = 
               match facet with
-              | Filter(_, true, _) -> Data.makeCreateSchema facetKey |> box
-              | _ -> Data.noSchema |> box
+              | Filter(n, true, _) -> 
+                  box { title="Select " + n; details="In the following list, you can select one or more " + n + ". Use the drop-down to add more " + n + ". When removing " + n + ", you can only remove the first item once you remove all later items." },
+                  Data.makeCreateSchema facetKey |> box
+              | Filter(n, _, _)
+              | Choice(n, _) -> null, Data.noSchema |> box
             { name="by " + facetKey; returns= {kind="nested"; endpoint=r.url.LocalPath </> "pick" </> facetKey}
-              schema=schema; trace=[| |]; documentation=null })
+              schema=schema; trace=[| |]; documentation=doc })
         |> Seq.append [
             ( let flds = [| for h in Data.headers -> { name=h; ``type``=if intFields.Contains h then "int" else "string" }  |]
               let typ = { name="seq"; ``params``=[| { name="record"; fields=flds } |] }
