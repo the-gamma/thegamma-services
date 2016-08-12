@@ -409,7 +409,7 @@ let transformJson lookupRuntimeArg (objs:seq<JsonValue>) = function
         JsonValue.Array [| kval; vval; |] )
   | Paging(pgid, pgops) ->
       pgops |> Seq.fold (fun objs -> function
-        | Take -> objs |> Seq.take (lookupRuntimeArg pgid "take" "count" |> int)
+        | Take -> objs |> Seq.truncate (lookupRuntimeArg pgid "take" "count" |> int)
         | Skip -> objs |> Seq.skip (lookupRuntimeArg pgid "skip" "count" |> int)) objs
   | DropColumns(flds) ->
       let dropped = set flds
