@@ -307,7 +307,7 @@ let makeDataMember name tfs injectid =
         | [_, kf; _, vf] -> makeTupleSeq [kf.Type.JsonValue; vf.Type.JsonValue]
         | _ -> failwith "makeDataMember: Series should have key and value"
     | _ -> finalFields.Fields |> List.map snd |> makeRecordSeq
-
+    
   let dataRet = MemberQuery.Returns("primitive", "/pivot/data", dataTyp)
   let url = tfs |> renameFields fields.Fields |> Transform.toUrl  
   let trace = [| "pivot-tfs=" + url |]

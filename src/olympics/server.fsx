@@ -116,11 +116,13 @@ module Data =
       yield "medal", Filter("medal", false, fun r -> Some(r.Medal, noSchema))
       yield "gender", Filter("gender", false, fun r -> Some(r.Gender, noSchema))
       yield "team", Filter("team", false, fun r -> let c = countries.[r.Team] in Some(c, makeThingSchema "Country" c))
+      yield "discipline", Filter("discipline", false, fun r -> Some(r.Discipline, makeThingSchema "SportsEvent" r.Sport))
 
       // Multi-choice
       yield "games", Filter("game", true, fun r -> Some(r.Games, makeThingSchema "City" r.Games))
       yield "medals", Filter("medal", true, fun r -> Some(r.Medal, noSchema))
       yield "teams", Filter("teams", true, fun r -> let c = countries.[r.Team] in Some(c, makeThingSchema "Country" c))
+      yield "disciplines", Filter("disciplines", true, fun r -> Some(r.Discipline, makeThingSchema "SportsEvent" r.Sport))
 
       // Multi-level facet with/without multi-choice
       let athleteChoice multi =  
@@ -169,7 +171,7 @@ let (</>) (a:string) (b:string) =
   elif b = "" then "/" + a
   else "/" + a + "/" + b
 
-let intFields = set ["Gold"; "Silver"; "Bronze"]
+let intFields = set ["Year"; "Gold"; "Silver"; "Bronze"]
 let (|Let|) a v = a, v
 
 let app =
@@ -221,7 +223,7 @@ let app =
 
             [ for (value, schema) in options do
                 let schema = 
-                  if multichoice then Data.makeAddSchema (List.head path) |> box
+                  if multichoice then Data.makeAddSchema "List" |> box
                   else schema |> box
 
                 let ty = if multichoice then andPickTy else thenTy
@@ -237,7 +239,7 @@ let app =
             |> Seq.map (fun (k, v, s, facet) ->
                 let schema = 
                   match facet with
-                  | Filter(_, true, _) -> Data.makeCreateSchema k |> box
+                  | Filter(_, true, _) -> Data.makeCreateSchema "List" |> box
                   | _ -> s |> box
                 { name=v; returns= {kind="nested"; endpoint= (List.fold (</>) "" selected) </> k }
                   schema=schema; trace=[| |]; documentation=doc })
@@ -252,7 +254,7 @@ let app =
               match facet with
               | Filter(n, true, _) -> 
                   box { title="Select " + n; details="In the following list, you can select one or more " + n + ". Use the drop-down to add more " + n + ". When removing " + n + ", you can only remove the first item once you remove all later items." },
-                  Data.makeCreateSchema facetKey |> box
+                  Data.makeCreateSchema "List" |> box
               | Filter(n, _, _)
               | Choice(n, _) -> null, Data.noSchema |> box
             { name="by " + facetKey; returns= {kind="nested"; endpoint=r.url.LocalPath </> "pick" </> facetKey}
