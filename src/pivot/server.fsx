@@ -93,9 +93,9 @@ module Transform =
         let fields, aggs = 
           match fields, aggs with
           | [], [] -> [], []
-          | [], field::aggs -> [field], List.tail aggs 
+          | [], field::aggs -> [field], aggs 
           | fields, aggs -> fields |> List.map (fun s -> s.Substring(3)), aggs 
-
+        System.Console.WriteLine(sprintf "\n%A => %A\n" args (fields, aggs))
         GroupBy(fields, parseAggs [] aggs)
     | "page"::pgid::ops -> Paging(pgid, List.map (function "take" -> Take | "skip" -> Skip | _ -> failwith "Wrong paging operation") ops)
     | "series"::k::v::[] -> GetSeries(k, v)
