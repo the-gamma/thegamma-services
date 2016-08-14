@@ -95,7 +95,6 @@ module Transform =
           | [], [] -> [], []
           | [], field::aggs -> [field], aggs 
           | fields, aggs -> fields |> List.map (fun s -> s.Substring(3)), aggs 
-        System.Console.WriteLine(sprintf "\n%A => %A\n" args (fields, aggs))
         GroupBy(fields, parseAggs [] aggs)
     | "page"::pgid::ops -> Paging(pgid, List.map (function "take" -> Take | "skip" -> Skip | _ -> failwith "Wrong paging operation") ops)
     | "series"::k::v::[] -> GetSeries(k, v)
@@ -453,9 +452,9 @@ let handleDataRequest source ctx = async {
     parsed |> Seq.pick (fun ti -> 
       if ti.Key = "pivot-" + op && ti.Value = pgid then Some ti.Params.[pname] else None)
   
-  printfn "Trace: %A\nParsed: %A\nRest: %A\n Transform: %A" trace parsed sourceTrace tfs
+  //printfn "Trace: %A\nParsed: %A\nRest: %A\n Transform: %A" trace parsed sourceTrace tfs
     
-  printfn "Requesting data"
+  //printfn "Requesting data"
   let! data = 
     match cache.TryFind( (source, sourceEndpoint, sourceTrace) ) with
     | Some res -> async { return res }
@@ -468,11 +467,11 @@ let handleDataRequest source ctx = async {
         cache <- Map.add (source, sourceEndpoint, sourceTrace) data cache
         return data }
 
-  printfn "Transforming data"
+  //printfn "Transforming data"
   let data = tfs |> List.rev |> List.fold (transformJson lookupRuntimeArg) (Seq.ofArray data)
   let res = JsonValue.Array(data |> Array.ofSeq).ToString()
 
-  printfn "Returning data"
+  //printfn "Returning data"
   return! Successful.OK res ctx }
 
 // ----------------------------------------------------------------------------

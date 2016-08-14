@@ -88,7 +88,7 @@ module Data =
   let countries = 
     [ yield "SRB", "Serbia"
       for r in Codes.Parse(File.ReadAllText(dataRoot + "/countrycodes.html")).Tables.``3-Digit Country Codes``.Rows do 
-        yield r.Code, r.Country ] |> dict
+        yield r.Code, r.Country.TrimEnd('*') ] |> dict
 
   let sports = 
     olympics 
