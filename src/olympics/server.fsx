@@ -87,7 +87,7 @@ module Data =
   type Codes = FSharp.Data.HtmlProvider<const(__SOURCE_DIRECTORY__ + "/../../data/countrycodes.html")>
   let countries = 
     [ yield "SRB", "Serbia"
-      for r in Codes.Load(dataRoot + "/countrycodes.html").Tables.``3-Digit Country Codes``.Rows do 
+      for r in Codes.Parse(File.ReadAllText(dataRoot + "/countrycodes.html")).Tables.``3-Digit Country Codes``.Rows do 
         yield r.Code, r.Country ] |> dict
 
   let sports = 
