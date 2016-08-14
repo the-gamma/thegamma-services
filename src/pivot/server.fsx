@@ -89,6 +89,9 @@ module Transform =
     | "sort"::columns -> SortBy(columns |> List.chunkBySize 2 |> List.map (function [f; "asc"] -> f, Ascending | [f; "desc"] -> f, Descending | _ -> failwith "Invalid sort by order"))
     | "group"::args -> 
         let fields, aggs = args |> List.partition (fun s -> s.StartsWith("by-"))
+        // To support earlier encoding
+        let fields, aggs = if List.isEmpty fields then [List.head aggs], List.tail aggs else fields, aggs 
+
         GroupBy(fields |> List.map (fun s -> s.Substring(3)), parseAggs [] aggs)
     | "page"::pgid::ops -> Paging(pgid, List.map (function "take" -> Take | "skip" -> Skip | _ -> failwith "Wrong paging operation") ops)
     | "series"::k::v::[] -> GetSeries(k, v)
