@@ -58,7 +58,7 @@ type Paging =
 type Transformation = 
   | DropColumns of string list
   | SortBy of (string * SortDirection) list
-  | GroupBy of string * Aggregation list
+  | GroupBy of string list * Aggregation list
   | Paging of string * Paging list
   | GetSeries of string * string
   | Empty
@@ -87,7 +87,9 @@ module Transform =
   let private parseChunk = function
     | "drop"::columns -> DropColumns(columns)
     | "sort"::columns -> SortBy(columns |> List.chunkBySize 2 |> List.map (function [f; "asc"] -> f, Ascending | [f; "desc"] -> f, Descending | _ -> failwith "Invalid sort by order"))
-    | "group"::field::aggs -> GroupBy(field, parseAggs [] aggs)
+    | "group"::args -> 
+        let fields, aggs = args |> List.partition (fun s -> s.StartsWith("by-"))
+        GroupBy(fields |> List.map (fun s -> s.Substring(3)), parseAggs [] aggs)
     | "page"::pgid::ops -> Paging(pgid, List.map (function "take" -> Take | "skip" -> Skip | _ -> failwith "Wrong paging operation") ops)
     | "series"::k::v::[] -> GetSeries(k, v)
     | [] -> Empty
@@ -113,7 +115,7 @@ module Transform =
         match t with
         | DropColumns(columns) -> "drop"::columns
         | SortBy(columns) -> "sort"::(List.collect (fun (c, o) -> [c; (if o = Ascending then "asc" else "desc")]) columns)
-        | GroupBy(fld, aggs) -> "group"::fld::(List.collect formatAgg aggs)
+        | GroupBy(flds, aggs) -> "group"::((List.map (fun f -> "by-" + f) flds) @ (List.collect formatAgg aggs))
         | Paging(pgid, ops) -> "page"::pgid::(List.map (function Take _ -> "take" | Skip _ -> "skip") ops)
         | GetSeries(k, v) -> "series"::k::v::[]
         | Empty -> [] ]
@@ -182,16 +184,16 @@ let singleTransformFields fields = function
   | DropColumns(drop) ->
       let dropped = set drop
       fields |> List.filter (fst >> dropped.Contains >> not)
-  | GroupBy(fld, aggs) ->
+  | GroupBy(flds, aggs) ->
       let oldFields = dict fields
       aggs 
-      |> List.map (function
-         | GroupKey -> oldFields.[fld]
+      |> List.collect (function
+         | GroupKey -> List.map (fun f -> oldFields.[f]) flds
          | ReturnUnique fld
          | ConcatValues fld
-         | Sum fld -> oldFields.[fld]
-         | CountAll -> TypeInfo.Field("count", JsonValue.String "int") 
-         | CountDistinct fld -> TypeInfo.Field(oldFields.[fld].Name, JsonValue.String "int"))
+         | Sum fld -> [ oldFields.[fld] ]
+         | CountAll -> [ TypeInfo.Field("count", JsonValue.String "int") ]
+         | CountDistinct fld -> [ TypeInfo.Field(oldFields.[fld].Name, JsonValue.String "int") ])
       |> List.mapi (fun i fld -> sprintf "field_%d" i, fld)
 
 let transformFields fields tfs = 
@@ -209,7 +211,7 @@ let mapTransformFields f = function
           | ConcatValues fld -> ConcatValues(f fld)
           | Sum fld -> Sum(f fld)
           | agg -> agg)
-      GroupBy(f fld, aggs)
+      GroupBy(List.map f fld, aggs)
   | Empty -> Empty
 
 let renameFields fields tfs = 
@@ -381,13 +383,13 @@ let (|JsonRecord|) = function
 let inline pickField name (JsonRecord(obj)) = 
   Array.pick (fun (n, v) -> if n = name then Some v else None) obj
 
-let applyAggregation (kfld, kval) group = function
- | GroupKey -> kfld, kval
- | CountAll -> "count", JsonValue.Number(group |> Seq.length |> decimal)
- | CountDistinct(fld) -> fld, JsonValue.Number(group |> Seq.distinctBy (pickField fld) |> Seq.length |> decimal)
- | ReturnUnique(fld) -> fld, group |> Seq.map (pickField fld) |> Seq.the
- | ConcatValues(fld) -> fld, group |> Seq.map(fun obj -> (pickField fld obj).AsString()) |> Seq.distinct |> String.concat ", " |> JsonValue.String
- | Sum(fld) -> fld, group |> Seq.sumBy (fun obj -> (pickField fld obj).AsDecimal()) |> JsonValue.Number
+let applyAggregation kvals group = function
+ | GroupKey -> kvals
+ | CountAll -> [ "count", JsonValue.Number(group |> Seq.length |> decimal) ]
+ | CountDistinct(fld) -> [ fld, JsonValue.Number(group |> Seq.distinctBy (pickField fld) |> Seq.length |> decimal) ]
+ | ReturnUnique(fld) -> [ fld, group |> Seq.map (pickField fld) |> Seq.the ]
+ | ConcatValues(fld) -> [ fld, group |> Seq.map(fun obj -> (pickField fld obj).AsString()) |> Seq.distinct |> String.concat ", " |> JsonValue.String ]
+ | Sum(fld) -> [ fld, group |> Seq.sumBy (fun obj -> (pickField fld obj).AsDecimal()) |> JsonValue.Number ]
 
 let compareFields o1 o2 (fld, order) = 
   let reverse = if order = Descending then -1 else 1
@@ -420,13 +422,13 @@ let transformJson lookupRuntimeArg (objs:seq<JsonValue>) = function
       objs |> Seq.sortWith (fun o1 o2 ->
         let optRes = flds |> List.map (compareFields o1 o2) |> List.skipWhile ((=) 0) |> List.tryHead
         defaultArg optRes 0)
-  | GroupBy(fld, aggs) ->
+  | GroupBy(flds, aggs) ->
       let aggs = List.rev aggs
       objs 
-      |> Seq.groupBy (pickField fld)
-      |> Seq.map (fun (kval, group) ->
+      |> Seq.groupBy (fun j -> List.map (fun f -> pickField f j) flds)
+      |> Seq.map (fun (kvals, group) ->
         aggs 
-        |> List.map (applyAggregation (fld, kval) group)
+        |> List.collect (applyAggregation (List.zip flds kvals) group)
         |> Array.ofSeq
         |> JsonValue.Record )
 
@@ -528,26 +530,16 @@ let handleSortRequest injectid { Fields = fields } rest keys =
               |> withAddAction "Fields used for sorting" ]
   |> membersOk    
 
-let handleGroupRequest injectid { Fields = fields } rest = 
-  [ for fldid, field in fields ->
-      makeProperty injectid ("by " + field.Name) (GroupBy(fldid, [GroupKey])::rest) [] 
-      |> withDocs (sprintf "Group by %s" (field.Name.ToLower()))
-          ( "Creates groups based on the value of " + field.Name + " and calculte summary " +
-            "values for each group. You can specify a number of summary calculations in the " + 
-            "following list:")
-      |> withCreateAction "Aggregation operations" ]
-  |> membersOk  
 
-let handleGroupAggRequest injectid { Fields = fields } rest fld aggs =
+let aggregationMembers injectid { Fields = fields } rest keys aggs = 
   let containsCountAll = aggs |> Seq.exists ((=) CountAll)
   let containsField fld = aggs |> Seq.exists (function 
     | CountDistinct f | ReturnUnique f | ConcatValues f | Sum f -> f = fld | CountAll | GroupKey -> false)
-
   let makeAggMember name agg doc = 
-    makeProperty injectid name (GroupBy(fld,agg::aggs)::rest) [] |> withDocs "" doc
+    makeProperty injectid name (GroupBy(keys,agg::aggs)::rest) [] |> withDocs "" doc
     |> withAddAction "Aggregation operations"
 
-  [ yield makeProperty injectid "then" (Empty::GroupBy(fld, aggs)::rest) [] |> withDocs "" "Get data or perform another transformation"
+  [ yield makeProperty injectid "then" (Empty::GroupBy(keys, aggs)::rest) [] |> withDocs "" "Get data or perform another transformation"
     if not containsCountAll then 
       yield makeAggMember "count all" CountAll "Count the number of items in the group"
     for fldid, fld in fields do
@@ -562,8 +554,23 @@ let handleGroupAggRequest injectid { Fields = fields } rest fld aggs =
         if isSummable fld.Type.JsonValue then
           yield makeAggMember ("sum " + fld.Name) (Sum fldid)
                   "Sum the values of the field in the group" ]
+
+let handleGroupAggRequest injectid fields rest keys aggs =
+  aggregationMembers injectid fields rest keys aggs  
   |> membersOk  
   
+let handleGroupRequest injectid ({ Fields = fields } as fieldsObj) rest keys = 
+  let prefix = if List.isEmpty keys then "by " else "and "
+  [ for fldid, field in fields ->
+      makeProperty injectid (prefix + field.Name) (GroupBy(fldid::keys, [])::rest) [] 
+      |> withDocs (sprintf "Group by %s" (field.Name.ToLower()))
+          ( "Creates groups based on the value of " + field.Name + " and calculte summary " +
+            "values for each group. You can specify a number of summary calculations in the " + 
+            "following list:")
+      |> withCreateAction "Aggregation operations" 
+    yield! aggregationMembers injectid fieldsObj rest keys [GroupKey] ]
+  |> membersOk  
+
 let handleProxyRequest source local ctx = async { 
   let! data = originalRequest source local ctx       
   let transformed = 
@@ -618,7 +625,7 @@ let app = withSource (fun source ->
       // Starting a new pivoting operation
       | Empty ->
           let pgid = rest |> Seq.sumBy (function Paging _ -> 1 | _ -> 0) |> sprintf "pgid-%d"  
-          [ makeProperty injectid "group data" (GroupBy("!", [])::rest) [] |> withDocs "" "Lets you perform pivot table aggregations."
+          [ makeProperty injectid "group data" (GroupBy([], [])::rest) [] |> withDocs "" "Lets you perform pivot table aggregations."
             makeProperty injectid "sort data" (SortBy([])::rest) [] 
               |> withDocs "Sort the data" ("Specify how the data is sorted. You can choose one or more attributes " +
                   "to use for sorting in the following list. Choose 'descending' to sort the values from largest value " +
@@ -642,9 +649,9 @@ let app = withSource (fun source ->
           handleSortRequest injectid fields rest keys
       | DropColumns(dropped) ->
           handleDropRequest injectid fields rest dropped
-      | GroupBy("!", []) ->
-          handleGroupRequest injectid fields rest 
-      | GroupBy(fld, aggs) ->
-          handleGroupAggRequest injectid fields rest fld aggs )
+      | GroupBy(flds, []) ->
+          handleGroupRequest injectid fields rest flds
+      | GroupBy(flds, aggs) ->
+          handleGroupAggRequest injectid fields rest flds aggs )
     pathScan "/%s" (fun (SplitString '/' local) -> handleProxyRequest source local)
   ])
