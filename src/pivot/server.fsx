@@ -91,8 +91,10 @@ module Transform =
         let fields, aggs = args |> List.partition (fun s -> s.StartsWith("by-"))
         // To support earlier encoding
         let fields, aggs = 
-          if List.isEmpty fields then [List.head aggs], List.tail aggs 
-          else fields |> List.map (fun s -> s.Substring(3)), aggs 
+          match fields, aggs with
+          | [], [] -> [], []
+          | [], field::aggs -> [field], List.tail aggs 
+          | fields, aggs -> fields |> List.map (fun s -> s.Substring(3)), aggs 
 
         GroupBy(fields, parseAggs [] aggs)
     | "page"::pgid::ops -> Paging(pgid, List.map (function "take" -> Take | "skip" -> Skip | _ -> failwith "Wrong paging operation") ops)
