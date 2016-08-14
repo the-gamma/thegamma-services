@@ -74,16 +74,20 @@ type Facet<'T> =
   | Choice of string * seq<string * string * ThingSchema * Facet<'T>>
 
 module Data = 
-  let [<Literal>] Root = __SOURCE_DIRECTORY__ + "/medals-expanded.csv"
+  let dataRoot = 
+    if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then __SOURCE_DIRECTORY__ + "/../../data"
+    else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../data"
+
+  let [<Literal>] Root = __SOURCE_DIRECTORY__ + "/../../data/medals-expanded.csv"
   type Medals = CsvProvider<Root, Schema="Gold=int, Silver=int, Bronze=int">
-  let olympics = Medals.GetSample().Rows
-  let headers = Medals.GetSample().Headers.Value
+  let olympics = Medals.Load(dataRoot + "/medals-expanded.csv").Rows
+  let headers = Medals.Load(dataRoot + "/medals-expanded.csv").Headers.Value
               
   // http://www.topendsports.com/events/summer/countries/country-codes.htm
-  type Codes = FSharp.Data.HtmlProvider<const(__SOURCE_DIRECTORY__ + "/countrycodes.html")>
+  type Codes = FSharp.Data.HtmlProvider<const(__SOURCE_DIRECTORY__ + "/../../data/countrycodes.html")>
   let countries = 
     [ yield "SRB", "Serbia"
-      for r in Codes.GetSample().Tables.``3-Digit Country Codes``.Rows do 
+      for r in Codes.Load(dataRoot + "/countrycodes.html").Tables.``3-Digit Country Codes``.Rows do 
         yield r.Code, r.Country ] |> dict
 
   let sports = 
