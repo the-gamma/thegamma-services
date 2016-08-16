@@ -86,7 +86,8 @@ module Data =
   // http://www.topendsports.com/events/summer/countries/country-codes.htm
   type Codes = FSharp.Data.HtmlProvider<const(__SOURCE_DIRECTORY__ + "/../../data/countrycodes.html")>
   let countries = 
-    [ yield "SRB", "Serbia"
+    [ yield "KOS", "Kosovo"
+      yield "SRB", "Serbia"
       for r in Codes.Parse(File.ReadAllText(dataRoot + "/countrycodes.html")).Tables.``3-Digit Country Codes``.Rows do 
         yield r.Code, r.Country.TrimEnd('*') ] |> dict
 
