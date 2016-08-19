@@ -31208,6 +31208,8 @@ Rio (2016),2016,Aquatics,Swimming,Nathan Adrian,USA,Unknown,4x100m freestyle rel
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Max Whitlock,GBR,Unknown,individual all-round,Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Max Whitlock,GBR,Unknown,pommel horse,Gold,1,0,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Max Whitlock,GBR,Unknown,floor exercises,Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Usain Bolt,JAM,Unknown,200m,Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Usain Bolt,JAM,Unknown,100m,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Niccolo Campriani,ITA,Unknown,50m rifle 3 positions (3x40 shots),Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Niccolo Campriani,ITA,Unknown,10m air rifle (40 shots),Gold,1,0,0
 Rio (2016),2016,Archery,Archery,Hyejin Chang,KOR,Unknown,individual FITA round,Gold,1,0,0
@@ -31342,6 +31344,7 @@ Rio (2016),2016,Cycling,Cycling Road,DER BREGGEN Anna Van,NED,Unknown,individual
 Rio (2016),2016,Cycling,Cycling Road,DER BREGGEN Anna Van,NED,Unknown,individual road race,Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,Kristina Vogel,GER,Unknown,Team Sprint,Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Kristina Vogel,GER,Unknown,Sprint indivual,Gold,1,0,0
+Rio (2016),2016,Taekwondo,Taekwondo,Ahmad Abughaush,JOR,Unknown,58 - 68 kg,Gold,1,0,0
 Rio (2016),2016,Badminton,Badminton,Tontowi Ahmad,INA,Unknown,doubles,Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Artur Akhmatkhuzin,RUS,Unknown,foil team,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Fehaid Aldeehani,IOA,Unknown,double trap (120 targets),Gold,1,0,0
@@ -31361,7 +31364,6 @@ Rio (2016),2016,Judo,Judo,Fabio Basile,ITA,Unknown,61 - 66kg (middleweight),Gold
 Rio (2016),2016,Rugby,Rugby,Nicole Beck,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Paul Bennett,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Gunnar Bentz,USA,Unknown,4x200m freestyle relay,Gold,1,0,0
-Rio (2016),2016,Athletics,Athletics,Usain Bolt,JAM,Unknown,100m,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Hamish Bond,NZL,Unknown,pair-oared shell with coxswain (2+),Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Yannick Borel,FRA,Unknown,épée team,Gold,1,0,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,MOLINA Ismael Borrero,CUB,Unknown,- 66.6kg (lightweight),Gold,1,0,0
@@ -31370,13 +31372,17 @@ Rio (2016),2016,Sailing,Sailing,Marit Bouwmeester,NED,Unknown,Laser Radial - One
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Sebastian Brendel,GER,Unknown,C-1 1000m (canoe single),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Kimberley Brennan,AUS,Unknown,single sculls (1x),Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Alistair Brownlee,GBR,Unknown,triathlon (long jump / shot put / 100 yards),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Manuel Brunet,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,Steven Burke,GBR,Unknown,"1980 yards Pursuit, Team",Gold,1,0,0
+Rio (2016),2016,Sailing,Sailing,Peter Burling,NZL,Unknown,49er - Skiff,Gold,1,0,0
 Rio (2016),2016,Sailing,Sailing,Tom Burton,AUS,Unknown,single-handed dinghy open (Laser),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Facundo Callioni,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Bronte Campbell,AUS,Unknown,4x100m freestyle relay,Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Road,Fabian Cancellara,SUI,Unknown,individual time trial,Gold,1,0,0
 Rio (2016),2016,Sailing,Sailing,SAROLI Cecilia Carranza,ARG,Unknown,0.5-1t,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Michelle Carter,USA,Unknown,shot put,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Charlotte Caslick,AUS,Unknown,rugby,Gold,1,0,0
+Rio (2016),2016,Volleyball,Beach volleyball.,Alison Cerutti,BRA,Unknown,beach volleyball,Gold,1,0,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Davit Chakvetadze,RUS,Unknown,76 - 85kg,Gold,1,0,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak S,Iurii Cheban,UKR,Unknown,C-1 (canoe single),Gold,1,0,0
 Rio (2016),2016,Aquatics,Diving,Aisen Chen,CHN,Unknown,10m platform,Gold,1,0,0
@@ -31393,6 +31399,7 @@ Rio (2016),2016,Boxing,Boxing,Robson Conceicao,BRA,Unknown,60 - 63.5kg (light-we
 Rio (2016),2016,Aquatics,Swimming,Jack Conger,USA,Unknown,4x200m freestyle relay,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Kevin Cordes,USA,Unknown,4x100m medley relay,Gold,1,0,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak S,Saul Craviotto,ESP,Unknown,C-2 (canoe double),Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Ryan Crouser,USA,Unknown,shot put,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,SILVA Thiago Braz Da,BRA,Unknown,pole vault,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Ro Dakuwaqa,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Chloe Dalton,AUS,Unknown,rugby,Gold,1,0,0
@@ -31408,6 +31415,7 @@ Rio (2016),2016,Rowing,Rowing,Mahe Drysdale,NZL,Unknown,single sculls (1x),Gold,
 Rio (2016),2016,Rowing,Rowing,Scott Durant,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Boxing,Boxing,Hasanboy Dusmatov,UZB,Unknown,72.57 - 79.38kg (light-heavyweight),Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Ekaterina Dyachenko,RUS,Unknown,sabre team,Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Ashton Eaton,USA,Unknown,decathlon,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Amanda Elmore,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Barbara Engleder,GER,Unknown,50m rifle 3 positions (3x40 shots),Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Gemma Etheridge,AUS,Unknown,rugby,Gold,1,0,0
@@ -31421,11 +31429,13 @@ Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,CHANUT Denis Gargaud,FRA,Unknown,C
 Rio (2016),2016,Fencing,Fencing,Daniele Garozzo,ITA,Unknown,foil individual,Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Yuliya Gavrilova,RUS,Unknown,sabre team,Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Simona Gherman,ROU,Unknown,épée team,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Juan Gilardi,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Josip Glasnovic,CRO,Unknown,trap (125 targets),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Helen Glover,GBR,Unknown,pair-oared shell with coxswain (2+),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Tessa Gobbo,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,Jinjie Gong,CHN,Unknown,Team Sprint,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Matt Gotrel,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
+Rio (2016),2016,Sailing,Sailing,Martine Grael,BRA,Unknown,49er - Skiff,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Ellia Green,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Alex Gregory,GBR,Unknown,four-oared shell with coxswain (4-),Gold,1,0,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Marcus Gross,GER,Unknown,C-2 1000m (canoe double),Gold,1,0,0
@@ -31447,23 +31457,30 @@ Rio (2016),2016,Aquatics,Swimming,Mack Horton,AUS,Unknown,400m freestyle,Gold,1,
 Rio (2016),2016,Rowing,Rowing,Pierre Houin,FRA,Unknown,lightweight double sculls (2x),Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Shu-Ching Hsu,TPE,Unknown,53kg,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Caterine Ibarguen,COL,Unknown,triple jump,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Isidoro Ibarra,ARG,Unknown,hockey,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Pedro Ibarra,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Wrestling,Wrestling Freestyle,Kaori Icho,JPN,Unknown,54 - 58kg,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Natalia Ishchenko,RUS,Unknown,100m freestyle,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Ruth Jebet,BRN,Unknown,3000m steeplechase,Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Daniel Jerent,FRA,Unknown,épée team,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Jongoh Jin,KOR,Unknown,50m pistol (60 shots),Gold,1,0,0
+Rio (2016),2016,Taekwondo,Taekwondo,Jade Jones,GBR,Unknown,49 - 57 kg,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Henri Junghaenel,GER,Unknown,50m rifle prone (60 shots),Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Rie Kaneto,JPN,Unknown,200m breaststroke,Gold,1,0,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Ryohei Kato,JPN,Unknown,"team, horizontal bar",Gold,1,0,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Risako Kawai,JPN,Unknown,57 - 63kg (featherweight),Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Majlinda Kelmendi,KOS,Unknown,48 - 52kg (half-lightweight),Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Khasan Khalmurzaev,RUS,Unknown,73 - 81kg (half-middleweight),Gold,1,0,0
 Rio (2016),2016,Taekwondo,Taekwondo,Sohui Kim,KOR,Unknown,- 49 kg,Gold,1,0,0
 Rio (2016),2016,Archery,Archery,Woojin Kim,KOR,Unknown,team round 60y,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Conseslus Kipruto,KEN,Unknown,3000m steeplechase,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Faith Chepngetich Kipyegon,KEN,Unknown,1500m,Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Sara Kolak,CRO,Unknown,javelin throw,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Osea Kolinisau,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Lukas Krpalek,CZE,Unknown,90 - 100kg (half-heavyweight),Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Semi Kunatani,FIJ,Unknown,rugby,Gold,1,0,0
+Rio (2016),2016,Sailing,Sailing,Kahena Kunze,BRA,Unknown,49er - Skiff,Gold,1,0,0
+Rio (2016),2016,Boxing,Boxing,CRUZ Julio Cesar La,CUB,Unknown,75 - 81kg (light-heavyweight),Gold,1,0,0
 Rio (2016),2016,Equestrian,Eventing,Karim Laghouag,FRA,Unknown,team,Gold,1,0,0
 Rio (2016),2016,Sailing,Sailing,Santiago Lange,ARG,Unknown,0.5-1t,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Matt Langridge,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
@@ -31478,6 +31495,7 @@ Rio (2016),2016,Table Tennis,Table Tennis,Shiwen Liu,CHN,Unknown,team,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Ryan Lochte,USA,Unknown,4x200m freestyle relay,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Eleanor Logan,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Qingquan Long,CHN,Unknown,"- 56kg, total (bantamweight)",Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Juan Lopez,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Tennis,Tennis,Marc Lopez,ESP,Unknown,doubles,Gold,1,0,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,NUNEZ Mijain Lopez,CUB,Unknown,100 - 130kg (super heavyweight),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Constantine Louloudis,GBR,Unknown,four-oared shell with coxswain (4-),Gold,1,0,0
@@ -31488,16 +31506,21 @@ Rio (2016),2016,Rowing,Rowing,Natalia Madaj,POL,Unknown,double sculls (2x),Gold,
 Rio (2016),2016,Tennis,Tennis,Ekaterina Makarova,RUS,Unknown,doubles,Gold,1,0,0
 Rio (2016),2016,Sailing,Sailing,Igor Marenic,CRO,Unknown,470 - Two Person Dinghy,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Melanie Margalis,USA,Unknown,4x200m freestyle relay,Gold,1,0,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Helen Louise Maroulis,USA,Unknown,- 47.6kg (light-flyweight),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Luca Masso,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Viliame Mata,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Badminton,Badminton,Misaki Matsutomo,JPN,Unknown,doubles,Gold,1,0,0
 Rio (2016),2016,Tennis,Tennis,-SANDS Bethanie Mattek,USA,Unknown,mixed doubles,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Agustin Mazzilli,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Omar Mcleod,JAM,Unknown,110m hurdles,Gold,1,0,0
 Rio (2016),2016,Aquatics,Diving,Chris Mears,GBR,Unknown,3m springboard,Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Suping Meng,CHN,Unknown,+ 75kg,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Joaquin Menini,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Shaunae Miller,BAH,Unknown,400m,Gold,1,0,0
 Rio (2016),2016,Sailing,Sailing,Hannah Mills,GBR,Unknown,470 - Two Person Dinghy,Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Sohrab Moradi,IRI,Unknown,94kg,Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Beslan Mudranov,RUS,Unknown,- 60 kg,Gold,1,0,0
+Rio (2016),2016,Athletics,Athletics,Dalilah Muhammad,USA,Unknown,400m hurdles,Gold,1,0,0
 Rio (2016),2016,Tennis,Tennis,Andy Murray,GBR,Unknown,singles,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Eric Murray,NZL,Unknown,pair-oared shell with coxswain (2+),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Meghan Musnicki,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
@@ -31508,11 +31531,15 @@ Rio (2016),2016,Badminton,Badminton,Liliyana Natsir,INA,Unknown,doubles,Gold,1,0
 Rio (2016),2016,Rowing,Rowing,Simon Niepmann,SUI,Unknown,lightweight coxless four (4-),Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Ruslan Nurudinov,UZB,Unknown,+ 105kg,Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Shohei Ono,JPN,Unknown,66 - 73kg (lightweight),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Ignacio Ortiz,ARG,Unknown,hockey,Gold,1,0,0
+Rio (2016),2016,Volleyball,Beach volleyball.,SCHMIDT Bruno Oscar,BRA,Unknown,beach volleyball,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Gregorio Paltrinieri,ITA,Unknown,1500m freestyle,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Matias Paredes,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Paula Pareto,ARG,Unknown,- 48kg (extra-lightweight),Gold,1,0,0
 Rio (2016),2016,Fencing,Fencing,Sangyoung Park,KOR,Unknown,épée individual,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Shannon Parry,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Ilse Paulis,NED,Unknown,lightweight double sculls (2x),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Gonzalo Peillat,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Evania Pelite,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Sandra Perkovic,CRO,Unknown,discus throw,Gold,1,0,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Eleftherios Petrounias,GRE,Unknown,rings,Gold,1,0,0
@@ -31530,7 +31557,10 @@ Rio (2016),2016,Rugby,Rugby,Savenaca Rawaca,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Pete Reed,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Emily Regan,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Christian Reitz,GER,Unknown,25m rapid fire pistol (60 shots),Gold,1,0,0
+Rio (2016),2016,Aquatics,Diving,Qian Ren,CHN,Unknown,10m platform,Gold,1,0,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Max Rendschmidt,GER,Unknown,C-2 1000m (canoe double),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Lucas Rey,ARG,Unknown,hockey,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Matias Rey,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Se Gwang Ri,PRK,Unknown,vault,Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Jong Sim Rim,PRK,Unknown,"67.5 - 75kg, one-two hand 3 events (middleweight)",Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Teddy Riner,FRA,Unknown,+ 100kg (heavyweight),Gold,1,0,0
@@ -31538,12 +31568,14 @@ Rio (2016),2016,Athletics,Athletics,Brianna Rollins,USA,Unknown,100m hurdles,Gol
 Rio (2016),2016,Aquatics,Swimming,Svetlana Romashina,RUS,Unknown,100m freestyle,Gold,1,0,0
 Rio (2016),2016,Golf,Golf,Justin Rose,GBR,Unknown,individual,Gold,1,0,0
 Rio (2016),2016,Shooting,Shooting,Gabriele Rossetti,ITA,Unknown,skeet (125 targets),Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Lucas Rossi,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Kianoush Rostami,IRI,Unknown,85kg,Gold,1,0,0
 Rio (2016),2016,Equestrian,Dressage,Sonke Rothenberger,GER,Unknown,team,Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,-SHAND Joanna Rowsell,GBR,Unknown,"1980 yards Pursuit, Team",Gold,1,0,0
 Rio (2016),2016,Equestrian,Jumping,Philippe Rozier,FRA,Unknown,team,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,David Lekuta Rudisha,KEN,Unknown,800m,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Cierra Runge,USA,Unknown,4x200m freestyle relay,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Juan Saladino,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,William Satch,GBR,Unknown,eight with coxswain (8+),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Mohamed Sbihi,GBR,Unknown,four-oared shell with coxswain (4-),Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Lauren Schmetterling,USA,Unknown,eight with coxswain (8+),Gold,1,0,0
@@ -31591,6 +31623,7 @@ Rio (2016),2016,Wrestling,Wrestling Freestyle,Eri Tosaka,JPN,Unknown,- 48kg (lig
 Rio (2016),2016,Rowing,Rowing,Lucas Tramer,SUI,Unknown,lightweight coxless four (4-),Gold,1,0,0
 Rio (2016),2016,Judo,Judo,Tina Trstenjak,SLO,Unknown,- 63kg (lightweight),Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Josua Tuisova,FIJ,Unknown,rugby,Gold,1,0,0
+Rio (2016),2016,Sailing,Sailing,Blair Tuke,NZL,Unknown,49er - Skiff,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Amy Turner,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Jerry Tuwai,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Equestrian,Eventing,Thibaut Vallette,FRA,Unknown,team,Gold,1,0,0
@@ -31600,7 +31633,9 @@ Rio (2016),2016,Sailing,Sailing,RIJSSELBERGHE Dorian Van,NED,Unknown,RS:X - Wind
 Rio (2016),2016,Aquatics,Swimming,ROUWENDAAL Sharon Van,NED,Unknown,marathon 10km,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Jasa Veremalua,FIJ,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Tennis,Tennis,Elena Vesnina,RUS,Unknown,doubles,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Lucas Vila,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Samisoni Viriviri,FIJ,Unknown,rugby,Gold,1,0,0
+Rio (2016),2016,Hockey,Hockey,Juan Vivaldi,ARG,Unknown,hockey,Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,Elia Viviani,ITA,Unknown,100km,Gold,1,0,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Roman Vlasov,RUS,Unknown,67.5 - 75kg (middleweight),Gold,1,0,0
 Rio (2016),2016,Volleyball,Beach volleyball.,Kira Walkenhorst,GER,Unknown,beach volleyball,Gold,1,0,0
@@ -31609,6 +31644,7 @@ Rio (2016),2016,Athletics,Athletics,Zhen Wang,CHN,Unknown,20km walk,Gold,1,0,0
 Rio (2016),2016,Aquatics,Swimming,Ferry Weertman,NED,Unknown,marathon 10km,Gold,1,0,0
 Rio (2016),2016,Rowing,Rowing,Philipp Wende,GER,Unknown,quadruple sculls with coxswain (4x),Gold,1,0,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Sanne Wevers,NED,Unknown,balance beam,Gold,1,0,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Erica Elizabeth Wiebe,CAN,Unknown,67.5 - 75kg (middleweight),Gold,1,0,0
 Rio (2016),2016,Cycling,Cycling Track,Bradley Wiggins,GBR,Unknown,"1980 yards Pursuit, Team",Gold,1,0,0
 Rio (2016),2016,Rugby,Rugby,Sharni Williams,AUS,Unknown,rugby,Gold,1,0,0
 Rio (2016),2016,Athletics,Athletics,Anita Wlodarczyk,POL,Unknown,hammer throw,Gold,1,0,0
@@ -31653,6 +31689,8 @@ Rio (2016),2016,Athletics,Athletics,Tori Bowie,USA,Unknown,200m,Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Tori Bowie,USA,Unknown,100m,Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,Tania Cagnotto,ITA,Unknown,3m springboard,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Diving,Tania Cagnotto,ITA,Unknown,3m springboard,Silver,0,1,0
+Rio (2016),2016,Athletics,Athletics,GRASSE Andre De,CAN,Unknown,100m,Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,GRASSE Andre De,CAN,Unknown,200m,Silver,0,1,0
 Rio (2016),2016,Shooting,Shooting,Li Du,CHN,Unknown,50m rifle 3 positions (3x40 shots),Bronze,0,0,1
 Rio (2016),2016,Shooting,Shooting,Li Du,CHN,Unknown,10m air rifle (40 shots),Silver,0,1,0
 Rio (2016),2016,Archery,Archery,Brady Ellison,USA,Unknown,individual FITA round,Bronze,0,0,1
@@ -31700,11 +31738,14 @@ Rio (2016),2016,Rowing,Rowing,Nicole Beukers,NED,Unknown,quadruple sculls with c
 Rio (2016),2016,Rugby,Rugby,Dan Bibby,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Equestrian,Dressage,Fiona Bigwood,GBR,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Jack Bobridge,AUS,Unknown,"1980 yards Pursuit, Team",Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Gauthier Boccard,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Taekwondo,Taekwondo,Tijana Bogdanovic,SRB,Unknown,- 49 kg,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Tom Boon,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Joshua Booth,AUS,Unknown,four-oared shell with coxswain (4-),Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,David Boudia,USA,Unknown,10m platform,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Carline Bouw,NED,Unknown,quadruple sculls with coxswain (4x),Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Kelly Brazier,NZL,Unknown,rugby,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Thomas Briels,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Lawrence Brittain,RSA,Unknown,pair-oared shell with coxswain (2+),Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Gayle Broughton,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Jonathan Brownlee,GBR,Unknown,triathlon (long jump / shot put / 100 yards),Silver,0,1,0
@@ -31714,15 +31755,18 @@ Rio (2016),2016,Rugby,Rugby,Phil Burgess,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Jeremy Cadot,FRA,Unknown,foil team,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Zelin Cai,CHN,Unknown,20km walk,Silver,0,1,0
 Rio (2016),2016,Shooting,Shooting,Chiara Cainero,ITA,Unknown,skeet (125 targets),Silver,0,1,0
+Rio (2016),2016,Taekwondo,Taekwondo,GOMEZ Eva Calvo,ESP,Unknown,49 - 57 kg,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,-BROWN Olivia Carnegie,GBR,Unknown,eight with coxswain (8+),Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Kelly Catlin,USA,Unknown,"1980 yards Pursuit, Team",Silver,0,1,0
 Rio (2016),2016,Badminton,Badminton,Peng Soon Chan,MAS,Unknown,doubles,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Cedric Charlier,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Sailing,Sailing,Peina Chen,CHN,Unknown,RS:X - Windsurfer,Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,Jun Hoong Cheong,MAS,Unknown,10m platform,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Vivian Jepkemoi Cheruiyot,KEN,Unknown,10miles walk (16093m),Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Hyo Sim Choe,PRK,Unknown,63kg,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Will Claye,USA,Unknown,triple jump,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Tamsin Cook,AUS,Unknown,4x200m freestyle relay,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Tanguy Cosyns,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Sam Cross,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Laszlo Cseh,HUN,Unknown,100m butterfly,Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,' Francesca Dallape,ITA,Unknown,3m springboard,Silver,0,1,0
@@ -31731,14 +31775,19 @@ Rio (2016),2016,Archery,Archery,Tuiana Dashidorzhieva,RUS,Unknown,team round 60y
 Rio (2016),2016,Rugby,Rugby,James Davies,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Equestrian,Jumping,Lucy Davis,USA,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Edward Dawkins,NZL,Unknown,Team Sprint,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,PAEUW Alexandre De,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,TOLEDO Zoe De,GBR,Unknown,eight with coxswain (8+),Silver,0,1,0
 Rio (2016),2016,Tennis,Tennis,POTRO Juan Martin Del,ARG,Unknown,singles,Silver,0,1,0
 Rio (2016),2016,Sailing,Sailing,Nick Dempsey,GBR,Unknown,RS:X - Windsurfer,Silver,0,1,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak S,Valentin Demyanenko,AZE,Unknown,C-1 (canoe single),Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Felix Denayer,BEL,Unknown,hockey,Silver,0,1,0
+Rio (2016),2016,Taekwondo,Taekwondo,Alexey Denisenko,RUS,Unknown,58 - 68 kg,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,FRANCISCA Elisa Di,ITA,Unknown,foil individual,Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Hidilyn Diaz,PHI,Unknown,53kg,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Genzebe Dibaba,ETH,Unknown,1500m,Silver,0,1,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Tina Dietze,GER,Unknown,K-2 500m (kayak double),Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Sebastien Dockier,BEL,Unknown,hockey,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,John-John Dohmen,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Trampoline,Dong Dong,CHN,Unknown,individual,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Sumiya Dorjsuren,MGL,Unknown,52 - 57kg (lightweight),Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,Sam Dorman,USA,Unknown,3m springboard,Silver,0,1,0
@@ -31769,6 +31818,7 @@ Rio (2016),2016,Judo,Judo,Odette Giuffrida,ITA,Unknown,48 - 52kg (half-lightweig
 Rio (2016),2016,Boxing,Boxing,Shakhram Giyasov,UZB,Unknown,64 - 69 kg,Silver,0,1,0
 Rio (2016),2016,Badminton,Badminton,Liu Ying Goh,MAS,Unknown,doubles,Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Sarah Goss,NZL,Unknown,rugby,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Simon Gougnard,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Katherine Grainger,GBR,Unknown,double sculls (2x),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Katie Greves,GBR,Unknown,eight with coxswain (8+),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Mindaugas Griskonis,LTU,Unknown,double sculls (2x),Silver,0,1,0
@@ -31778,6 +31828,7 @@ Rio (2016),2016,Fencing,Fencing,Jialu Hao,CHN,Unknown,épée team,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Hisayoshi Harasawa,JPN,Unknown,+ 100kg (heavyweight),Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,Zi He,CHN,Unknown,3m springboard,Silver,0,1,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak S,Liam Heath,GBR,Unknown,C-2 (canoe double),Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Alexander Hendrickx,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Michael Hepburn,AUS,Unknown,"1980 yards Pursuit, Team",Silver,0,1,0
 Rio (2016),2016,Equestrian,Dressage,Carl Hester,GBR,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Alexander Hill,AUS,Unknown,four-oared shell with coxswain (4-),Silver,0,1,0
@@ -31797,6 +31848,7 @@ Rio (2016),2016,Rowing,Rowing,Malte Jakschik,GER,Unknown,eight with coxswain (8+
 Rio (2016),2016,Athletics,Athletics,Kirani James,GRN,Unknown,400m,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Inge Janssen,NED,Unknown,quadruple sculls with coxswain (4x),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Lindsay Jennerich,CAN,Unknown,lightweight double sculls (2x),Silver,0,1,0
+Rio (2016),2016,Sailing,Sailing,Iain Jensen,AUS,Unknown,49er - Skiff,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Bokyeong Jeong,KOR,Unknown,- 48kg (extra-lightweight),Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Hyvin Kiyeng Jepkemoi,KEN,Unknown,3000m steeplechase,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Kasper Joergensen,DEN,Unknown,lightweight coxless four (4-),Silver,0,1,0
@@ -31820,6 +31872,7 @@ Rio (2016),2016,Athletics,Athletics,Eunice Jepkirui Kirwa,BRN,Unknown,marathon,S
 Rio (2016),2016,Equestrian,Eventing,Ingrid Klimke,GER,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Wrestling,Wrestling Freestyle,ZHOLOBOVA Valeriia Koblova,RUS,Unknown,54 - 58kg,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Alina Komashchuk,UKR,Unknown,sabre team,Silver,0,1,0
+Rio (2016),2016,Athletics,Athletics,Joe Kovacs,USA,Unknown,shot put,Silver,0,1,0
 Rio (2016),2016,Equestrian,Eventing,Julia Krajewski,GER,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Olena Kravatska,UKR,Unknown,sabre team,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Andreas Kuffner,GER,Unknown,eight with coxswain (8+),Silver,0,1,0
@@ -31835,20 +31888,27 @@ Rio (2016),2016,Rugby,Rugby,-HAGUE Oliver Lindsay,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Varlam Liparteliani,GEO,Unknown,81 - 90kg (middleweight),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,William Lockwood,AUS,Unknown,four-oared shell with coxswain (4-),Silver,0,1,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,CABRERA Yasmany Daniel Lugo,CUB,Unknown,- 66.6kg (lightweight),Silver,0,1,0
+Rio (2016),2016,Volleyball,Beach volleyball.,Daniele Lupo,ITA,Unknown,beach volleyball,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Loick Luypaert,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Xiaojun Lyu,CHN,Unknown,77kg,Silver,0,1,0
 Rio (2016),2016,Equestrian,Jumping,Elizabeth Madden,USA,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Mark Overgaard Madsen,DEN,Unknown,67.5 - 75kg (middleweight),Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Taoufik Makhloufi,ALG,Unknown,800m,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Piotr Malachowski,POL,Unknown,discus throw,Silver,0,1,0
+Rio (2016),2016,Sailing,Sailing,Alex Maloney,NZL,Unknown,49er - Skiff,Silver,0,1,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Maryia Mamashuk,BLR,Unknown,57 - 63kg (featherweight),Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Huriana Manuel,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Luvo Manyonga,RSA,Unknown,long jump,Silver,0,1,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Guzel Manyurova,KAZ,Unknown,67.5 - 75kg (middleweight),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Damir Martin,CRO,Unknown,single sculls (1x),Silver,0,1,0
 Rio (2016),2016,Boxing,Boxing,Yurberjen Herney Martinez,COL,Unknown,72.57 - 79.38kg (light-heavyweight),Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Simon Martirosyan,ARM,Unknown,+ 105kg,Silver,0,1,0
+Rio (2016),2016,Athletics,Athletics,Kevin Mayer,FRA,Unknown,decathlon,Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Kayla Mcalister,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Ruaridh Mcconnochie,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Taylor Mckeown,AUS,Unknown,4x100m medley relay,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,James Mcrae,AUS,Unknown,quadruple sculls with coxswain (4x),Silver,0,1,0
+Rio (2016),2016,Sailing,Sailing,Molly Meech,NZL,Unknown,49er - Skiff,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Angelina Melnikova,RUS,Unknown,"team, horizontal bar",Silver,0,1,0
 Rio (2016),2016,Tennis,Tennis,Florin Mergea,ROU,Unknown,doubles,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Mehdy Metella,FRA,Unknown,4x100m freestyle relay,Silver,0,1,0
@@ -31865,7 +31925,9 @@ Rio (2016),2016,Rugby,Rugby,-WONG Tyla Nathan,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Darya Naumava,BLR,Unknown,"67.5 - 75kg, one-two hand 3 events (middleweight)",Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Lia Neal,USA,Unknown,4x100m freestyle relay,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Leah Neale,AUS,Unknown,4x200m freestyle relay,Silver,0,1,0
+Rio (2016),2016,Volleyball,Beach volleyball.,Paolo Nicolai,ITA,Unknown,beach volleyball,Silver,0,1,0
 Rio (2016),2016,Table Tennis,Table Tennis,Koki Niwa,JPN,Unknown,team,Silver,0,1,0
+Rio (2016),2016,Boxing,Boxing,Adilbek Niyazymbetov,KAZ,Unknown,75 - 81kg (light-heavyweight),Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Dan Norton,GBR,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Patricia Obee,CAN,Unknown,lightweight double sculls (2x),Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Hannes Ocik,GER,Unknown,eight with coxswain (8+),Silver,0,1,0
@@ -31879,11 +31941,13 @@ Rio (2016),2016,Judo,Judo,Rustam Orujov,AZE,Unknown,66 - 73kg (lightweight),Silv
 Rio (2016),2016,Cycling,Cycling Track,'SHEA Glenn O,AUS,Unknown,"1980 yards Pursuit, Team",Silver,0,1,0
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Shinobu Ota,JPN,Unknown,- 66.6kg (lightweight),Silver,0,1,0
 Rio (2016),2016,Boxing,Boxing,Sofiane Oumiha,FRA,Unknown,60 - 63.5kg (light-welterweight),Silver,0,1,0
+Rio (2016),2016,Sailing,Sailing,Nathan Outteridge,AUS,Unknown,49er - Skiff,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Trampoline,Bryony Page,GBR,Unknown,individual,Silver,0,1,0
 Rio (2016),2016,Aquatics,Diving,Pandelela Rinong Pamg,MAS,Unknown,10m platform,Silver,0,1,0
 Rio (2016),2016,Badminton,Badminton,Christinna Pedersen,DEN,Unknown,doubles,Silver,0,1,0
 Rio (2016),2016,Shooting,Shooting,Giovanni Pellielo,ITA,Unknown,trap (125 targets),Silver,0,1,0
 Rio (2016),2016,Archery,Archery,Ksenia Perova,RUS,Unknown,team round 60y,Silver,0,1,0
+Rio (2016),2016,Athletics,Athletics,Sara Slott Petersen,DEN,Unknown,400m hurdles,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Paolo Pizzo,ITA,Unknown,épée team,Silver,0,1,0
 Rio (2016),2016,Sailing,Sailing,Polly Powrie,NZL,Unknown,470 - Two Person Dinghy,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Josh Prenot,USA,Unknown,200m breaststroke,Silver,0,1,0
@@ -31912,6 +31976,7 @@ Rio (2016),2016,Aquatics,Swimming,Emily Seebohm,AUS,Unknown,4x100m medley relay,
 Rio (2016),2016,Volleyball,Beach volleyball.,DE FREITAS Barbara Seixas,BRA,Unknown,beach volleyball,Silver,0,1,0
 Rio (2016),2016,Table Tennis,Table Tennis,Xiaona Shan,GER,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Daria Shmeleva,RUS,Unknown,Team Sprint,Silver,0,1,0
+Rio (2016),2016,Aquatics,Diving,Yajie Si,CHN,Unknown,10m platform,Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Pimsiri Sirikaew,THA,Unknown,58kg,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Yeldos Smetov,KAZ,Unknown,- 60 kg,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Louis Smith,GBR,Unknown,pommel horse,Silver,0,1,0
@@ -31922,6 +31987,7 @@ Rio (2016),2016,Golf,Golf,Henrik Stenson,SWE,Unknown,individual,Silver,0,1,0
 Rio (2016),2016,Archery,Archery,Inna Stepanova,RUS,Unknown,team round 60y,Silver,0,1,0
 Rio (2016),2016,Judo,Judo,Travis Stevens,USA,Unknown,73 - 81kg (half-middleweight),Silver,0,1,0
 Rio (2016),2016,Sailing,Sailing,Tonci Stipanovic,CRO,Unknown,single-handed dinghy open (Laser),Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Emmanuel Stockbroekx,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rowing,Rowing,Genevra Stone,USA,Unknown,single sculls (1x),Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Vadzim Straltsou,BLR,Unknown,94kg,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Jeremy Stravius,FRA,Unknown,4x100m freestyle relay,Silver,0,1,0
@@ -31939,13 +32005,19 @@ Rio (2016),2016,Weightlifting,Weightlifting,Tao Tian,CHN,Unknown,85kg,Silver,0,1
 Rio (2016),2016,Aquatics,Swimming,Pieter Timmers,BEL,Unknown,100m freestyle,Silver,0,1,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Marko Tomicevic,SRB,Unknown,C-2 1000m (canoe double),Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,HELISSEY Jean-Paul Tony,FRA,Unknown,foil team,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Jerome Truyens,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Rugby,Rugby,Ruby Tui,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Athletics,Athletics,Boniface Mucheru Tumuti,KEN,Unknown,400m hurdles,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Seda Tutkhalian,RUS,Unknown,"team, horizontal bar",Silver,0,1,0
 Rio (2016),2016,Archery,Archery,Lisa Unruh,GER,Unknown,individual FITA round,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Jennifer Valente,USA,Unknown,"1980 yards Pursuit, Team",Silver,0,1,0
 Rio (2016),2016,Archery,Archery,Jean-Charles Valladont,FRA,Unknown,individual FITA round,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,AUBEL Florent Van,BEL,Unknown,hockey,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,DER BURGH Cameron Van,RSA,Unknown,100m breaststroke,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,DOREN Arthur Van,BEL,Unknown,hockey,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,STRYDONCK Elliot Van,BEL,Unknown,hockey,Silver,0,1,0
+Rio (2016),2016,Hockey,Hockey,Vincent Vanasch,BEL,Unknown,hockey,Silver,0,1,0
+Rio (2016),2016,Athletics,Athletics,Sunette Viljoen,RSA,Unknown,javelin throw,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Track,Anastasiia Voinova,RUS,Unknown,Team Sprint,Silver,0,1,0
 Rio (2016),2016,Wrestling,Wrestling Freestyle,Natalia Vorobeva,RUS,Unknown,63 - 69kg,Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Olena Voronina,UKR,Unknown,sabre team,Silver,0,1,0
@@ -31969,6 +32041,7 @@ Rio (2016),2016,Rugby,Rugby,Portia Woodman,NZL,Unknown,rugby,Silver,0,1,0
 Rio (2016),2016,Shooting,Shooting,Felipe Almeida Wu,BRA,Unknown,10m air pistol (40 shots),Silver,0,1,0
 Rio (2016),2016,Fencing,Fencing,Anqi Xu,CHN,Unknown,épée team,Silver,0,1,0
 Rio (2016),2016,Aquatics,Swimming,Jiayu Xu,CHN,Unknown,100m backstroke,Silver,0,1,0
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Saori Yoshida,JPN,Unknown,- 47.6kg (light-flyweight),Silver,0,1,0
 Rio (2016),2016,Table Tennis,Table Tennis,Maharu Yoshimura,JPN,Unknown,team,Silver,0,1,0
 Rio (2016),2016,Cycling,Cycling Road,Olga Zabelinskaya,RUS,Unknown,individual time trial,Silver,0,1,0
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Arthur Zanetti,BRA,Unknown,rings,Silver,0,1,0
@@ -31977,6 +32050,8 @@ Rio (2016),2016,Shooting,Shooting,Binbin Zhang,CHN,Unknown,50m rifle 3 positions
 Rio (2016),2016,Athletics,Athletics,Wenxiu Zhang,CHN,Unknown,hammer throw,Silver,0,1,0
 Rio (2016),2016,Weightlifting,Weightlifting,Zhazira Zhapparkul,KAZ,Unknown,69kg,Silver,0,1,0
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Milenko Zoric,SRB,Unknown,C-2 1000m (canoe double),Silver,0,1,0
+Rio (2016),2016,Aquatics,Diving,Meaghan Benfeito,CAN,Unknown,10m platform,Bronze,0,0,1
+Rio (2016),2016,Aquatics,Diving,Meaghan Benfeito,CAN,Unknown,10m platform,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Gabriele Detti,ITA,Unknown,1500m freestyle,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Gabriele Detti,ITA,Unknown,400m freestyle,Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Lasse Norman Hansen,DEN,Unknown,100km,Bronze,0,0,1
@@ -31994,7 +32069,9 @@ Rio (2016),2016,Rugby,Rugby,Tim Agaba,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Mayra Aguiar,BRA,Unknown,71 - 78kg (half-middleweight),Bronze,0,0,1
 Rio (2016),2016,Equestrian,Jumping,Christian Ahlmann,GER,Unknown,team,Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,Sara Ahmed,EGY,Unknown,69kg,Bronze,0,0,1
+Rio (2016),2016,Boxing,Boxing,Murodjon Akhmadaliev,UZB,Unknown,52.16 - 56.7kg (featherweight),Bronze,0,0,1
 Rio (2016),2016,Fencing,Fencing,Monica Aksamit,USA,Unknown,sabre team,Bronze,0,0,1
+Rio (2016),2016,Taekwondo,Taekwondo,ZENOORIN Kimia Alizadeh,IRI,Unknown,49 - 57 kg,Bronze,0,0,1
 Rio (2016),2016,Shooting,Shooting,Abdullah Alrashidi,IOA,Unknown,skeet (125 targets),Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Lazaro Jorge Alvarez,CUB,Unknown,60 - 63.5kg (light-welterweight),Bronze,0,0,1
 Rio (2016),2016,Wrestling,Wrestling Freestyle,Marwa Amri,TUN,Unknown,54 - 58kg,Bronze,0,0,1
@@ -32009,7 +32086,6 @@ Rio (2016),2016,Boxing,Boxing,Mathieu Albert Daniel Bauderlique,FRA,Unknown,75 -
 Rio (2016),2016,Cycling,Cycling Track,Gregory Bauge,FRA,Unknown,Team Sprint,Bronze,0,0,1
 Rio (2016),2016,Equestrian,Jumping,Ludger Beerbaum,GER,Unknown,team,Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Anastasiia Beliakova,RUS,Unknown,57 - 60kg (lightweight),Bronze,0,0,1
-Rio (2016),2016,Aquatics,Diving,Meaghan Benfeito,CAN,Unknown,10m platform,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Brittany Benn,CAN,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Madalina Beres,ROU,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Stig-Andre Berge,NOR,Unknown,- 66.6kg (lightweight),Bronze,0,0,1
@@ -32024,10 +32100,12 @@ Rio (2016),2016,Athletics,Athletics,Bohdan Bondarenko,UKR,Unknown,high jump,Bron
 Rio (2016),2016,Rowing,Rowing,Kjetil Borch,NOR,Unknown,double sculls (2x),Bronze,0,0,1
 Rio (2016),2016,Fencing,Fencing,Ines Boubakri,TUN,Unknown,foil individual,Bronze,0,0,1
 Rio (2016),2016,Equestrian,Dressage,Allison M. Brock,USA,Unknown,team,Bronze,0,0,1
+Rio (2016),2016,Volleyball,Beach volleyball.,Alexander Brouwer,NED,Unknown,beach volleyball,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Kyle Brown,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Laura Brown,CAN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Kristoffer Brun,NOR,Unknown,lightweight double sculls (2x),Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Joshua Buatsi,GBR,Unknown,75 - 81kg (light-heavyweight),Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Ekaterina Bukina,RUS,Unknown,67.5 - 75kg (middleweight),Bronze,0,0,1
 Rio (2016),2016,Equestrian,Eventing,Christopher Burton,AUS,Unknown,team,Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Linus Butt,GER,Unknown,hockey,Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Denia Caballero,CUB,Unknown,discus throw,Bronze,0,0,1
@@ -32049,7 +32127,6 @@ Rio (2016),2016,Athletics,Athletics,Yasmani Copello,TUR,Unknown,400m hurdles,Bro
 Rio (2016),2016,Aquatics,Diving,Thomas Daley,GBR,Unknown,10m platform,Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,'ALMEIDA Michael D,FRA,Unknown,Team Sprint,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Hannah Darling,CAN,Unknown,rugby,Bronze,0,0,1
-Rio (2016),2016,Athletics,Athletics,GRASSE Andre De,CAN,Unknown,100m,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,JONGH Juan De,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Oskar Deecke,GER,Unknown,hockey,Bronze,0,0,1
 Rio (2016),2016,Sailing,Sailing,Helene Defrance,FRA,Unknown,470 - Two Person Dinghy,Bronze,0,0,1
@@ -32089,6 +32166,7 @@ Rio (2016),2016,Gymnastics,Trampoline,Lei Gao,CHN,Unknown,individual,Bronze,0,0,
 Rio (2016),2016,Rugby,Rugby,Justin Geduld,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Yarden Gerbi,ISR,Unknown,- 63kg (lightweight),Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Jasmin Glaesser,CAN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
+Rio (2016),2016,Taekwondo,Taekwondo,BONILLA Joel Gonzalez,ESP,Unknown,58 - 68 kg,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Diving,Daniel Goodfellow,GBR,Unknown,10m platform,Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,Karina Goricheva,KAZ,Unknown,63kg,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Kennedy Goss,CAN,Unknown,4x200m freestyle relay,Bronze,0,0,1
@@ -32102,8 +32180,10 @@ Rio (2016),2016,Judo,Judo,Ryunosuke Haga,JPN,Unknown,90 - 100kg (half-heavyweigh
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Javid Hamzatau,BLR,Unknown,76 - 85kg,Bronze,0,0,1
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Takuya Haneda,JPN,Unknown,C-1 1000m (canoe single),Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Martin Haner,GER,Unknown,hockey,Bronze,0,0,1
+Rio (2016),2016,Sailing,Sailing,Jena Hansen,DEN,Unknown,49er - Skiff,Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Tobias Hauke,GER,Unknown,hockey,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Diving,Patrick Hausding,GER,Unknown,3m springboard,Bronze,0,0,1
+Rio (2016),2016,Sailing,Sailing,Erik Heil,GER,Unknown,49er - Skiff,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Kaj Hendriks,NED,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Aliaksandra Herasimenia,BLR,Unknown,50m freestyle,Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Nico Miguel Hernandez,USA,Unknown,72.57 - 79.38kg (light-heavyweight),Bronze,0,0,1
@@ -32154,11 +32234,14 @@ Rio (2016),2016,Tennis,Tennis,Petra Kvitova,CZE,Unknown,singles,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Ghislaine Landry,CAN,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Badminton,Badminton,Chris Langridge,GBR,Unknown,doubles,Bronze,0,0,1
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak S,Aurimas Lankas,LTU,Unknown,C-2 (canoe double),Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Yekaterina Larionova,KAZ,Unknown,57 - 63kg (featherweight),Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Niklas Larsen,DEN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Kirsti Lay,CAN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
 Rio (2016),2016,Archery,Archery,Chien-Ying Le,TPE,Unknown,team round 60y,Bronze,0,0,1
 Rio (2016),2016,Sailing,Sailing,COQ Pierre Le,FRA,Unknown,RS:X - Windsurfer,Bronze,0,0,1
 Rio (2016),2016,Sailing,Sailing,Camille Lecointre,FRA,Unknown,470 - Two Person Dinghy,Bronze,0,0,1
+Rio (2016),2016,Taekwondo,Taekwondo,Daehoon Lee,KOR,Unknown,58 - 68 kg,Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,Christophe Lemaitre,FRA,Unknown,200m,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Joanna Leszczynska,POL,Unknown,quadruple sculls with coxswain (4x),Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Trampoline,Dan Li,CHN,Unknown,individual,Bronze,0,0,1
 Rio (2016),2016,Shooting,Shooting,Yuehong Li,CHN,Unknown,25m rapid fire pistol (60 shots),Bronze,0,0,1
@@ -32188,13 +32271,16 @@ Rio (2016),2016,Shooting,Shooting,Vladimir Maslennikov,RUS,Unknown,10m air rifle
 Rio (2016),2016,Aquatics,Swimming,Kylie Masse,CAN,Unknown,100m backstroke,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Takeshi Matsuda,JPN,Unknown,4x200m freestyle relay,Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Kaori Matsumoto,JPN,Unknown,52 - 57kg (lightweight),Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Sofia Magdalena Mattsson,SWE,Unknown,- 47.6kg (light-flyweight),Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Anna Meares,AUS,Unknown,Keirin,Bronze,0,0,1
 Rio (2016),2016,Sailing,Sailing,Sam Meech,NZL,Unknown,single-handed dinghy open (Laser),Bronze,0,0,1
+Rio (2016),2016,Volleyball,Beach volleyball.,Robert Meeuwsen,NED,Unknown,beach volleyball,Bronze,0,0,1
 Rio (2016),2016,Fencing,Fencing,Gerek Meinhardt,USA,Unknown,foil team,Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Mahiedine Mekhissi,FRA,Unknown,3000m steeplechase,Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Lashawn Merritt,USA,Unknown,400m,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Boaz Meylink,NED,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Equestrian,Jumping,-BEERBAUM Meredith Michaels,GER,Unknown,team,Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Monika Ewa Michalik,POL,Unknown,57 - 63kg (featherweight),Bronze,0,0,1
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Beata Mikolajczyk,POL,Unknown,K-2 500m (kayak double),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Risako Mitsui,JPN,Unknown,100m freestyle,Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,Hiromi Miyake,JPN,Unknown,48kg,Bronze,0,0,1
@@ -32210,8 +32296,10 @@ Rio (2016),2016,Judo,Judo,Takanori Nagase,JPN,Unknown,73 - 81kg (half-middleweig
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Karolina Naja,POL,Unknown,K-2 500m (kayak double),Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Misato Nakamura,JPN,Unknown,48 - 52kg (half-lightweight),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Mie Nielsen,DEN,Unknown,4x100m medley relay,Bronze,0,0,1
+Rio (2016),2016,Boxing,Boxing,Vladimir Nikitin,RUS,Unknown,52.16 - 56.7kg (featherweight),Bronze,0,0,1
 Rio (2016),2016,Tennis,Tennis,Kei Nishikori,JPN,Unknown,singles,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Poliana Okimoto,BRA,Unknown,marathon 10km,Bronze,0,0,1
+Rio (2016),2016,Badminton,Badminton,Nozomi Okuhara,JPN,Unknown,singles,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Marc-Antoine Olivier,FRA,Unknown,marathon 10km,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Laura Oprea,ROU,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Timur Oruz,GER,Unknown,hockey,Bronze,0,0,1
@@ -32232,6 +32320,7 @@ Rio (2016),2016,Cycling,Cycling Track,Francois Pervis,FRA,Unknown,Team Sprint,Br
 Rio (2016),2016,Equestrian,Dressage,Steffen Peters,USA,Unknown,team,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Mihaela Petrila,ROU,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Taekwondo,Taekwondo,Luisito Pie,DOM,Unknown,- 58 kg,Bronze,0,0,1
+Rio (2016),2016,Sailing,Sailing,Thomas Ploessel,GER,Unknown,49er - Skiff,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Iuliana Popa,ROU,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Mira Potkonen,FIN,Unknown,57 - 60kg (lightweight),Bronze,0,0,1
 Rio (2016),2016,Archery,Archery,Alec Potts,AUS,Unknown,team round 60y,Bronze,0,0,1
@@ -32251,6 +32340,7 @@ Rio (2016),2016,Shooting,Shooting,Kimberly Rhode,USA,Unknown,skeet (125 targets)
 Rio (2016),2016,Sailing,Sailing,Anne-Marie Rindom,DEN,Unknown,Laser Radial - One Person Dinghy,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,James Roberts,AUS,Unknown,4x100m freestyle relay,Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,Sarah Elizabeth Robles,USA,Unknown,+ 75kg,Bronze,0,0,1
+Rio (2016),2016,Boxing,Boxing,Misael Uziel Rodriguez,MEX,Unknown,71-75kg,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Boudewijn Roell,NED,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Equestrian,Eventing,Shane Rose,AUS,Unknown,team,Bronze,0,0,1
 Rio (2016),2016,Volleyball,Beach volleyball.,April Ross,USA,Unknown,beach volleyball,Bronze,0,0,1
@@ -32261,6 +32351,7 @@ Rio (2016),2016,Aquatics,Swimming,Evgeny Rylov,RUS,Unknown,200m backstroke,Bronz
 Rio (2016),2016,Athletics,Athletics,Olga Rypakova,KAZ,Unknown,triple jump,Bronze,0,0,1
 Rio (2016),2016,Tennis,Tennis,Lucie Safarova,CZE,Unknown,doubles,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Dylan Sage,RSA,Unknown,rugby,Bronze,0,0,1
+Rio (2016),2016,Sailing,Sailing,-IVERSEN Katja Steen Salskov,DEN,Unknown,49er - Skiff,Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Or Sasson,ISR,Unknown,+ 100kg (heavyweight),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Katerine Savard,CAN,Unknown,4x200m freestyle relay,Bronze,0,0,1
 Rio (2016),2016,Boxing,Boxing,Erislandy Savon,CUB,Unknown,+ 91kg (super heavyweight),Bronze,0,0,1
@@ -32270,17 +32361,20 @@ Rio (2016),2016,Shooting,Shooting,Steven Scott,GBR,Unknown,double trap (120 targ
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Sergey Semenov,RUS,Unknown,100 - 130kg (super heavyweight),Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Seabelo Senatla,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Daiya Seto,JPN,Unknown,400m individual medley,Bronze,0,0,1
+Rio (2016),2016,Boxing,Boxing,Kamran Shakhsuvarly,AZE,Unknown,71-75kg,Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Chunsong Shang,CHN,Unknown,"team, horizontal bar",Bronze,0,0,1
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Sabah Shariati,AZE,Unknown,100 - 130kg (super heavyweight),Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Lasha Shavdatuashvili,GEO,Unknown,66 - 73kg (lightweight),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Jinglin Shi,CHN,Unknown,200m breaststroke,Bronze,0,0,1
 Rio (2016),2016,Badminton,Badminton,Seung Chan Shin,KOR,Unknown,doubles,Bronze,0,0,1
+Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Ilia Shtokalov,RUS,Unknown,C-1 1000m (canoe single),Bronze,0,0,1
 Rio (2016),2016,Fencing,Fencing,Lyubov Shutova,RUS,Unknown,épée team,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Olivier Siegelaar,NED,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Rafael Silva,BRA,Unknown,+ 100kg (heavyweight),Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Georgia Simmerling,CAN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Jennifer Simpson,USA,Unknown,1500m,Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,Gabriel Sincraian,ROU,Unknown,85kg,Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Natalya Sinishin,AZE,Unknown,- 47.6kg (light-flyweight),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Diving,Anabelle Smith,AUS,Unknown,3m springboard,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Kwagga Smith,RSA,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Philip Snyman,RSA,Unknown,rugby,Bronze,0,0,1
@@ -32289,6 +32383,8 @@ Rio (2016),2016,Rowing,Rowing,Franck Solforosi,FRA,Unknown,lightweight coxless f
 Rio (2016),2016,Fencing,Fencing,Peter Somfai,HUN,Unknown,épée team,Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,Ivana Spanovic,SRB,Unknown,long jump,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Rosko Specman,RSA,Unknown,rugby,Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,Ashley Spencer,USA,Unknown,400m hurdles,Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,Barbora Spotakova,CZE,Unknown,javelin throw,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Maria Springwald,POL,Unknown,quadruple sculls with coxswain (4x),Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,Ashley Steacy,CAN,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Table Tennis,Table Tennis,Bastian Steger,GER,Unknown,team,Bronze,0,0,1
@@ -32305,7 +32401,6 @@ Rio (2016),2016,Judo,Judo,Naohisa Takato,JPN,Unknown,- 60 kg,Bronze,0,0,1
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Lachlan Tame,AUS,Unknown,C-2 1000m (canoe double),Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Jiaxin Tan,CHN,Unknown,"team, horizontal bar",Bronze,0,0,1
 Rio (2016),2016,Archery,Archery,Ya-Ting Tan,TPE,Unknown,team round 60y,Bronze,0,0,1
-Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Serghei Tarnovschi,MDA,Unknown,C-1 1000m (canoe single),Bronze,0,0,1
 Rio (2016),2016,Wrestling,Wrestling Greco-Romano,Elmurat Tasmuradov,UZB,Unknown,- 66.6kg (lightweight),Bronze,0,0,1
 Rio (2016),2016,Athletics,Athletics,EATON Brianne Theisen,CAN,Unknown,heptathlon,Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Amy Tinkler,GBR,Unknown,floor exercises,Bronze,0,0,1
@@ -32320,6 +32415,7 @@ Rio (2016),2016,Archery,Archery,Ryan Tyack,AUS,Unknown,team round 60y,Bronze,0,0
 Rio (2016),2016,Rowing,Rowing,Dirk Uittenbogaard,NED,Unknown,eight with coxswain (8+),Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,Diyorbek Urozboev,UZB,Unknown,- 60 kg,Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Milda Valciukaite,LTU,Unknown,double sculls (2x),Bronze,0,0,1
+Rio (2016),2016,Boxing,Boxing,VICTORIA Ingrit Lorena Valencia,COL,Unknown,48 - 51kg (flyweight),Bronze,0,0,1
 Rio (2016),2016,Weightlifting,Weightlifting,PEREZ Lidia Valentin,ESP,Unknown,"67.5 - 75kg, one-two hand 3 events (middleweight)",Bronze,0,0,1
 Rio (2016),2016,Judo,Judo,EMDEN Anicka Van,NED,Unknown,- 63kg (lightweight),Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,LANDEGHEM Chantal Van,CAN,Unknown,4x100m freestyle relay,Bronze,0,0,1
@@ -32330,10 +32426,13 @@ Rio (2016),2016,Rowing,Rowing,Mechiel Versluis,NED,Unknown,eight with coxswain (
 Rio (2016),2016,Rowing,Rowing,Giuseppe Vicino,ITA,Unknown,four-oared shell with coxswain (4-),Bronze,0,0,1
 Rio (2016),2016,Rowing,Rowing,Donata Vistartaite,LTU,Unknown,double sculls (2x),Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,FOLSACH Casper Von,DEN,Unknown,"1980 yards Pursuit, Team",Bronze,0,0,1
+Rio (2016),2016,Taekwondo,Taekwondo,Hedaya Wahba,EGY,Unknown,49 - 57 kg,Bronze,0,0,1
 Rio (2016),2016,Canoe / Kayak,Canoe / Kayak F,Ken Wallace,AUS,Unknown,C-2 1000m (canoe double),Bronze,0,0,1
 Rio (2016),2016,Volleyball,Beach volleyball.,JENNINGS Kerri Walsh,USA,Unknown,beach volleyball,Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,Tomas Walsh,NZL,Unknown,shot put,Bronze,0,0,1
 Rio (2016),2016,Aquatics,Swimming,Shun Wang,CHN,Unknown,200m individual medley,Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Yan Wang,CHN,Unknown,"team, horizontal bar",Bronze,0,0,1
+Rio (2016),2016,Athletics,Athletics,Damian Warner,CAN,Unknown,decathlon,Bronze,0,0,1
 Rio (2016),2016,Rugby,Rugby,-ROY Natasha Watcham,CAN,Unknown,rugby,Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Niklas Wellen,GER,Unknown,hockey,Bronze,0,0,1
 Rio (2016),2016,Cycling,Cycling Track,Miriam Welte,GER,Unknown,Team Sprint,Bronze,0,0,1
@@ -32356,6 +32455,7 @@ Rio (2016),2016,Fencing,Fencing,Mariel Zagunis,USA,Unknown,sabre team,Bronze,0,0
 Rio (2016),2016,Weightlifting,Weightlifting,Alexandr Zaichikov,KAZ,Unknown,+ 105kg,Bronze,0,0,1
 Rio (2016),2016,Sailing,Sailing,Thomas Zajac,AUT,Unknown,0.5-1t,Bronze,0,0,1
 Rio (2016),2016,Gymnastics,Artistic Gymnastics,Chenglong Zhang,CHN,Unknown,"team, horizontal bar",Bronze,0,0,1
+Rio (2016),2016,Wrestling,Wrestling Freestyle,Fengliu Zhang,CHN,Unknown,67.5 - 75kg (middleweight),Bronze,0,0,1
 Rio (2016),2016,Badminton,Badminton,Nan Zhang,CHN,Unknown,doubles,Bronze,0,0,1
 Rio (2016),2016,Badminton,Badminton,Yunlei Zhao,CHN,Unknown,doubles,Bronze,0,0,1
 Rio (2016),2016,Hockey,Hockey,Martin Zwicker,GER,Unknown,hockey,Bronze,0,0,1
