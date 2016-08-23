@@ -574,7 +574,8 @@ let handleGroupRequest injectid ({ Fields = fields } as fieldsObj) rest keys =
             "values for each group. You can specify a number of summary calculations in the " + 
             "following list:")
       |> withCreateAction "Aggregation operations" 
-    yield! aggregationMembers injectid fieldsObj rest keys [GroupKey] ]
+    if not (List.isEmpty keys) then
+      yield! aggregationMembers injectid fieldsObj rest keys [GroupKey] ]
   |> membersOk  
 
 let handleProxyRequest source local ctx = async { 
