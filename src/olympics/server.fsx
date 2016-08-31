@@ -17,6 +17,8 @@ open Newtonsoft.Json
 // ----------------------------------------------------------------------------
 // Helpers
 // ----------------------------------------------------------------------------
+#load "facet.fs"
+Facet.a |> printfn "%A"
 
 let serializer = JsonSerializer.Create()
 
