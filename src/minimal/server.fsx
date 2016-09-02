@@ -2,25 +2,15 @@
 #I "../../packages"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
+#r "FSharp.Data/lib/net40/FSharp.Data.dll"
+#load "../serializer.fs"
 #else
 module Services.Minimal
 #endif
 open System
 open System.IO
 open System.Collections.Generic
-open Newtonsoft.Json
-
-// ----------------------------------------------------------------------------
-// Helpers
-// ----------------------------------------------------------------------------
-
-let serializer = JsonSerializer.Create()
-
-let toJson value = 
-  let sb = System.Text.StringBuilder()
-  use tw = new System.IO.StringWriter(sb)
-  serializer.Serialize(tw, value)
-  sb.ToString() 
+open Services.Serializer
 
 // ----------------------------------------------------------------------------
 // Server

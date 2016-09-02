@@ -14,6 +14,7 @@ let servers =
   [ "adventure", Services.Adventure.app
     "minimal", Services.Minimal.app
     "olympics", Services.Olympics.app
+    "smlouvy", Services.Smlouvy.app
     "pivot", Services.Pivot.app
     "worldbank", Services.WorldBank.app ] |> dict
   

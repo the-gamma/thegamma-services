@@ -46,6 +46,7 @@ type Aggregation =
  | ReturnUnique of string
  | ConcatValues of string
  | Sum of string
+ | Mean of string
 
 type SortDirection =
   | Ascending
@@ -81,6 +82,7 @@ module Transform =
     | "unique"::fld::rest -> parseAggs (ReturnUnique(fld)::acc) rest
     | "concat-vals"::fld::rest -> parseAggs (ConcatValues(fld)::acc) rest
     | "sum"::fld::rest -> parseAggs (Sum(fld)::acc) rest
+    | "mean"::fld::rest -> parseAggs (Mean(fld)::acc) rest
     | [] -> List.rev acc
     | aggs -> failwith (sprintf "Invalid aggregation operation: %s" (String.concat "/" aggs))
 
@@ -115,6 +117,7 @@ module Transform =
     | ReturnUnique(f) -> ["unique"; f]
     | ConcatValues(f) -> ["concat-vals"; f]
     | Sum(f) -> ["sum"; f]
+    | Mean(f) -> ["mean"; f]
 
   let toUrl transforms = 
     [ for t in List.rev transforms ->
@@ -198,6 +201,7 @@ let singleTransformFields fields = function
          | ReturnUnique fld
          | ConcatValues fld
          | Sum fld -> [ oldFields.[fld] ]
+         | Mean fld -> [ oldFields.[fld] ]
          | CountAll -> [ TypeInfo.Field("count", JsonValue.String "int") ]
          | CountDistinct fld -> [ TypeInfo.Field(oldFields.[fld].Name, JsonValue.String "int") ])
       |> List.mapi (fun i fld -> sprintf "field_%d" i, fld)
@@ -216,6 +220,7 @@ let mapTransformFields f = function
           | ReturnUnique fld -> ReturnUnique(f fld)
           | ConcatValues fld -> ConcatValues(f fld)
           | Sum fld -> Sum(f fld)
+          | Mean fld -> Mean(f fld)
           | agg -> agg)
       GroupBy(List.map f fld, aggs)
   | Empty -> Empty
@@ -290,7 +295,7 @@ let withThingSchema thingType thingName (m:MemberQuery.Root) =
 let membersOk (s:seq<MemberQuery.Root>) = 
   JsonValue.Array([| for a in s -> a.JsonValue |]).ToString() |> Successful.OK
 
-let isSummable (js:JsonValue) =
+let isNumeric (js:JsonValue) =
   TypeInfo.Root(js).String = Some "int" ||
   TypeInfo.Root(js).String = Some "float"
 
@@ -321,10 +326,6 @@ let makeDataMember name tfs injectid =
   let trace = [| "pivot-tfs=" + url |]
   MemberQuery.Root(name, dataRet, trace, [||], None) |> dropParameters
 
-
-
-
-
 (*
 Todo clean below
 *)
@@ -351,7 +352,8 @@ let originalRequest source parts ctx =
     if ctx.request.rawForm.Length = 0 then None
     else Some(HttpRequestBody.BinaryUpload ctx.request.rawForm)
   Http.AsyncRequestString
-    ( another, [], httpMethod = ctx.request.``method``.ToString(), ?body = body )
+    ( another, [], httpMethod = ctx.request.``method``.ToString(), ?body = body,
+      responseEncodingOverride = "UTF-8" )
 
 type TraceValue = { Key : string; Value : string; Params : Map<string, string> }
 
@@ -396,6 +398,7 @@ let applyAggregation kvals group = function
  | ReturnUnique(fld) -> [ fld, group |> Seq.map (pickField fld) |> Seq.the ]
  | ConcatValues(fld) -> [ fld, group |> Seq.map(fun obj -> (pickField fld obj).AsString()) |> Seq.distinct |> String.concat ", " |> JsonValue.String ]
  | Sum(fld) -> [ fld, group |> Seq.sumBy (fun obj -> (pickField fld obj).AsDecimal()) |> JsonValue.Number ]
+ | Mean(fld) -> [ fld, group |> Seq.averageBy (fun obj -> (pickField fld obj).AsDecimal()) |> JsonValue.Number ]
 
 let compareFields o1 o2 (fld, order) = 
   let reverse = if order = Descending then -1 else 1
@@ -459,10 +462,14 @@ let handleDataRequest source ctx = async {
     match cache.TryFind( (source, sourceEndpoint, sourceTrace) ) with
     | Some res -> async { return res }
     | None -> async {
+        //printfn "Requesting data with trace %s" sourceTrace
+        let sourceTraceBytes = System.Text.Encoding.UTF8.GetBytes(sourceTrace)
         let! data = 
           Http.AsyncRequestString
             ( concatUrl [source; sourceEndpoint], httpMethod = "POST", 
-              body = HttpRequestBody.TextRequest sourceTrace )
+              body = HttpRequestBody.BinaryUpload sourceTraceBytes,
+              responseEncodingOverride = "UTF-8" )
+        //printfn "Got: %s" data
         let data = JsonValue.Parse(data).AsArray() 
         cache <- Map.add (source, sourceEndpoint, sourceTrace) data cache
         return data }
@@ -540,7 +547,7 @@ let handleSortRequest injectid { Fields = fields } rest keys =
 let aggregationMembers injectid { Fields = fields } rest keys aggs = 
   let containsCountAll = aggs |> Seq.exists ((=) CountAll)
   let containsField fld = aggs |> Seq.exists (function 
-    | CountDistinct f | ReturnUnique f | ConcatValues f | Sum f -> f = fld | CountAll | GroupKey -> false)
+    | CountDistinct f | ReturnUnique f | ConcatValues f | Sum f | Mean f -> f = fld | CountAll | GroupKey -> false)
   let makeAggMember name agg doc = 
     makeProperty injectid name (GroupBy(keys,agg::aggs)::rest) [] |> withDocs "" doc
     |> withAddAction "Aggregation operations"
@@ -557,7 +564,9 @@ let aggregationMembers injectid { Fields = fields } rest keys aggs =
         if isConcatenable fld.Type.JsonValue then
           yield makeAggMember ("concatenate values of " + fld.Name) (ConcatValues fldid)
                   "Concatenate all values of the field"
-        if isSummable fld.Type.JsonValue then
+        if isNumeric fld.Type.JsonValue then
+          yield makeAggMember ("average " + fld.Name) (Mean fldid)
+                  "Calculate the average value of the field in the group" 
           yield makeAggMember ("sum " + fld.Name) (Sum fldid)
                   "Sum the values of the field in the group" ]
 
@@ -589,7 +598,7 @@ let handleProxyRequest source local ctx = async {
             | RecordSeqMember fields ->
                 let id = 
                   storeFields 
-                    (ctx.request.url.ToString() + "\n" + membr.Name) 
+                    (ctx.request.url.ToString() + "\n" + source + "\n" + membr.Name) 
                     { Fields = fields |> Seq.mapi (fun i fld -> sprintf "a_%d" i, fld) |> List.ofSeq }
                 let trace = Array.append [| "pivot-source=" + membr.Returns.Endpoint |] membr.Trace
                 ( makeProperty id membr.Name [Empty] trace 
@@ -605,14 +614,15 @@ let handleProxyRequest source local ctx = async {
 // ----------------------------------------------------------------------------
 
 let withSource f ctx =
-  printfn "%O" ctx.request.url
   let cookies = 
     ctx.request.headers |> Seq.tryFind (fun (h, _) -> h.ToLower() = "x-cookie") 
     |> Option.map (snd >> Cookie.parseCookies)
     |> Option.toList |> List.concat
     |> List.fold (fun cks ck -> Map.add ck.name ck cks) ctx.request.cookies
   match cookies.TryFind("source") with
-  | Some c -> f c.value ctx
+  | Some c -> 
+      printfn "%O, cookie:%s" ctx.request.url c.value
+      f c.value ctx
   | _ -> RequestErrors.BAD_REQUEST "Cookie 'source' was missing." ctx
 
 let pivotRequest f = 

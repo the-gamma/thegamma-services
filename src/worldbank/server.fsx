@@ -4,6 +4,7 @@
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
+#load "../serializer.fs"
 #load "domain.fs"
 #else
 module Services.WorldBank
@@ -15,30 +16,9 @@ open FSharp.Data
 open System.Collections.Generic
 open WorldBank
 open WorldBank.Domain
-open Newtonsoft.Json
+open Services.Serializer
 
 let worldBank = lazy Serializer.readCache (__SOURCE_DIRECTORY__ + "/cache")
-
-// ----------------------------------------------------------------------------
-// Helpers
-// ----------------------------------------------------------------------------
-
-let serializer = JsonSerializer.Create()
-
-let toJson value = 
-  let sb = System.Text.StringBuilder()
-  use tw = new System.IO.StringWriter(sb)
-  serializer.Serialize(tw, value)
-  sb.ToString() 
-
-let formatPairSeq kf data =
-  let json = 
-    data 
-    |> Seq.map (fun (k, v) -> JsonValue.Array [| kf k; JsonValue.Float v |])
-    |> Array.ofSeq
-    |> JsonValue.Array
-  json.ToString()
-
 
 // ----------------------------------------------------------------------------
 // Server

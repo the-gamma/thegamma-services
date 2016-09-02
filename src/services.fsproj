@@ -24,6 +24,7 @@
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>
     </DocumentationFile>
+    <StartArguments>port=10042</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -52,9 +53,12 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="serializer.fs" />
+    <Compile Include="facet.fs" />
     <Compile Include="adventure\server.fsx" />
     <Compile Include="minimal\server.fsx" />
     <Compile Include="olympics\server.fsx" />
+    <Compile Include="smlouvy\server.fsx" />
     <Compile Include="worldbank\domain.fs" />
     <None Include="worldbank\downloader.fsx" />
     <Compile Include="worldbank\server.fsx" />

@@ -12,5 +12,6 @@ packages
 temp
 bin
 obj
+cache
 
 src/worldbank/data

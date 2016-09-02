@@ -2,28 +2,18 @@
 #I "../../packages"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
+#r "FSharp.Data/lib/net40/FSharp.Data.dll"
+#load "../serializer.fs"
 #else
 module Services.Adventure
 #endif
 open System
 open System.IO
 open System.Collections.Generic
-open Newtonsoft.Json
+open Services.Serializer
 open Suave
 open Suave.Filters
 open Suave.Operators
-
-// ----------------------------------------------------------------------------
-// Helpers
-// ----------------------------------------------------------------------------
-
-let serializer = JsonSerializer.Create()
-
-let toJson value = 
-  let sb = System.Text.StringBuilder()
-  use tw = new System.IO.StringWriter(sb)
-  serializer.Serialize(tw, value)
-  sb.ToString() 
 
 type TypeNested = { kind:string; endpoint:string }
 type Member = { name:string; documentation:string; returns:obj; trace:string[] }
