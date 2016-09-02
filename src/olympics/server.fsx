@@ -22,9 +22,9 @@ open Services.Facets
 // ----------------------------------------------------------------------------
 
 let dataRoot = 
-  //if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
+  if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
     __SOURCE_DIRECTORY__ + "/../../data"
-  //else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../data"
+  else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../data"
 
 let [<Literal>] Root = __SOURCE_DIRECTORY__ + "/../../data/medals-expanded.csv"
 type Medals = CsvProvider<Root, Schema="Gold=int, Silver=int, Bronze=int">

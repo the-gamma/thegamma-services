@@ -21,9 +21,9 @@ open Services.Facets
 // --------------------------------------------------------------------------------------
 
 let cache = 
-  //if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
+  if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
     __SOURCE_DIRECTORY__ + "/../../cache"
-  //else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../cache"
+  else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../cache"
 if not (Directory.Exists cache) then Directory.CreateDirectory cache |> ignore
 let (</>) a b = Path.Combine(a, b)
 
