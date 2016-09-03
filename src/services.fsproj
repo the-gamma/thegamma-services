@@ -58,6 +58,7 @@
     <Compile Include="adventure\server.fsx" />
     <Compile Include="minimal\server.fsx" />
     <Compile Include="olympics\server.fsx" />
+    <Compile Include="pdata\server.fsx" />
     <Compile Include="smlouvy\server.fsx" />
     <Compile Include="worldbank\domain.fs" />
     <None Include="worldbank\downloader.fsx" />

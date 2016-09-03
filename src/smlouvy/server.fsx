@@ -31,7 +31,7 @@ type Record =
   { DatumUzavreni : System.DateTime
     DatumPublikace : System.DateTime
     Hodnota : decimal
-    ChybiHodnota : string
+    ChybiHodnota : string   
     SubjektNazev : string
     SubjektUtvar : string
     Schavlil : string
@@ -88,18 +88,19 @@ let readFiles () =
         PrijemciIco = prijemciIco } |> smlouvy.Add
   smlouvy.ToArray()
 
-//updateCache() |> Async.RunSynchronously
-let smlouvy = readFiles()
+let smlouvy = Lazy.Create (fun () ->
+  updateCache() |> Async.RunSynchronously
+  readFiles() )
 
 // --------------------------------------------------------------------------------------
 // Faceted data service
 // --------------------------------------------------------------------------------------
 
-let validYears = smlouvy |> Seq.map (fun s -> s.DatumUzavreni.Year) |> Seq.distinct |> Array.ofSeq
-let pubYears = smlouvy |> Seq.map (fun s -> s.DatumPublikace.Year) |> Seq.distinct |> Array.ofSeq
-let months = System.Globalization.CultureInfo.GetCultureInfo("cs-CZ").DateTimeFormat.MonthNames |> Array.filter ((<>) "")
 
-let facets : list<string * Facet<Record>> = 
+let facets : Lazy<list<string * Facet<Record>>> = Lazy.Create (fun () ->
+  let validYears = smlouvy.Value |> Seq.map (fun s -> s.DatumUzavreni.Year) |> Seq.distinct |> Array.ofSeq
+  let pubYears = smlouvy.Value |> Seq.map (fun s -> s.DatumPublikace.Year) |> Seq.distinct |> Array.ofSeq
+  let months = System.Globalization.CultureInfo.GetCultureInfo("cs-CZ").DateTimeFormat.MonthNames |> Array.filter ((<>) "")
   [ // Single-choice 
     yield "příjemce", Filter("příjemce", false, fun r -> Some(r.Prijemci, makeThingSchema "Organization" r.Prijemci))
     yield "platnost", Filter("platnost", false, fun r -> Some(r.Platne, noSchema))
@@ -128,17 +129,18 @@ let facets : list<string * Facet<Record>> =
     yield "měsíc publikace", Choice("měsíc publikce", monthSelect pubYears (fun r -> r.DatumPublikace))
     yield "měsíc uzavření", Choice("měsíc uzavření", monthSelect pubYears (fun r -> r.DatumUzavreni))
     yield "den publikace", Choice("den publikce", daySelect pubYears (fun r -> r.DatumPublikace))
-    yield "den uzavření", Choice("den uzavření", daySelect pubYears (fun r -> r.DatumUzavreni)) ]
-
+    yield "den uzavření", Choice("den uzavření", daySelect pubYears (fun r -> r.DatumUzavreni)) ] )
 
 // ----------------------------------------------------------------------------
 // Create faceted service
 // ----------------------------------------------------------------------------
 
-let app =
-  createFacetApp smlouvy
+open Suave
+
+let app = request (fun r ->
+  createFacetApp smlouvy.Value
     [|  ("Uzavřeno", "string", fun r -> r.DatumUzavreni.ToString("yyyy-MM-dd") |> box) 
-        ("Publikováno", "string", fun r -> r.DatumUzavreni.ToString("yyyy-MM-dd") |> box) 
+        ("Publikováno", "string", fun r -> r.DatumPublikace.ToString("yyyy-MM-dd") |> box) 
         ("Hodnota", "float", fun r -> r.Hodnota |> float |> box) 
         ("Chybí hodnota", "string", fun r -> r.ChybiHodnota |> box) 
         ("Subjekt", "string", fun r -> r.SubjektNazev |> box) 
@@ -149,4 +151,4 @@ let app =
         ("Platnost", "string", fun r -> r.Platne |> box) 
         ("Příjemci", "string", fun r -> r.Prijemci |> box) 
         ("Příjemci (IČO)", "string", fun r -> r.PrijemciIco |> box)  |]
-    facets
+    facets.Value)
