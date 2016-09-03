@@ -40,6 +40,7 @@ type Transformation =
   | DropColumns of string list
   | SortBy of (string * SortDirection) list
   | GroupBy of string list * Aggregation list
+  | FilterBy of (string * bool * string) list
   | Paging of Paging list
   | GetSeries of string * string
   | Empty
@@ -69,6 +70,11 @@ module Transform =
   let private parseChunk = function
     | "drop"::columns -> DropColumns(columns)
     | "sort"::columns -> SortBy(columns |> List.chunkBySize 2 |> List.map (function [f; "asc"] -> f, Ascending | [f; "desc"] -> f, Descending | _ -> failwith "Invalid sort by order"))
+    | "filter"::conds ->
+        conds |> List.chunkBySize 3 |> List.map (function 
+          | [f; "eq"; v] -> f, true, v
+          | [f; "neq"; v] -> f, false, v
+          | _ -> failwith "Invalid filter condition") |> FilterBy
     | "group"::args -> 
         let fields, aggs = args |> List.partition (fun s -> s.StartsWith("by-"))
         let fields = fields |> List.map (fun s -> s.Substring(3))
@@ -138,6 +144,12 @@ let transformData (objs:seq<(string * Value)[]>) = function
       objs |> Seq.sortWith (fun o1 o2 ->
         let optRes = flds |> List.map (compareFields o1 o2) |> List.skipWhile ((=) 0) |> List.tryHead
         defaultArg optRes 0)
+  | FilterBy(conds) ->
+      conds |> List.fold (fun objs (fld, eq, value) ->
+        objs |> Seq.filter (fun o -> 
+          match pickField fld o with
+          | String v -> v = value
+          | Number n -> n = decimal value)) objs
   | GroupBy(flds, aggs) ->
       let aggs = List.rev aggs
       objs 
@@ -274,14 +286,23 @@ let serialize isSeries data =
       fields |> Array.map (fun (k, v) -> k, serializeValue v) |> JsonValue.Record)
   |> JsonValue.Array
 
-let app = pathScan "/%s/%s" (fun (source, tfs) ->
+let app = request(fun r -> pathScan "/%s/%s" (fun (source, _) ->
   let source = 
     if source = "olympics" then Olympics.allData.Value
     elif source = "smlouvy" then Smlouvy.allData.Value
     else failwith "Unknown source"
-  let tfs = Transform.fromUrl tfs
-  printfn "%A" tfs
-  let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
-  let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
-  Successful.OK ((serialize isSeries res).ToString())
-)
+  choose [
+    pathScan "/%s/%s/%s" (fun (_, dataOrRange, tfs) ->
+      let tfs = Transform.fromUrl tfs
+      let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
+      if dataOrRange = "data" then
+        let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
+        Successful.OK ((serialize isSeries res).ToString()) 
+      elif dataOrRange = "range" then
+        let fld = System.Web.HttpUtility.UrlDecode(r.rawQuery)
+        printfn "Field: %s" fld
+        let json = res |> Array.map (pickField fld) |> Array.distinct |> Array.map serializeValue |> JsonValue.Array
+        Successful.OK (json.ToString())
+      else 
+        RequestErrors.BAD_REQUEST "expected data or range request" ) ]
+))
