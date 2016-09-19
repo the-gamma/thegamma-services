@@ -116,14 +116,14 @@ let facets : Lazy<list<string * Facet<Record>>> = Lazy.Create (fun () ->
     // Multi-level facet for selecting date/month/day 
     let monthSelect years (f:Record -> DateTime) =  
       [ for y in years ->
-          sprintf "year-%d" y, string y, makeThingSchema "Date" (string y), Filter("měsíc", false, fun (r:Record) -> 
+          sprintf "year-%d" y, string y, makeThingSchema "Date" (string y), Filter("měsíc" + string y, false, fun (r:Record) -> 
             let m = months.[(f r).Month - 1]
             if (f r).Year = y then Some(m, makeThingSchema "Date" m) else None) ]
     let daySelect years (f:Record -> DateTime) =  
       [ for y in years ->
           sprintf "year-%d" y, string y, makeThingSchema "Date" (string y), Choice("měsíc", 
             [ for i, m in Seq.mapi (fun i m -> i+1, m) months ->
-              sprintf "month-%d-%d" y i, m, makeThingSchema "Date" m, Filter("den", false, fun (r:Record) -> 
+              sprintf "month-%d-%d" y i, m, makeThingSchema "Date" m, Filter("den" + string y + "-" + string i, false, fun (r:Record) -> 
                 let d = (f r).Day |> string
                 if (f r).Year = y && (f r).Month = i then Some(d, makeThingSchema "Date" d) else None) ]) ]    
     yield "měsíc publikace", Choice("měsíc publikce", monthSelect pubYears (fun r -> r.DatumPublikace))

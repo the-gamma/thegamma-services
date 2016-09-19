@@ -70,17 +70,17 @@ let facets : list<string * Facet<Medals.Row>> =
     // Multi-level facet with/without multi-choice
     let athleteChoice multi =  
       [ for (KeyValue(k,v)) in nocs -> 
-          k, v, makeThingSchema "Country" v, Filter("athlete", multi, fun (r:Medals.Row) -> 
+          k, v, makeThingSchema "Country" v, Filter("athlete-" + k, multi, fun (r:Medals.Row) -> 
             if r.Team = v then Some(r.Athlete, makeThingSchema "Person" r.Athlete) else None) ]
     let sportChoice multi = 
       [ for (KeyValue(k,v)) in sports -> 
-          k, v, makeThingSchema "SportsEvent" v, Filter("event", multi, fun (r:Medals.Row) ->  
+          k, v, makeThingSchema "SportsEvent" v, Filter("event" + k, multi, fun (r:Medals.Row) ->  
             if r.Sport = v then Some(r.Event, makeThingSchema "SportsEvent" r.Event) else None) ]
 
     yield "athlete", Choice("country", athleteChoice false)
     yield "athletes", Choice("country", athleteChoice true)
-    yield "sport", Choice ("sport", sportChoice false)
-    yield "sports", Choice ("sport", sportChoice true) ]
+    yield "sport", Choice("sport", sportChoice false)
+    yield "sports", Choice("sport", sportChoice true) ]
 
 
 // ----------------------------------------------------------------------------
