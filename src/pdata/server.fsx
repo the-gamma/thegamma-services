@@ -277,7 +277,8 @@ open Suave.Filters
 
 let serializeValue = function String s -> JsonValue.String s | Number n -> JsonValue.Number n
 
-let serialize isSeries data = 
+let serialize isPreview isSeries data = 
+  let data = if isPreview then Array.truncate 20 data else data
   data 
   |> Array.map (fun (fields:_[]) ->
     if isSeries then
@@ -287,6 +288,7 @@ let serialize isSeries data =
   |> JsonValue.Array
 
 let app = request(fun r -> pathScan "/%s/%s" (fun (source, _) ->
+  let isPreview = r.query |> List.exists (fun (k, _) -> k = "preview")
   let source = 
     if source = "olympics" then Olympics.allData.Value
     elif source = "smlouvy" then Smlouvy.allData.Value
@@ -297,7 +299,7 @@ let app = request(fun r -> pathScan "/%s/%s" (fun (source, _) ->
       let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
       if dataOrRange = "data" then
         let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
-        Successful.OK ((serialize isSeries res).ToString()) 
+        Successful.OK ((serialize isPreview isSeries res).ToString()) 
       elif dataOrRange = "range" then
         let fld = System.Web.HttpUtility.UrlDecode(r.rawQuery)
         printfn "Field: %s" fld
