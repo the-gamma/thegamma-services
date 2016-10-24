@@ -16,7 +16,8 @@ let servers =
     "olympics", Services.Olympics.app
     "smlouvy", Services.Smlouvy.app
     "pivot", Services.Pivot.app
-    "worldbank", Services.WorldBank.app ] |> dict
+    "worldbank", Services.WorldBank.app
+    "pdata", Services.PivotData.app ] |> dict
   
 /// Drop the <s> part from http://localhost:123/<s>/something
 let dropPrefix part ctx = 

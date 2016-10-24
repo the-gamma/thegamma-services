@@ -4,7 +4,7 @@
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Suave/lib/net40/Suave.dll"
 #else
-module Olympics
+module Services.PivotData
 #endif
 #nowarn "1104"
 open System
