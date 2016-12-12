@@ -191,6 +191,11 @@ module Olympics =
          "Gold", Number (decimal r.Gold); "Silver", Number (decimal r.Silver); 
          "Bronze", Number (decimal r.Bronze) |]) |> Array.ofSeq )
 
+  let metadata = 
+    [ "Games", "string"; "Year", "number"; "Sport", "string"; "Discipline", "string"; 
+      "Athlete", "string"; "Team", "string"; "Gender", "string"; "Event", "string"; 
+      "Medal", "string"; "Gold", "number"; "Silver", "number"; "Bronze", "number" ]
+
 // ----------------------------------------------------------------------------
 // Loading data for smlouvy
 // ----------------------------------------------------------------------------
@@ -268,6 +273,13 @@ module Smlouvy =
     updateCache() |> Async.RunSynchronously
     readFiles() )
 
+  let metadata = 
+    [ "Uzavřeno", "string"; "Publikováno", "string"; "Hodnota", "number"
+      "Chybí hodnota", "string"; "Subjekt", "string"; "Útvar", "string"
+      "Schválil", "string"; "Předmět", "string"; "Odkaz", "string"
+      "Platnost", "string"; "Příjemci", "string"; "Příjemci (IČO)", "string" ]            
+
+
 // ----------------------------------------------------------------------------
 // Create faceted service
 // ----------------------------------------------------------------------------
@@ -278,7 +290,7 @@ open Suave.Filters
 let serializeValue = function String s -> JsonValue.String s | Number n -> JsonValue.Number n
 
 let serialize isPreview isSeries data = 
-  let data = if isPreview then Array.truncate 20 data else data
+  let data = if isPreview then Array.truncate 10 data else data
   data 
   |> Array.map (fun (fields:_[]) ->
     if isSeries then
@@ -287,24 +299,34 @@ let serialize isPreview isSeries data =
       fields |> Array.map (fun (k, v) -> k, serializeValue v) |> JsonValue.Record)
   |> JsonValue.Array
 
-let app = request(fun r -> pathScan "/%s/%s" (fun (source, _) ->
-  let isPreview = r.query |> List.exists (fun (k, _) -> k = "preview")
-  let source = 
-    if source = "olympics" then Olympics.allData.Value
-    elif source = "smlouvy" then Smlouvy.allData.Value
-    else failwith "Unknown source"
+let app = 
   choose [
-    pathScan "/%s/%s/%s" (fun (_, dataOrRange, tfs) ->
-      let tfs = Transform.fromUrl tfs
-      let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
-      if dataOrRange = "data" then
-        let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
-        Successful.OK ((serialize isPreview isSeries res).ToString()) 
-      elif dataOrRange = "range" then
-        let fld = System.Web.HttpUtility.UrlDecode(r.rawQuery)
-        printfn "Field: %s" fld
-        let json = res |> Array.map (pickField fld) |> Array.distinct |> Array.map serializeValue |> JsonValue.Array
-        Successful.OK (json.ToString())
-      else 
-        RequestErrors.BAD_REQUEST "expected data or range request" ) ]
-))
+    pathScan "/%s/metadata" (fun source ->
+      let metadata = 
+        if source = "olympics" then Olympics.metadata
+        elif source = "smlouvy" then Smlouvy.metadata
+        else failwith "Unknown source"
+      let json = JsonValue.Record [| for k, v in metadata -> k, JsonValue.String v |]
+      Successful.OK(json.ToString()) )
+
+    pathScan "/%s/%s" (fun (source, _) -> request(fun r -> 
+      let isPreview = r.query |> List.exists (fun (k, _) -> k = "preview")
+      let source = 
+        if source = "olympics" then Olympics.allData.Value
+        elif source = "smlouvy" then Smlouvy.allData.Value
+        else failwith "Unknown source"
+      choose [
+        pathScan "/%s/%s/%s" (fun (_, dataOrRange, tfs) ->
+          let tfs = Transform.fromUrl tfs
+          let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
+          if dataOrRange = "data" then
+            let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
+            Successful.OK ((serialize isPreview isSeries res).ToString()) 
+          elif dataOrRange = "range" then
+            let fld = System.Web.HttpUtility.UrlDecode(r.rawQuery)
+            printfn "Field: %s" fld
+            let json = res |> Array.map (pickField fld) |> Array.distinct |> Array.map serializeValue |> JsonValue.Array
+            Successful.OK (json.ToString())
+          else 
+            RequestErrors.BAD_REQUEST "expected data or range request" ) ]
+    )) ]
