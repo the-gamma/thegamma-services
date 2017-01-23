@@ -42,60 +42,94 @@ type Transformation =
   | GroupBy of string list * Aggregation list
   | FilterBy of (string * bool * string) list
   | Paging of Paging list
-  | GetSeries of string * string
   | Empty
+
+type Action = 
+  | Metadata
+  | GetSeries of string * string
+  | GetTheData 
+  | GetRange of string
+
+type Query = 
+  { Transformations : Transformation list
+    Action : Action }
 
 module Transform = 
 
-  let private chunkBy f s = seq {
-    let mutable acc = []
-    for v in s do 
-      if f v then
-        yield List.rev acc
-        acc <- []
-      else acc <- v::acc
-    yield List.rev acc }
+  let ops = 
+    [ "count-dist", CountDistinct; "unique", ReturnUnique; 
+      "concat-vals", ConcatValues; "sum", Sum; "mean", Mean ]
 
-  let rec private parseAggs acc = function 
-    | "key"::rest -> parseAggs (GroupKey::acc) rest
-    | "count-all"::rest -> parseAggs (CountAll::acc) rest
-    | "count-dist"::fld::rest -> parseAggs (CountDistinct(fld)::acc) rest
-    | "unique"::fld::rest -> parseAggs (ReturnUnique(fld)::acc) rest
-    | "concat-vals"::fld::rest -> parseAggs (ConcatValues(fld)::acc) rest
-    | "sum"::fld::rest -> parseAggs (Sum(fld)::acc) rest
-    | "mean"::fld::rest -> parseAggs (Mean(fld)::acc) rest
-    | [] -> List.rev acc
-    | aggs -> failwith (sprintf "Invalid aggregation operation: %s" (String.concat "/" aggs))
+  let trimIdent (s:string) = 
+    if s.StartsWith("'") && s.EndsWith("'") then s.Substring(1, s.Length-2)
+    else s
 
-  let private parseChunk = function
-    | "drop"::columns -> DropColumns(columns)
-    | "sort"::columns -> SortBy(columns |> List.chunkBySize 2 |> List.map (function [f; "asc"] -> f, Ascending | [f; "desc"] -> f, Descending | _ -> failwith "Invalid sort by order"))
-    | "filter"::conds ->
-        conds |> List.chunkBySize 3 |> List.map (function 
-          | [f; "eq"; v] -> f, true, v
-          | [f; "neq"; v] -> f, false, v
-          | _ -> failwith "Invalid filter condition") |> FilterBy
-    | "group"::args -> 
-        let fields, aggs = args |> List.partition (fun s -> s.StartsWith("by-"))
-        let fields = fields |> List.map (fun s -> s.Substring(3))
-        GroupBy(fields, parseAggs [] aggs)
-    | "page"::ops -> 
-        let ops = ops |> List.chunkBySize 2 |> List.map (function
-          | ["take"; n ] -> Take(int n)
-          | ["skip"; n ] -> Skip(int n)
-          | _ -> failwith "Invalid paging operation")
-        Paging(ops)
-    | "series"::k::v::[] -> GetSeries(k, v)
-    | [] -> Empty
-    | ch -> failwith (sprintf "Not a valid transformation: %s" (String.concat "/" ch))
+  let parseAggOp op =
+    if op = "key" then GroupKey
+    elif op = "count-all" then CountAll
+    else
+      let parsed = ops |> List.tryPick (fun (k, f) ->
+        if op.StartsWith(k) then Some(f(trimIdent(op.Substring(k.Length + 1))))
+        else None)
+      if parsed.IsSome then parsed.Value else failwith "Unknonw operation"
 
+  let parseAction (op, args) = 
+    match op, args with
+    | "metadata", [] -> Metadata, true
+    | "series", [k; v] -> GetSeries(k, v), true
+    | "range", [f] -> GetRange(f), true
+    | _ -> GetTheData, false
+
+  let parseCondition (cond:string) = 
+    let cond = cond.Trim()
+    let start = if cond.StartsWith("'") then cond.IndexOf('\'', 1) else 0
+    let neq, eq = cond.IndexOf(" neq ", start), cond.IndexOf(" eq ", start)
+    if neq <> -1 then trimIdent (cond.Substring(0, neq)), false, cond.Substring(neq + 5)
+    elif eq <> -1 then trimIdent (cond.Substring(0, eq)), true, cond.Substring(eq + 4)
+    else failwith "Incorrectly formatted condition"
+
+  let parseTransform (op, args) = 
+    match op, args with
+    | "drop", columns -> DropColumns(List.map trimIdent columns)
+    | "sort", columns -> SortBy(columns |> List.map (fun col -> 
+        if col.EndsWith(" asc") then trimIdent (col.Substring(0, col.Length-4)), Ascending
+        elif col.EndsWith(" desc") then trimIdent (col.Substring(0, col.Length-5)), Descending
+        else trimIdent col, Ascending))
+    | "filter", conds -> FilterBy(List.map parseCondition conds)
+    | "groupby", ops ->
+        let keys = ops |> List.takeWhile (fun s -> s.StartsWith "by ") |> List.map (fun s -> trimIdent (s.Substring(3)))
+        let aggs = ops |> List.skipWhile (fun s -> s.StartsWith "by ") |> List.map parseAggOp
+        GroupBy(keys, aggs)
+    | "take", [n] -> Paging [Take (int n)]
+    | "skip", [n] -> Paging [Skip (int n)]
+    | _ -> failwith "Unsupported transformation"
+
+  let parseArgs (s:string) = 
+    let rec loop i quoted current acc = 
+      let parseCurrent () = System.String(Array.ofList (List.rev current))
+      if i = s.Length then List.rev (parseCurrent()::acc) else
+      let c = s.[i]
+      if c = '\'' && quoted then loop (i + 1) false (c::current) acc
+      elif c = '\'' && not quoted then loop (i + 1) true (c::current) acc
+      elif c = ',' && not quoted then loop (i + 1) quoted [] (parseCurrent()::acc)
+      else loop (i + 1) quoted (c::current) acc
+    loop 0 false [] [] 
+
+  let parseChunk (s:string) =
+    let openPar, closePar = s.IndexOf('('), s.LastIndexOf(')')
+    if openPar = -1 || closePar = -1 then s, []
+    else s.Substring(0, openPar), parseArgs (s.Substring(openPar + 1, closePar - openPar - 1))
+    
   let fromUrl (s:string) = 
-    s.Split([|'/'|], StringSplitOptions.RemoveEmptyEntries) 
-    |> Array.map System.Web.HttpUtility.UrlDecode
-    |> chunkBy ((=) "then")
-    |> List.ofSeq
-    |> List.map parseChunk 
-    |> List.rev
+    let chunks = 
+      System.Web.HttpUtility.UrlDecode(s)
+        .Split([|'$'|], StringSplitOptions.RemoveEmptyEntries) 
+      |> Array.map parseChunk 
+    if chunks.Length = 0 then { Transformations = []; Action = GetTheData }
+    else
+      let action, explicit = parseAction (chunks.[chunks.Length - 1])
+      let chunks = List.ofArray (if explicit then chunks.[0 .. chunks.Length - 2] else chunks)
+      { Transformations = List.map parseTransform chunks; Action = action }    
 
 // ----------------------------------------------------------------------------
 // Evaluate query
@@ -126,11 +160,6 @@ let compareFields o1 o2 (fld, order) =
 
 let transformData (objs:seq<(string * Value)[]>) = function
   | Empty -> objs
-  | GetSeries(k, v) ->
-      objs |> Seq.map (fun obj ->
-        let kn, kval = Array.find (fst >> (=) k) obj
-        let vn, vval = Array.find (fst >> (=) v) obj
-        [| kn, kval; vn, vval |])
   | Paging(pgops) ->
       pgops |> Seq.fold (fun objs -> function
         | Take n -> objs |> Seq.truncate n
@@ -299,34 +328,30 @@ let serialize isPreview isSeries data =
       fields |> Array.map (fun (k, v) -> k, serializeValue v) |> JsonValue.Record)
   |> JsonValue.Array
 
-let app = 
-  choose [
-    pathScan "/%s/metadata" (fun source ->
-      let metadata = 
-        if source = "olympics" then Olympics.metadata
-        elif source = "smlouvy" then Smlouvy.metadata
-        else failwith "Unknown source"
-      let json = JsonValue.Record [| for k, v in metadata -> k, JsonValue.String v |]
-      Successful.OK(json.ToString()) )
+let applyAction isPreview meta objs = function
+  | GetSeries(k, v) ->
+      objs |> Seq.map (fun obj ->
+        let kn, kval = Array.find (fst >> (=) k) obj
+        let vn, vval = Array.find (fst >> (=) v) obj
+        [| kn, kval; vn, vval |]) |> Array.ofSeq |> serialize isPreview true
+  | GetTheData -> 
+      objs |> serialize isPreview false
+  | Metadata -> 
+      JsonValue.Record [| for k, v in meta -> k, JsonValue.String v |]
+  | GetRange(fld) ->
+      objs |> Array.map (pickField fld) |> Array.distinct |> Array.map serializeValue |> JsonValue.Array
 
-    pathScan "/%s/%s" (fun (source, _) -> request(fun r -> 
-      let isPreview = r.query |> List.exists (fun (k, _) -> k = "preview")
-      let source = 
-        if source = "olympics" then Olympics.allData.Value
-        elif source = "smlouvy" then Smlouvy.allData.Value
-        else failwith "Unknown source"
-      choose [
-        pathScan "/%s/%s/%s" (fun (_, dataOrRange, tfs) ->
-          let tfs = Transform.fromUrl tfs
-          let res = tfs |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
-          if dataOrRange = "data" then
-            let isSeries = match List.last tfs with GetSeries _ -> true | _ -> false
-            Successful.OK ((serialize isPreview isSeries res).ToString()) 
-          elif dataOrRange = "range" then
-            let fld = System.Web.HttpUtility.UrlDecode(r.rawQuery)
-            printfn "Field: %s" fld
-            let json = res |> Array.map (pickField fld) |> Array.distinct |> Array.map serializeValue |> JsonValue.Array
-            Successful.OK (json.ToString())
-          else 
-            RequestErrors.BAD_REQUEST "expected data or range request" ) ]
-    )) ]
+
+let app = pathScan "/%s" <| fun source -> request <| fun r -> 
+  printfn "%s %A" source r.query
+  let source, meta = 
+    if source = "olympics" then Olympics.allData.Value, Olympics.metadata
+    elif source = "smlouvy" then Smlouvy.allData.Value, Smlouvy.metadata
+    else failwith "Unknown source"
+  let preview, query = r.query |> List.map fst |> List.partition ((=) "preview")
+  let isPreview = not (List.isEmpty preview)
+  let query = query |> List.head |> Transform.fromUrl
+
+  let res = query.Transformations |> List.fold transformData (Seq.ofArray source) |> Array.ofSeq
+  let json = applyAction isPreview meta res query.Action
+  Successful.OK (json.ToString())  
