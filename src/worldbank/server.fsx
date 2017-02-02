@@ -18,7 +18,14 @@ open WorldBank
 open WorldBank.Domain
 open Services.Serializer
 
-let worldBank = lazy Serializer.readCache (__SOURCE_DIRECTORY__ + "/cache")
+let cacheDir = 
+  if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
+    Path.GetFullPath(Path.Combine(__SOURCE_DIRECTORY__, "..", "..", "cache"))
+  else
+    let binDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
+    Path.GetFullPath(Path.Combine(binDir, "..", "cache"))
+
+let worldBank = lazy Serializer.readCache cacheDir
 
 // ----------------------------------------------------------------------------
 // Server

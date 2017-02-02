@@ -7,3 +7,4 @@ nuget FSharp.Data
 nuget Newtonsoft.Json
 nuget FSharp.Compiler.Service
 nuget FSharp.Compiler.Tools
+nuget FSharp.Azure.StorageTypeProvider

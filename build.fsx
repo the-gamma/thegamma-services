@@ -3,6 +3,8 @@
 // --------------------------------------------------------------------------------------
 
 #r "packages/FAKE/tools/FakeLib.dll"
+#load "packages/FSharp.Azure.StorageTypeProvider/StorageTypeProvider.fsx"
+
 open Fake
 open System
 open System.IO
@@ -66,6 +68,18 @@ Target "run" (fun _ ->
 // Azure - deploy copies the binary to wwwroot/bin
 // --------------------------------------------------------------------------------------
 
+open Microsoft.WindowsAzure.Storage
+
+let downloadWorldBank cache =
+  let conn = Environment.GetEnvironmentVariable("CUSTOMCONNSTR_THEGAMMADATA_STORAGE")
+  let conn = if conn = null then File.ReadAllText(__SOURCE_DIRECTORY__ + "/config.txt") else conn
+  let account = CloudStorageAccount.Parse(conn)
+  let wb = account.CreateCloudBlobClient().GetContainerReference("worldbank")
+  let files = ["countries.json";"indicators.json";"years.json";"worldbank.dat"]
+  for file in files do
+    let blob = wb.GetBlockBlobReference(file)
+    blob.DownloadToFile(cache </> file, FileMode.Create)
+
 let newName prefix f = 
   Seq.initInfinite (sprintf "%s_%d" prefix) |> Seq.skipWhile (f >> not) |> Seq.head
 
@@ -84,6 +98,9 @@ Target "deploy" (fun _ ->
   CopyRecursive "data" (deployroot </> "data") false |> ignore
   let config = File.ReadAllText("web.config").Replace("%DEPLOY_SUBDIRECTORY%", subdir)
   File.WriteAllText(wwwroot </> "web.config", config)
+
+  // Download WorldBank data to cache
+  downloadWorldBank (deployroot </> "cache")
 
   // Try to delete previous folders, but ignore failures
   for dir in Directory.GetDirectories(wwwroot) do

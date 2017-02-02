@@ -61,7 +61,6 @@
     <Compile Include="pdata\server.fsx" />
     <Compile Include="smlouvy\server.fsx" />
     <Compile Include="worldbank\domain.fs" />
-    <None Include="worldbank\downloader.fsx" />
     <Compile Include="worldbank\server.fsx" />
     <Compile Include="pivot\server.fsx" />
     <Compile Include="release.fs" />
