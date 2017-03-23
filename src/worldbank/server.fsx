@@ -106,6 +106,7 @@ let app =
           |> Seq.filter (fun dt -> dt.Year = ydet.Index && dt.Indicator = idet.Index )
           |> Seq.choose (fun dt -> 
               match worldBank.Value.CountriesByIndex.TryGetValue(dt.Country) with
+              | true, country when country.RegionName = "Aggregates" -> None
               | true, country -> Some(country.Name, dt.Value)
               | _ -> None )
           |> formatPairSeq JsonValue.String
