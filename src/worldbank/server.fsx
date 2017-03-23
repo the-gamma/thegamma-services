@@ -104,7 +104,10 @@ let app =
           let ydet, idet = worldBank.Value.Years.[y], worldBank.Value.Indicators.[i]
           worldBank.Value.Data 
           |> Seq.filter (fun dt -> dt.Year = ydet.Index && dt.Indicator = idet.Index )
-          |> Seq.map (fun dt -> worldBank.Value.CountriesByIndex.[dt.Country].Name, dt.Value)
+          |> Seq.choose (fun dt -> 
+              match worldBank.Value.CountriesByIndex.TryGetValue(dt.Country) with
+              | true, country -> Some(country.Name, dt.Value)
+              | _ -> None )
           |> formatPairSeq JsonValue.String
           |> Successful.OK
       | (Lookup "country" c) & (Lookup "indicator" i) -> 
