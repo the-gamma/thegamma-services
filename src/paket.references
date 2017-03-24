@@ -1,3 +1,4 @@
 FSharp.Data
 Suave
 Newtonsoft.Json
+FSharp.Control.AsyncSeq

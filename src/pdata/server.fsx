@@ -1,8 +1,10 @@
 ﻿#if INTERACTIVE
 #r "System.Xml.Linq.dll"
+#r "System.IO.Compression.FileSystem.dll"
 #I "../../packages"
 #r "FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Suave/lib/net40/Suave.dll"
+#r "FSharp.Control.AsyncSeq/lib/net45/FSharp.Control.AsyncSeq.dll"
 #else
 module Services.PivotData
 #endif
@@ -10,6 +12,8 @@ module Services.PivotData
 open System
 open System.IO
 open FSharp.Data
+open FSharp.Control
+open System.Text.RegularExpressions
 
 // ----------------------------------------------------------------------------
 // Types for values and transformations
@@ -102,7 +106,7 @@ module Transform =
         GroupBy(keys, aggs)
     | "take", [n] -> Paging [Take (int n)]
     | "skip", [n] -> Paging [Skip (int n)]
-    | _ -> failwith "Unsupported transformation"
+    | _ -> failwith (sprintf "Unsupported transformation %s %A" op args)
 
   let parseArgs (s:string) = 
     let rec loop i quoted current acc = 
@@ -174,11 +178,12 @@ let transformData (objs:seq<(string * Value)[]>) = function
         let optRes = flds |> List.map (compareFields o1 o2) |> List.skipWhile ((=) 0) |> List.tryHead
         defaultArg optRes 0)
   | FilterBy(conds) ->
+      let check a e b = if e then a = b else a <> b
       conds |> List.fold (fun objs (fld, eq, value) ->
         objs |> Seq.filter (fun o -> 
           match pickField fld o with
-          | String v -> v = value
-          | Number n -> n = decimal value)) objs
+          | String v -> check v eq value
+          | Number n -> check n eq (decimal value))) objs
   | GroupBy(flds, aggs) ->
       let aggs = List.rev aggs
       objs 
@@ -224,6 +229,243 @@ module Olympics =
     [ "Games", "string"; "Year", "number"; "Sport", "string"; "Discipline", "string"; 
       "Athlete", "string"; "Team", "string"; "Gender", "string"; "Event", "string"; 
       "Medal", "string"; "Gold", "number"; "Silver", "number"; "Bronze", "number" ]
+
+// ----------------------------------------------------------------------------
+// Loading data for stackoverflow survey 
+// ----------------------------------------------------------------------------
+
+module StackOverflow =
+  let (</>) a b = Path.Combine(a, b) 
+  let cache = 
+    if System.Reflection.Assembly.GetExecutingAssembly().IsDynamic then 
+      __SOURCE_DIRECTORY__ + "/../../cache"
+    else IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/../cache"
+  if not (Directory.Exists cache) then Directory.CreateDirectory cache |> ignore
+
+  let files = 
+    [
+//      ("2012", "2012 Stack Overflow Survery Results.csv", @"https://drive.google.com/uc?export=download&id=0B0DL28AqnGsrX3JaZWVwWEpHNWM")
+//      ("2013", "2013 Stack Overflow Survey Responses.csv", @"https://drive.google.com/uc?export=download&id=0B0DL28AqnGsrenpPNTc5UE1PYW8")
+//      ("2014", "2014 Stack Overflow Survey Responses.csv", @"https://drive.google.com/uc?export=download&id=0B0DL28AqnGsrempjMktvWFNaQzA")
+//      ("2015", "2015 Stack Overflow Developer Survey Responses.csv", @"https://drive.google.com/uc?export=download&id=0B0DL28AqnGsra1psanV1MEdxZk0")
+      ("2016", "2016 Stack Overflow Survey Results/2016 Stack Overflow Survey Responses.csv", @"https://drive.google.com/uc?export=download&id=0B0DL28AqnGsrV0VldnVIT1hyb0E")
+    ]
+
+  let updateCache() = async {
+    use wc = new System.Net.WebClient()
+    for (n, f, u) in files do
+      let target = cache </> (n + ".zip")
+      if not (File.Exists(target)) then 
+        do! wc.AsyncDownloadFile(System.Uri(u), target) 
+        Compression.ZipFile.ExtractToDirectory(target, cache </> n) }
+
+  let (|Match|_|) (pat:string) (inp:string) =
+    let m = Regex.Match(inp, pat) in
+    if m.Success
+    then Some (List.tail [ for g in m.Groups -> g.Value ])
+    else None
+  let (|Match1|_|) (pat:string) (inp:string) =
+    match (|Match|_|) pat inp with
+    | Some (fst :: []) -> Some fst
+    | Some [] -> failwith "Match1 succeeded, but no groups found. Use '(.*)' to capture groups"
+    | Some _ -> failwith "Match1 succeeded, but did not find exactly one match."
+    | None -> None  
+  let (|Match2|_|) (pat:string) (inp:string) =
+    match (|Match|_|) pat inp with
+    | Some (fst :: snd :: []) -> Some (fst, snd)
+    | Some [] -> failwith "Match2 succeeded, but no groups found. Use '(.*)' to capture groups"
+    | Some _ -> failwith "Match2 succeeded, but did not find exactly two matches."
+    | None -> None  
+  let (|Match3|_|) (pat:string) (inp:string) =
+    match (|Match|_|) pat inp with
+    | Some (fst :: snd :: trd :: []) -> Some (fst, snd, trd)
+    | Some [] -> failwith "Match3 succeeded, but no groups found. Use '(.*)' to capture groups"
+    | Some _ -> failwith "Match3 succeeded, but did not find exactly three matches."
+    | None -> None  
+
+  let stripCurrency (value: string) = value.Replace("$", "")
+  let stripComma (value: string) = value.Replace(",", "")
+  let money s = s |> stripCurrency |> stripComma |> decimal |> Number 
+  let moneyRange (value: string) = 
+    match value.Split([|' '|]) |> List.ofArray with
+    | ["Less"; "than"; top] -> (None, Some (money top))
+    | ["More"; "than"; buttom] -> (Some (money buttom), None)
+    | [buttom; "-"; top] -> (Some (money buttom), Some (money top))
+    | _ -> (None, None)
+  let decN = decimal >> Number
+  let intRange (value: string) = 
+    match value.Replace(" ", "") with
+    | Match1 "<(.*)" top -> (None, Some (decN top))
+    | Match1 ">(.*)" buttom -> (Some (decN buttom), None)
+    | Match2 "(.*)-(.*)" (buttom, top) -> (Some (decN buttom), Some (decN top))
+    | _ -> (None, None)
+  let rfrom (b, t) = match (b) with | Some(n) -> n | None -> Number 0m
+  let rto (b, t) = match (t) with | Some(n) -> n | None -> Number 0m
+  let someDecimal d = 
+    match d with
+    | Some n -> Number n
+    | None -> Number 0m
+  let strNA s = String (if String.IsNullOrEmpty(s) then "N/A" else s)
+
+  let [<Literal>] Sample = __SOURCE_DIRECTORY__ + "/../../data/stackoverfloe-survey-sample.csv"
+  type Survey = CsvProvider<Sample, CacheRows=false, Schema=",collector,country,un_subregion,so_region,age_range,age_midpoint=decimal option,gender,self_identification,occupation,occupation_group,experience_range,experience_midpoint=decimal option,salary_range,salary_midpoint=decimal option,big_mac_index=decimal option,tech_do,tech_want,aliens,programming_ability=decimal option,employment_status,industry,company_size_range,team_size_range,women_on_team,remote,job_satisfaction,job_discovery,dev_environment,commit_frequency,hobby,dogs_vs_cats,desktop_os,unit_testing,rep_range,visit_frequency,why_learn_new_tech,education,open_to_new_job,new_job_value,job_search_annoyance,interview_likelihood,how_to_improve_interview_process,star_wars_vs_star_trek,agree_tech,agree_notice,agree_problemsolving,agree_diversity,agree_adblocker,agree_alcohol,agree_loveboss,agree_nightcode,agree_legacy,agree_mars,important_variety,important_control,important_sameend,important_newtech,important_buildnew,important_buildexisting,important_promotion,important_companymission,important_wfh,important_ownoffice,developer_challenges,why_stack_overflow">
+
+  let readFiles() = 
+    asyncSeq {
+      for (n, f, _) in files do 
+        let target = cache </> n </> f
+        printfn "reading %s" target
+        let! results = Survey.AsyncLoad(cache </> n </> f)
+        yield 
+          n,
+          results.Rows |> Seq.map (fun r ->
+          let salaryRange = moneyRange r.Salary_range
+          let ageRange = intRange r.Age_range
+          [| "Collector", String r.Collector
+             "Country", String r.Country 
+             "Subregion", String r.Un_subregion
+             "SO Region", String r.So_region
+             "Age Midpoint", someDecimal r.Age_midpoint
+             "Age From", rfrom ageRange
+             "Age To", rto ageRange
+             "Gender", strNA r.Gender
+             "Self Identitification", String r.Self_identification
+             "Occupation", String r.Occupation
+             "Occupation Group", String r.Occupation_group
+             "Experience Range", String r.Experience_range
+             "Experience Midpoint", someDecimal r.Experience_midpoint
+             "Salary Range", String r.Salary_range
+             "Salary Midpoint", someDecimal r.Salary_midpoint
+             "Salary From", rfrom salaryRange
+             "Salary To", rto salaryRange
+             "Big Max Index", someDecimal r.Big_mac_index
+             "Tech Do", String r.Tech_do
+             "Tech Want", String r.Tech_want
+             "Aliens", String r.Aliens
+             "Programming Ability", someDecimal r.Programming_ability
+             "Employment Status", String r.Employment_status
+             "Industry", String r.Industry
+             "Sompany Size Range", String r.Company_size_range
+             "Team Size Range", String r.Team_size_range
+             "Women On Team", String r.Women_on_team
+             "Remote", String r.Remote
+             "Job Satisfaction", String r.Job_satisfaction
+             "Job Discovery", String r.Job_discovery
+             "Development Environment", String r.Dev_environment
+             "Commit Frequency", String r.Commit_frequency
+             "Hobby", String r.Hobby
+             "Dogs vs Cats", strNA r.Dogs_vs_cats
+             "Desktop OS", strNA r.Desktop_os
+             "Unit Testing", String r.Unit_testing
+             "SO Reputation Range", String r.Rep_range
+             "SO Visit Frequency", String r.Visit_frequency
+             "Why Learn New Tech", String r.Why_learn_new_tech
+             "Education", String r.Education
+             "Open To New Job", String r.Open_to_new_job
+             "New Job Value", String r.New_job_value
+             "Job Search Annoyance", String r.Job_search_annoyance
+             "Interview Likelihood", String r.Interview_likelihood
+             "How To Improve Interview Process", String r.How_to_improve_interview_process
+             "Star Wars vs Star Trek", String r.Star_wars_vs_star_trek
+             "Agree Tech", String r.Agree_tech
+             "Agree Notice", String r.Agree_notice
+             "Agree Problem Solving", String r.Agree_problemsolving
+             "Agree Diversity", String r.Agree_diversity
+             "Agree AdBlocker", String r.Agree_adblocker
+             "Agree Alcohol", String r.Agree_alcohol
+             "Agree Love Boss", String r.Agree_loveboss
+             "Agree Night Code", String r.Agree_nightcode
+             "Agree Legacy", String r.Agree_legacy
+             "Agree Mars", String r.Agree_mars
+             "Important Variety", String r.Important_variety
+             "Important Control", String r.Important_control
+             "Important Same End", String r.Important_sameend
+             "Important New Tech", String r.Important_newtech
+             "Important Build New", String r.Important_buildnew
+             "Important Build Existing", String r.Important_buildexisting
+             "Important Promotion", String r.Important_promotion
+             "Important Company Mission", String r.Important_companymission
+             "Important Work From Home", String r.Important_wfh
+             "Important Own Office", String r.Important_ownoffice
+             "Developer Challenges", String r.Developer_challenges
+             "Why Stack Overflow", String r.Why_stack_overflow
+          |]) |> Array.ofSeq
+    } |> AsyncSeq.toArray |> dict
+
+  let allData = Lazy.Create(fun () ->
+    updateCache() |> Async.RunSynchronously
+    readFiles() )
+
+  let metadata =
+    [ "Collector", "string"
+      "Country", "string"
+      "Subregion", "string"
+      "SO Region", "string"
+      "Age Midpoint", "number"
+      "Age From", "number"
+      "Age To", "number"
+      "Occupation", "string"
+      "Gender", "string"
+      "Self Identitification", "string"
+      "Occupation Group", "string"
+      "Experience Range", "string"
+      "Experience Midpoint", "string"
+      "Salary Range", "string"
+      "Salary Midpoint", "number"
+      "Salary From", "number"
+      "Salary To", "number"
+      "Big Max Index", "number"
+      "Tech Do", "string"
+      "Tech Want", "string"
+      "Aliens", "string"
+      "Programming Ability", "number"
+      "Employment Status", "string"
+      "Industry", "string"
+      "Sompany Size Range", "string"
+      "Team Size Range", "string"
+      "Women On Team", "string"
+      "Remote", "string"
+      "Job Satisfaction", "string"
+      "Job Discovery", "string"
+      "Development Environment", "string"
+      "Commit Frequency", "string"
+      "Hobby", "string"
+      "Dogs vs Cats", "string"
+      "Desktop OS", "string"
+      "Unit Testing", "string"
+      "SO Reputation Range", "string"
+      "SO Visit Frequency", "string"
+      "Why Learn New Tech", "string"
+      "Education", "string"
+      "Open To New Job", "string"
+      "New Job Value", "string"
+      "Job Search Annoyance", "string"
+      "Interview Likelihood", "string"
+      "How To Improve Interview Process", "string"
+      "Star Wars vs Star Trek", "string"
+      "Agree Tech", "string"
+      "Agree Notice", "string"
+      "Agree Problem Solving", "string"
+      "Agree Diversity", "string"
+      "Agree AdBlocker", "string"
+      "Agree Alcohol", "string"
+      "Agree Love Boss", "string"
+      "Agree Night Code", "string"
+      "Agree Legacy", "string"
+      "Agree Mars", "string"
+      "Important Variety", "string"
+      "Important Control", "string"
+      "Important Same End", "string"
+      "Important New Tech", "string"
+      "Important Build New", "string"
+      "Important Build Existing", "string"
+      "Important Promotion", "string"
+      "Important Company Mission", "string"
+      "Important Work From Home", "string"
+      "Important Own Office", "string"
+      "Developer Challenges", "string"
+      "Why Stack Overflow", "string"
+    ] 
 
 // ----------------------------------------------------------------------------
 // Loading data for smlouvy
@@ -347,6 +589,7 @@ let app = pathScan "/%s" <| fun source -> request <| fun r ->
   let source, meta = 
     if source = "olympics" then Olympics.allData.Value, Olympics.metadata
     elif source = "smlouvy" then Smlouvy.allData.Value, Smlouvy.metadata
+    elif source = "stackoverflow2016" then StackOverflow.allData.Value.["2016"], StackOverflow.metadata
     else failwith "Unknown source"
   let preview, query = r.query |> List.map fst |> List.partition ((=) "preview")
   let isPreview = not (List.isEmpty preview)
