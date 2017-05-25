@@ -86,8 +86,8 @@ module Transform =
     let cond = cond.Trim()
     let start = if cond.StartsWith("'") then cond.IndexOf('\'', 1) else 0
     let neq, eq = cond.IndexOf(" neq ", start), cond.IndexOf(" eq ", start)
-    if neq <> -1 then trimIdent (cond.Substring(0, neq)), false, cond.Substring(neq + 5)
-    elif eq <> -1 then trimIdent (cond.Substring(0, eq)), true, cond.Substring(eq + 4)
+    if neq <> -1 then trimIdent (cond.Substring(0, neq)), false, trimIdent (cond.Substring(neq + 5))
+    elif eq <> -1 then trimIdent (cond.Substring(0, eq)), true, trimIdent (cond.Substring(eq + 4))
     else failwithf "Incorrectly formatted condition: >>%s<<" cond
 
   let parseTransform (op, args) = 
