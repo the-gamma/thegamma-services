@@ -36,11 +36,13 @@ type Paging =
   | Take of int
   | Skip of int
   
+type FilterOperator = And | Or
+
 type Transformation = 
   | DropColumns of string list
   | SortBy of (string * SortDirection) list
   | GroupBy of string list * Aggregation list
-  | FilterBy of (string * bool * string) list
+  | FilterBy of FilterOperator * (string * bool * string) list
   | Paging of Paging list
   | Empty
 
@@ -86,7 +88,7 @@ module Transform =
     let neq, eq = cond.IndexOf(" neq ", start), cond.IndexOf(" eq ", start)
     if neq <> -1 then trimIdent (cond.Substring(0, neq)), false, cond.Substring(neq + 5)
     elif eq <> -1 then trimIdent (cond.Substring(0, eq)), true, cond.Substring(eq + 4)
-    else failwith "Incorrectly formatted condition"
+    else failwithf "Incorrectly formatted condition: >>%s<<" cond
 
   let parseTransform (op, args) = 
     match op, args with
@@ -95,7 +97,9 @@ module Transform =
         if col.EndsWith(" asc") then trimIdent (col.Substring(0, col.Length-4)), Ascending
         elif col.EndsWith(" desc") then trimIdent (col.Substring(0, col.Length-5)), Descending
         else trimIdent col, Ascending))
-    | "filter", conds -> FilterBy(List.map parseCondition conds)
+    | "filter", "and"::conds -> FilterBy(And, List.map parseCondition conds)
+    | "filter", "or"::conds -> FilterBy(Or, List.map parseCondition conds)
+    | "filter", conds -> FilterBy(And, List.map parseCondition conds)
     | "groupby", ops ->
         let keys = ops |> List.takeWhile (fun s -> s.StartsWith "by ") |> List.map (fun s -> trimIdent (s.Substring(3)))
         let aggs = ops |> List.skipWhile (fun s -> s.StartsWith "by ") |> List.map parseAggOp
@@ -173,12 +177,13 @@ let transformData (objs:seq<(string * Value)[]>) = function
       objs |> Seq.sortWith (fun o1 o2 ->
         let optRes = flds |> List.map (compareFields o1 o2) |> List.skipWhile ((=) 0) |> List.tryHead
         defaultArg optRes 0)
-  | FilterBy(conds) ->
-      conds |> List.fold (fun objs (fld, eq, value) ->
-        objs |> Seq.filter (fun o -> 
+  | FilterBy(op, conds) ->
+      objs |> Seq.filter (fun o ->
+        let f = match op with And -> Seq.forall | Or -> Seq.exists
+        conds |> f (fun (fld, eq, value) ->
           match pickField fld o with
-          | String v -> v = value
-          | Number n -> n = decimal value)) objs
+          | String v -> if eq then v = value else v <> value
+          | Number n -> if eq then n = decimal value else n <> decimal value))
   | GroupBy(flds, aggs) ->
       let aggs = List.rev aggs
       objs 
