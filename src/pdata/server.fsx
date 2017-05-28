@@ -36,13 +36,23 @@ type Paging =
   | Take of int
   | Skip of int
   
-type FilterOperator = And | Or
+type FilterOperator = 
+  | And | Or
+
+type RelationalOperator = 
+  | Equals 
+  | NotEquals 
+  | LessThan
+  | GreaterThan 
+  | InRange
+
+type FilterCondition = RelationalOperator * string * string
 
 type Transformation = 
   | DropColumns of string list
   | SortBy of (string * SortDirection) list
   | GroupBy of string list * Aggregation list
-  | FilterBy of FilterOperator * (string * bool * string) list
+  | FilterBy of FilterOperator * FilterCondition list
   | Paging of Paging list
   | Empty
 
@@ -82,13 +92,20 @@ module Transform =
     | "range", [f] -> GetRange(f), true
     | _ -> GetTheData, false
 
+  let operators = 
+    [ Equals, " eq "; NotEquals, " neq "; LessThan, " lte "; GreaterThan, " gte "; InRange, " in " ]
+
   let parseCondition (cond:string) = 
     let cond = cond.Trim()
     let start = if cond.StartsWith("'") then cond.IndexOf('\'', 1) else 0
-    let neq, eq = cond.IndexOf(" neq ", start), cond.IndexOf(" eq ", start)
-    if neq <> -1 then trimIdent (cond.Substring(0, neq)), false, trimIdent (cond.Substring(neq + 5))
-    elif eq <> -1 then trimIdent (cond.Substring(0, eq)), true, trimIdent (cond.Substring(eq + 4))
-    else failwithf "Incorrectly formatted condition: >>%s<<" cond
+    let optRes = 
+      operators |> Seq.tryPick (fun (op, s) ->
+        let i = cond.IndexOf(s)
+        if i = -1 then None else
+          Some(op, trimIdent (cond.Substring(0, i)), trimIdent (cond.Substring(i + s.Length))))
+    match optRes with
+    | None -> failwithf "Incorrectly formatted condition: >>%s<<" cond
+    | Some res -> res
 
   let parseTransform (op, args) = 
     match op, args with
@@ -162,6 +179,16 @@ let compareFields o1 o2 (fld, order) =
   | String s1, String s2 -> reverse * compare s1 s2
   | _ -> failwith "Cannot compare values"
 
+let evalCondition op actual expected =
+  match op, actual with 
+  | Equals, String s -> expected = s
+  | NotEquals, String s -> expected <> s
+  | (Equals | NotEquals), Number _ -> failwith "Equals and not equals work only on strings"
+  | GreaterThan, Number n -> n > decimal expected
+  | LessThan, Number n -> n < decimal expected
+  | InRange, Number n -> let expected = expected.Split(',') in n > decimal expected.[0] && n < decimal expected.[1]
+  | (GreaterThan | LessThan | InRange), String _ -> failwith "Relational operator work only on numbers"
+
 let transformData (objs:seq<(string * Value)[]>) = function
   | Empty -> objs
   | Paging(pgops) ->
@@ -180,10 +207,7 @@ let transformData (objs:seq<(string * Value)[]>) = function
   | FilterBy(op, conds) ->
       objs |> Seq.filter (fun o ->
         let f = match op with And -> Seq.forall | Or -> Seq.exists
-        conds |> f (fun (fld, eq, value) ->
-          match pickField fld o with
-          | String v -> if eq then v = value else v <> value
-          | Number n -> if eq then n = decimal value else n <> decimal value))
+        conds |> f (fun (op, fld, value) -> evalCondition op (pickField fld o) value))
   | GroupBy(flds, aggs) ->
       let aggs = List.rev aggs
       objs 
@@ -348,7 +372,6 @@ let applyAction isPreview meta objs = function
 
 
 let app = pathScan "/%s" <| fun source -> request <| fun r -> 
-  printfn "%s %A" source r.query
   let source, meta = 
     if source = "olympics" then Olympics.allData.Value, Olympics.metadata
     elif source = "smlouvy" then Smlouvy.allData.Value, Smlouvy.metadata
