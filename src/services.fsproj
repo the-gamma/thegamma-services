@@ -64,6 +64,8 @@
     <Compile Include="worldbank\server.fsx" />
     <Compile Include="pivot\server.fsx" />
     <Compile Include="release.fs" />
+    <Compile Include="eurostat\vocab.fs" />
+    <Compile Include="eurostat\domain.fs" />
     <None Include="debug.fsx" />
     <None Include="paket.references" />
   </ItemGroup>
