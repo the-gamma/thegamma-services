@@ -1,0 +1,21 @@
+TOTAL	Total
+PER_PHY	Physical person
+PER_NTL	Natural person
+PER_LEG_HLD_GRP	Legal person or group holding 
+PER_LEG	Legal person
+ENT_SOLE	Sole proprietorship
+ENT_PA	Partnership, co-operatives, associations, etc.
+ENT_COOP	Cooperative
+ENT_MUT	Mutual enterprises
+ENT_LL	Limited liability enterprise
+ENT_LL_NP	Limited liability enterprise not publicly listed 
+ENT_LL_P	Limited liability enterprise publicly listed 
+ENT_PLAW	Public law enterprise 
+ENT_BR_NEEA	Branches of non European Economic Area (EEA) enterprise 
+HLD_GRP	Group holding
+FARM_HLD	Farm managed by holder
+FARM_SPOU	Farm managed by spouse of holder
+FARM_FAM	Farm managed by other family member of holder
+FARM_NFAM	Farm not managed by any family member of holder
+OTH	Other
+UNK	Unknown

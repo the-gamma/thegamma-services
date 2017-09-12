@@ -1,0 +1,13 @@
+TOTAL	Total
+PROV	Assistance provided
+PROV_R	Assistance provided mainly to relatives
+PROV_NR	Assistance provided mainly to non-relatives
+NPROV	No assistance provided
+AS1010	Assistance used
+AS1015	Assistance needed
+AS1020	Personal assistance
+AS1030	Special equipment or workplace adaptations
+AS1040	Special working arrangements
+AS1090	No assistance used
+AS1095	No assistance needed
+NRP	No response

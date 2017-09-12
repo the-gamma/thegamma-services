@@ -1,0 +1,14 @@
+CREA	Job creation
+CREA_HS	Job creation - high skilled
+CREA_OTH	Job creation - other
+CREA_NAP	Job creation - not applicable
+CREA_UNK	Job creation - unknown
+MOV_HS	Moving jobs abroad -  high skilled
+MOV_OTH	Moving jobs abroad - other
+LOSS	Job losses
+LOSS_HS	Job losses - high skilled
+LOSS_NAP	Job losses - not applicable
+LOSS_UNK	Job losses - unknown
+MOB	Job mobility
+NMOB	No job mobility
+UNK	Unknown

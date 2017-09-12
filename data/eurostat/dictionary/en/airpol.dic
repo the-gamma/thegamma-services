@@ -1,0 +1,37 @@
+GHG	Greenhouse gases (CO2, N2O in CO2 equivalent, CH4 in CO2 equivalent, HFC in CO2 equivalent, PFC in CO2 equivalent, SF6 in CO2 equivalent, NF3 in CO2 equivalent) 
+CO2_N2O_CH4_CO2E	Greenhouse gases (CO2, N2O in CO2 equivalent, CH4 in CO2 equivalent) 
+CO2	Carbon dioxide
+CH4	Methane
+CH4_CO2E	Methane (CO2 equivalent)
+N2O	Nitrous oxide
+N2O_CO2E	Nitrous oxide (CO2 equivalent)
+HFC_CO2E	Hydrofluorocarbones (CO2 equivalent)
+PFC_CO2E	Perfluorocarbones (CO2 equivalent)
+SF6_CO2E	Sulphur hexafluoride (CO2 equivalent)
+NF3_CO2E	Nitrogen trifluoride (CO2 equivalent) 
+SF6_NF3_CO2E	Sulphur hexafluoride and nitrogen trifluoride (CO2 equivalent) 
+CO2_BIO	Carbon dioxide from biomass used as a fuel
+ACG	Acidifying gases (SOX in SO2 equivalent, NOX in SO2 equivalent, NH3 in SO2 equivalent)
+SOX_SO2E	Sulphur oxides (SO2 equivalent)
+NOX_NO2E	Nitrogen oxides (NO2 equivalent)
+NOX_SO2E	Nitrogen oxides (SO2 equivalent)
+NH3	Ammonia
+NH3_SO2E	Ammonia (SO2 equivalent)
+O3PR	Ozone precursors (NMVOC, NOX in NMVOC equivalent, CO in NMVOC equivalent, CH4 in NMVOC equivalent)
+NMVOC	Non-methane volatile organic compounds
+NOX_NMVOCE	Nitrogen oxides (NMVOC equivalent)
+CO	Carbon monoxide
+CO_NMVOCE	Carbon monoxide (NMVOC equivalent)
+CH4_NMVOCE	Methane (NMVOC equivalent)
+PM	Particulates
+PM2_5	Particulates < 2.5µm
+PM10	Particulates < 10µm
+O3	Ozone
+PB	Lead
+SO2	Sulphur dioxide
+SOX	Sulphur oxides
+NOX	Nitrogen oxides
+VOC	Volatile organic compounds
+HFC	Hydrofluorocarbons
+PFC	Perfluorocarbons
+SF6	Sulphur hexafluoride

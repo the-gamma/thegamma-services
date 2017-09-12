@@ -1,0 +1,41 @@
+TOTAL	Total
+ACT	Active population
+EMP	Total employment (domestic concept - ESA)
+EMP_LFS	Total employment (resident population concept - LFS)
+EMP_PCH	Employment growth
+SELF_EMP_RT	Self-employed in % of total employment
+SERV_RT	Services in % of total employment
+INDU_RT	Industry in % of total employment
+AGRI_RT	Agriculture in % of total employment
+AGRI_PCH	Agriculture employment growth
+IND_PCH	Industry employment growth
+SERV_PCH	Services employment growth
+UNE	Unemployment (ILO)
+UEMP	Underemployed part-time workers
+SEEK_NAV	Persons seeking work but not immediately available
+NSEE_AV	Persons available to work but not seeking
+LTU	Long-term unemployment
+VLTU	Very long-term unemployment
+JOBVAC	Number of job vacancies
+JOBOCC	Number of occupied jobs
+JOBRATE	Job vacancy rate
+CH_Q_Q	Job vacancy rate quarter on quarter change
+CH_Y_Y	Job vacancy rate year on year change
+SLACK	Labour market slack
+SC071	Children aged 0-17 living in jobless households: share of persons aged 0-17 who are living in households where no-one is working
+SC072	People aged 18-59 living in jobless households: share of persons aged 18-59 who are living in households where no-one works
+SC073	Women aged 18-59 living in jobless households: share of women aged 18-59 who are living in households where no-one works
+SC074	Men aged 18-59 living in jobless households: share of men aged 18-59 who are living in households where no-one works
+EM021	Average exit age from the labour force - weighted by the probability of withdrawal from the labour market
+EM022	Average exit age from the labour force - females - weighted by the probability of withdrawal from the labour market
+EM023	Average exit age from the labour force - males - weighted by the probability of withdrawal from the labour market
+E_E	Transition employment - employment
+E_U	Transition employment - unemployment
+E_I	Transition employment -inactivity
+U_E	Transition unemployment - employment 
+U_U	Transition unemployment - unemployment 
+U_I	Transition unemployment - inactivity 
+I_E	Transition inactive -employment
+I_U	Transition inactive - unemployment
+I_I	Transition inactive - inactive
+OTH	Others

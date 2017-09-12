@@ -1,0 +1,18 @@
+TOTAL	Total
+MV_WALK_CYCL_GET	Walking or cycling to get to and from place
+MV_WALK_GET	Walking to get to and from place
+MV_CYCL_GET	Cycling to get to and from place
+MV_AERO_MSC	Aerobic and muscle-strengthening
+MV_AERO	Aerobic
+MV_AERO_SPRT	Aerobic sports
+MV_MSC	Muscle-strengthening
+PHA_0	No information
+PHA_1	Operating machine
+PHA_2	Working with hand-held tools
+PHA_3	Driving/being on board a means of transport or handling equipment
+PHA_4	Handling of objects
+PHA_5	Carrying by hand
+PHA_6	Movement
+PHA_7	Presence
+PHA_9	Other Specific Physical Activities not listed in this classification
+NRP	No response

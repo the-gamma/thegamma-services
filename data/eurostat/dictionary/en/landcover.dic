@@ -1,0 +1,93 @@
+LC	Total land cover
+LCA	Artificial land
+LCB	Cropland
+LCC	Woodland
+LCD	Shrubland
+LCE	Grassland
+LCF	Bare land
+LCG	Water
+LCH	Wetland
+LCA1	Built-up areas
+LCA2	Artificial non built-up areas
+LCA3	Other artificial areas
+LCB1	Cereals
+LCB2	Root crops
+LCB3	Non permanent industrial crops
+LCB4	Dry pulses, vegetables and flowers
+LCB5	Fodder crops (mainly leguminous)
+LCB7	Fruit trees and berries
+LCB8	Other permanent crops
+LCBX	Photo interpreted crops
+LCC10	Broadleaved woodland
+LCC20	Coniferous woodland
+LCC30	Mixed woodland
+LCC1	Forest FAO
+LCC2	Other wooded land FAO
+LCC3	Other wooded land no FAO
+LCD1	Shrubland with sparse tree cover
+LCD2	Shrubland without tree cover
+LCE1	Grassland with sparse tree/shrub cover
+LCE2	Grassland without tree/shrub cover
+LCE3	Spontaneous vegetation
+LCG1	Inland water bodies
+LCG2	Inland running water
+LCG3	Transitional water
+LCG5	Glaciers, permanent snow
+LCH1	Inland wetlands
+LCH2	Coastal wetlands
+LCA11	Buildings with 1 to 3 floors
+LCA12	Buildings with more than 3 floors
+LCA13	Greenhouses
+LCA21	Non built-up area features
+LCA22	Non built-up linear features
+LCA30	Other artificial areas
+LCB11	Common wheat
+LCB12	Durum wheat
+LCB13	Barley
+LCB14	Rye
+LCB15	Oats
+LCB16	Maize
+LCB17	Rice
+LCB18	Triticale
+LCB19	Other cereals
+LCB21	Potatoes
+LCB22	Sugar beet
+LCB23	Other root crops
+LCB31	Sunflower
+LCB32	Rape and turnip seeds
+LCB33	Soya
+LCB34	Cotton
+LCB35	Other fibre and oleaginous crops
+LCB36	Tobacco
+LCB37	Other non permanent industrial crops
+LCB41	Dry pulses
+LCB42	Tomatoes
+LCB43	Other fresh vegetables
+LCB44	Floriculture and ornamental plants
+LCB45	Strawberries
+LCB51	Clovers
+LCB52	Lucerne
+LCB53	Other legumes and mixture for fodder
+LCB54	Mixed cereals for fodder
+LCB55	Temporary grassland
+LCBX1	Photo interpreted non permanent crops (B1x-B5x)
+LCB71	Apple fruit
+LCB72	Pear fruit
+LCB73	Cherry fruit
+LCB74	Nuts trees
+LCB75	Other fruit trees and berries
+LCB76	Oranges
+LCB77	Other citrus fruit
+LCB81	Olive groves
+LCB82	Vineyards
+LCB83	Nurseries
+LCB84	Permanent industrial crops
+LCBX2	Photo interpreted permanent crops (B7x-B8x)
+LCH11	Inland marshes
+LCH12	Peatbogs
+LCH21	Salt-marshes
+LCH22	Salines
+LCH23	Intertidal flats
+B1GQ_LCA	Productivity of artificial land
+B1GM_LCA1	Productivity of artificial built-up areas
+B1GM_LCA2	Productivity of artificial non built-up areas

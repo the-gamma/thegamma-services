@@ -1,0 +1,20 @@
+TOTAL	Total
+URB	Predominantly urban regions
+INT	Intermediate regions
+RUR	Predominantly rural regions
+CST_A	Coastal areas
+NCST_A	Non-coastal areas
+CST_R	Coastal regions
+NCST_R	Non-coastal regions
+MNT_R	Mountain regions
+NMNT_R	Non-mountain regions
+ISL_R	Island regions
+NISL_R	Non-island regions
+BRD_R	Border regions
+NBRD_R	Non-border regions
+LFA	Less favoured areas
+LFA_MNT	Less favoured areas - mountainous 
+LFA_OTH	Less favoured areas - other
+NLFA	Not less favoured areas
+NRP	No response
+UNK	Unknown

@@ -1,0 +1,13 @@
+TOTAL	Total
+HC	Health care
+HC_HOSP	Hospitalisation
+HC_AMB	Ambulatory care
+HC_MED	Medical care
+HC_DENT	Dental care
+HC_MENT	Mental health care
+HC_BLPR	Blood pressure measurement
+HC_BLCH	Blood cholesterol measurement
+HC_BLSU	Blood sugar measurement
+NHC	No health care
+MG_PMEDS	Prescribed medicines
+NRP	No response

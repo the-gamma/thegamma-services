@@ -1,0 +1,98 @@
+INST_NAT	National institutions
+PARL_NAT	National parliament
+GOV_NAT	National government
+ORG_INTL	International Organizations
+EUI	Institutions and bodies of the European Union
+EUI_X_EAI	EU institutions except the institutions of the euro area (aggregate changing according to the context)
+EUI_X_ECB	EU institutions except the ECB
+PARL	European Parliament
+COUNCIL	European Council
+CONS	Council of the European Union
+COMM	European Commission
+EU_NSI	Eurostat
+CURIA	Court of Justice
+ECA	European Court of Auditors
+EESC	European Economic and Social Committee
+COR	European Committee of the Regions
+EIB	European Investment Bank
+EIF	European Investment Fund
+ECB	European Central Bank (ECB)
+ESM	European Stability Mechanism
+EDF	European Development Fund
+EU_BDG	All EU institutions financed via the EU Budget
+EUB_MNR	Other small EU institutions financed via the EU Budget
+EUB_OTH	Other EU institutions financed via the EU Budget
+EUI_NBDG	EU institutions not financed via the EU Budget
+ECSC	European Coal and Steel Community
+EMI	European Monetary Institute
+EMCF	European Monetary Cooperation Fund
+EURATOM	European Atomic Energy Community
+UNO	United Nations Organization
+UNICEF	United Nations Children's Fund (UNICEF)
+UNHCR	United Nations High Commissioner for Refugees, Office of the (UNHCR)
+UNRWA	United Nations Relief and Works Agency for Palestine Refugees in the Near East (UNRWA)
+ILO	International Labour Organization (ILO)
+FAO	Food and Agricultural Organization (FAO)
+UNESCO	United Nations Educational, Scientific and Cultural Organization (UNESCO)
+WHO	World Health Organization (WHO)
+IBRD	International Bank for Reconstruction and Development
+IDA	International Development Association
+IFC	International Finance Corporation (IFC)
+MIGA	Multilateral Investment Guarantee Agency (MIGA)
+IMF	International Monetary Fund
+ITU	International Telecommunication Union (ITU)
+IFAD	International Fund for Agricultural Development (IFAD)
+WTO	World Trade Organization
+IAEA	International Atomic Energy Agency (IAEA)
+UNO_OTH	United Nations Organization except IMF, WTO, IBRD, IDA
+ORG_OTH	Other International Organizations
+ACP	African, Caribbean and Pacific Group of States, signatories of the Partnership Agreement
+ACP_AFR	African ACP states
+ACP_CRB	Caribbean ACP states
+ACP_PAC	Pacific ACP states
+AFDB	African Development Bank
+ALA	Partner Countries in Asia and Latin America
+APEC	Asia-Pacific Economic Cooperation
+ASDB	Asian Development Bank
+ASEAN	Association of Southeast Asian Nations
+BIS	Bank for International Settlements
+BRIC	BRIC countries
+BRICS	BRICS countries
+CAN	Andean Community of Nations
+CARICOM	Caribbean Community
+CEMAC	Central African Economic and Monetary Community
+COMESA	Common Market for Eastern and Southern Africa
+DAC	Development assistance committee (DAC)
+EASA	European Aviation Safety Agency (EASA)
+NEASA	Non-EASA member countries 
+EBRD	European Bank for Reconstruction and Development
+ECCAS	Economic Community of Central African States
+ECOWAS	Economic Community of West African States
+EHEA	European Higher Education Area (Bologna Process)
+ESA	European Space Agency
+EURMED	Mediterranean countries in the Euro-Mediterranean Partnership
+FEMIP	Facility for Euro-Mediterranean Investment and Partnership
+FZ	Franc Zone
+G20	Group of Twenty
+IDB	Inter-American Development Bank
+IF	Investment Facility
+MACR	Mashrek
+MAGR	Maghreb
+MED	Mediterranean Basin Countries
+MED_X_HR	Mediterranean Basin Countries except Croatia
+MERCOSUR	Southern Common Market
+NAFTA	North American Free Trade Agreement
+ODA	Countries and territories receiving Official Development Assistance
+OECD	Organisation for Economic Co-operation and Development (OECD)
+NOECD	Non-OECD countries
+OPEC	Organization of Petroleum Exporting Countries
+PALOP	Portuguese-speaking African Countries
+SADC	Southern African Development Community
+UEMOA	West African Economic and Monetary Union
+ORG_NEUR	Non European International Organizations
+OTH	Others
+NAL	Not allocated
+NAP	Not applicable
+NRP	No response
+NSP	Not specified
+UNK	Unknown

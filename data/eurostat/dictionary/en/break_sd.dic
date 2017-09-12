@@ -1,0 +1,28 @@
+TOTAL	Total
+SOC_INFR	Social infrastructure services
+ECO_INFR	Economic infrastructure and services
+PROD	Production sectors
+MULTI	Multi sector/cross cutting
+BUDG	Budget support, food aid, food security
+ACT_DEB	Action relating to debt
+HUM_AID	Humanitarian aid
+ODA	Official development aid
+GR_NGO	Grants by NGOs
+PRIVF	Private flows
+OTHOF	Other official flows
+ORG	Organisations
+SITE	Sites
+EU_VOTE	EU elections
+NAT_VOTE	National elections
+PC_TENV	Environmental taxes
+PC_TLAB	Taxes on labour
+SHARE	Annual fellings as a share of net annual increment (%)
+INCRE	Net annual increment (1 000 m3 over bark)
+FELLG	Annual fellings (1 000 m3 over bark)
+HLY_F	Healthy life years - females
+HLY_M	Healthy life years - males
+LEXP_F	Life expectancy - females
+LEXP_M	Life expectancy - males
+IND	Industry
+SERV	Services
+NAL	Not allocated

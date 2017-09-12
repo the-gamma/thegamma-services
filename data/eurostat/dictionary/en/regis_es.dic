@@ -1,0 +1,9 @@
+REG	Registered jobseekers
+REG_UNE	Registered unemployed
+REG_UNE_LT	Registered long-term unemployed (>12 months)
+REG_UNE_BEN	Registered unemployed receiving benefits/assistance
+REG_UNE_NBEN	Registered unemployed not receiving benefits/assistance
+REG_OTH	Other registered jobseekers
+NREG_UNE_BEN	Not registered unemployed but receiving benefits/assistance
+NREG_UNE_NBEN	Not registered unemployed and not receiving benefits/assistance
+UNK	Unknown

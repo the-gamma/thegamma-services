@@ -1,0 +1,51 @@
+AREA_KM2	Area (km2) 
+AREA_PTRS_KM2	Protected terrestrial area (km2) 
+AREA_PTRS_PC	Protected terrestrial area (%) 
+AREA_TRS_SI	Terrestrial area (sufficiency index) 
+AREA_PSEA_KM2	Protected marine area (km2) 
+AREA_SEA_SI	Marine area (sufficiency index) 
+DE	Domestic extraction
+IMP	Imports
+IMP_EU	Imports from EU countries
+IMP_XEU	Imports from non-EU countries
+IMP_RME	Imports in raw material equivalents
+EXP	Exports
+EXP_EU	Exports to EU countries
+EXP_XEU	Exports to non-EU countries
+EXP_RME	Exports in raw material equivalents 
+DMC	Domestic material consumption
+DMI	Direct material inputs
+DPO	Domestic processed output 
+NAS	Net additions to stock 
+PTB	Physical trade balance 
+BI	Balancing items (input - output)
+RMC	Raw material consumption 
+RMC_P3	Raw material consumption as result of final consumption expenditure
+RMC_P3_S13	Raw material consumption as result of final consumption expenditure of general government
+RMC_P3_S14	Raw material consumption as result of final consumption expenditure of households
+RMC_P3_S15	Raw material consumption as result of final consumption expenditure of non-profit institutions serving households
+RMC_P5	Raw material consumption as result of gross capital formation 
+RMC_P51G	Raw material consumption as result of gross fixed capital formation 
+RMC_P52_53	Raw material consumption as result of changes in inventories and acquisitions less disposals of valuables 
+RMI	Raw material input 
+SS_CRM	EU self-sufficiency for critical raw materials
+RCYM_RMD	Contribution of recycled materials to raw materials demand
+CUR_DMC	Circular material use rate - DMC based
+CUR_DMI	Circular material use rate - DMI based
+CUR_DMC_ANW	Circular material use rate - DMC based adjusted by net imports of waste
+CUR_DMI_ANW	Circular material use rate - DMI based adjusted by net imports of waste
+CAP	Capacity - tonnes per year
+CAP_RST	Rest capacity - cubic metres
+FAC	Facilities - number
+FAC_CL	Closed facilities - number
+PRD	Production of chemicals
+CONS	Consumption of chemicals
+GHG_I90	Greenhouse gas emissions (in CO2 equivalent), base year 1990
+GHG_I_KBY	Greenhouse gas emissions without international aviation (in CO2 equivalent), Kyoto base year
+GHG_T_HAB	Greenhouse gas emissions - tonnes per capita 
+ORG_EMAS	EMAS registered organisations 
+SITE_EMAS	EMAS registered sites
+FSTK_ASS_NR	Assessed fish stocks - number 
+FSTK_GT_ASS_NR	Overfished fish stocks - number
+FSTK_GT_ASS_PC	Overfished fish stocks - %
+FSTK_AMV_ASS	Arithmetic mean value of all assessments

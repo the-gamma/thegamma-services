@@ -1,11 +1,13 @@
-// namespace Eurostat
+
+//namespace Eurostat
 #if INTERACTIVE
 #I "../../packages"
 #r "System.Xml.Linq.dll"
-#r "FSharp.Data/lib/net40/FSharp.Data.dll"
+#r "../../packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
-#load "vocab.fs"
+#load "dictionary.fs"
+#load "data.fs"
 #else
 module Services.Eurostat
 #endif
@@ -15,7 +17,10 @@ open System
 open System.IO
 open FSharp.Data
 open System.Collections.Generic
-open Eurostat.Vocabulary
+open Eurostat.Datasets
 
-printfn ("%A") (euCountries.["BE"])
-    
+module Domain =
+  let dataset = readFile
+  printfn "%A" dataset
+  writeFile dataset
+ 

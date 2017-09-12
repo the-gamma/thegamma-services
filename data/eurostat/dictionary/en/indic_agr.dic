@@ -1,0 +1,8 @@
+FARM_NR	Farm - number
+UAA_HA	Utilised agricultural area - hectare
+FARM_HA	Farm area - hectare
+FARM_NR_LS	Farms with livestock - number
+FARM_LSU_LS	Farms with livestock - live stock unit
+SO_EUR	Standard output - euro
+LF_D_AWU	Labour force directly employed - annual working unit
+FARM_NR_PD_GT50	Farms whose household consumes more than 50% of the final production - number
