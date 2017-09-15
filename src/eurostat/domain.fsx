@@ -6,6 +6,7 @@
 #r "../../packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
+#load "request.fs"
 #load "dictionary.fs"
 #load "data.fs"
 #else
@@ -17,10 +18,24 @@ open System
 open System.IO
 open FSharp.Data
 open System.Collections.Generic
+open System.IO.Compression
 open Eurostat.Datasets
+open Eurostat.Requests
 
 module Domain =
-  let dataset = readFile
-  printfn "%A" dataset
-  writeFile dataset
+  let fileName = "rd_p_persocc.tsv"
+  let parsedFileName = sprintf "%s_parsed.csv" (System.IO.Path.GetFileNameWithoutExtension(fileName))
+  let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data"
+  let dataset = readFile (Path.Combine(fileRoot, fileName))
+  
+  writeFile dataset (Path.Combine(fileRoot, parsedFileName))
+  // let datasetName = "rd_p_perslf"
+  // getDataset datasetName
+
+  
+
+  
+
+  
+  
  

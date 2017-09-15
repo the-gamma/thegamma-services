@@ -11,13 +11,12 @@ open Dictionary
 
 module Datasets =
   let urlRoot = "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F"
-  let fileName = "rd_p_persocc.tsv"
-  let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data"
+  
   let dictionaries = getEurostatDictionaries
   let readHeaders (firstLine:string) = 
     let headersEnd = firstLine.IndexOf("\\time")
-    let headers = firstLine.[0..headersEnd-1].Split [|','|]
-    let years = firstLine.[headersEnd+6..].Split [|'\t'|] |> Array.map (fun year -> year.Replace(" ",""))
+    let headers = firstLine.[0..headersEnd-1].Split [|','|] 
+    let years = firstLine.[headersEnd+6..].Split [|'\t'|] |> Seq.map (fun year -> year.Replace(" ","")) 
     (headers, years)
 
   let readRow (headers: string [], aRow: string) = 
@@ -33,13 +32,19 @@ module Datasets =
   let readRows (headers: string [], contents: seq<string>) = 
     let parsedRows = contents |> Seq.map(fun row -> readRow(headers, row)) |> Seq.toArray
     parsedRows
-  let readFile = 
-    let contents = System.IO.File.ReadAllLines(Path.Combine(fileRoot, fileName))
+
+  let readFile fileName = 
+    let contents = System.IO.File.ReadAllLines(fileName)
+
     let (headers,years) = readHeaders (Seq.head contents)
-    let parsedHeaders = (Seq.append headers years) |> Seq.toArray
+    let parsedHeaders = String.concat "," headers 
+    let parsedYears = String.concat "," years 
+    let parsedFirstRow = sprintf "%s,%s" parsedHeaders parsedYears
+
     let parsedRows = readRows (headers, (Seq.tail contents))
-    parsedRows
+    let dataset = Array.append [|parsedFirstRow|] parsedRows
+    dataset
   
-  let writeFile dataset = 
-    File.WriteAllLines(Path.Combine(fileRoot, "test.csv"), dataset) 
+  let writeFile dataset outputFile= 
+    File.WriteAllLines(outputFile, dataset) 
       
