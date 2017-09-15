@@ -18,12 +18,11 @@ open System
 open System.IO
 open FSharp.Data
 open System.Collections.Generic
-open System.IO.Compression
 open Eurostat.Datasets
 open Eurostat.Requests
 
 module Domain =
-  let fileName = "rd_p_persocc.tsv"
+  let fileName = "rd_p_perslf.csv"
   let parsedFileName = sprintf "%s_parsed.csv" (System.IO.Path.GetFileNameWithoutExtension(fileName))
   let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data"
   let dataset = readFile (Path.Combine(fileRoot, fileName))
@@ -31,11 +30,4 @@ module Domain =
   writeFile dataset (Path.Combine(fileRoot, parsedFileName))
   // let datasetName = "rd_p_perslf"
   // getDataset datasetName
-
-  
-
-  
-
-  
-  
  
