@@ -22,5 +22,8 @@ module Dictionary =
     | _ -> let contents = System.IO.File.ReadLines(Path.Combine(filePath, dictionary.[0])) |> Seq.toList
            let keyValues = contents |> List.filter (fun keyValue -> let aKey = keyValue.Split [|'\t'|]
                                                                     aKey.[0] = key )
-           let keyValue = keyValues.[0].Split[|'\t'|]          
-           keyValue.[1]
+           if keyValues.IsEmpty then
+             key
+           else 
+             let keyValue = keyValues.[0].Split[|'\t'|]          
+             keyValue.[1]

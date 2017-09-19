@@ -7,6 +7,7 @@
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
 #load "request.fs"
+#load "tree.fs"
 #load "dictionary.fs"
 #load "data.fs"
 #else
@@ -20,14 +21,26 @@ open FSharp.Data
 open System.Collections.Generic
 open Eurostat.Datasets
 open Eurostat.Requests
+open Eurostat.Tree
 
 module Domain =
-  let fileName = "rd_p_perslf.csv"
-  let parsedFileName = sprintf "%s_parsed.csv" (System.IO.Path.GetFileNameWithoutExtension(fileName))
-  let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data"
-  let dataset = readFile (Path.Combine(fileRoot, fileName))
   
-  writeFile dataset (Path.Combine(fileRoot, parsedFileName))
-  // let datasetName = "rd_p_perslf"
-  // getDataset datasetName
- 
+
+  // Gets the list of dataset names
+  // let datasets = readTree
+  // Seq.iter(fun d -> printfn "%s" d) datasets
+  
+  // Downloads datasets of that name
+  // let downloads = Seq.iter(fun code -> getDataset(code)) datasets
+  // downloads
+
+  // Unzip
+  // Does not work
+
+  // Parses datasets
+  // let fileName = "rd_p_perslf.csv"
+  // let parsedFileName = sprintf "%s_parsed.csv" (System.IO.Path.GetFileNameWithoutExtension(fileName))
+  let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data/unzipped"
+  // let dataset = readFile fileRoot
+  // writeFile dataset (Path.Combine(fileRoot, parsedFileName))
+  (readDirectory fileRoot)

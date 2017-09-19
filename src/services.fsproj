@@ -67,6 +67,7 @@
     <Compile Include="eurostat\request.fs" />
     <Compile Include="eurostat\dictionary.fs" />
     <Compile Include="eurostat\data.fs" />
+    <Compile Include="eurostat\trees.fs" />
     <Compile Include="eurostat\domain.fs" />
     <None Include="debug.fsx" />
     <None Include="paket.references" />
