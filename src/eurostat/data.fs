@@ -116,8 +116,8 @@ module Datasets =
     
   let readDirectory directoryPath =
     let filesArray = System.IO.Directory.GetFiles(directoryPath, "*.csv")      
-    let subsetFilesArray = filesArray.[0..1]
-    // printfn "%A" subsetFilesArray
+    // let subsetFilesArray = filesArray.[0..1]
+    // printfn "%A" filesArray
     let logs = filesArray |> Array.map(fun file -> readAndWriteFile(file))
     let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data"
     let logPath = (Path.Combine(fileRoot, "log.txt"))
