@@ -18,6 +18,7 @@ module Datasets =
     else if firstLine.Contains ("unit\\time") then "other\\time"
     else if firstLine.Contains ("nace_r1\\time") then "other\\time"
     else if firstLine.Contains ("prof_pos\\time") then "other\\time"
+    else if firstLine.Contains ("metroreg\\time") then "other\\time"
     else "Nobody knows"
 
   let readOtherTimeHeaders (firstLine:string) = 
