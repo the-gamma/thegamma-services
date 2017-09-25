@@ -27,7 +27,7 @@ module Domain =
   
 
   // Gets the list of dataset names
-  // let datasets = readTree
+  // let datasets = readDatasets
   // Seq.iter(fun d -> printfn "%s" d) datasets
   
   // Downloads datasets of that name
@@ -38,9 +38,9 @@ module Domain =
   // Does not work
 
   // Parses datasets
-  // let fileName = "rd_p_perslf.csv"
-  // let parsedFileName = sprintf "%s_parsed.csv" (System.IO.Path.GetFileNameWithoutExtension(fileName))
-  let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data/unzipped"
-  // let dataset = readFile fileRoot
-  // writeFile dataset (Path.Combine(fileRoot, parsedFileName))
-  (readDirectory fileRoot)
+  //let fileRoot = "/Users/myong/Documents/workspace/thegamma-services/data/eurostat/data/unzipped"
+  //(readDirectory fileRoot)
+
+  // Create Tree JSON
+  let test = readTree
+
