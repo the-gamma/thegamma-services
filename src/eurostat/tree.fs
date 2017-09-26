@@ -12,7 +12,7 @@ module Tree =
     { Title : string
       Code : string
     }
-
+  
   type Folder =
     { DatabaseByThemes : string
       Data : string
@@ -57,53 +57,119 @@ module Tree =
 
   let tokenizeLineContent (aLine:string) =
     let tokens = aLine.Split[|'\t'|]
-    let databaseByThemes = tokens.[0]
-    let data = tokens.[1]
-    let folder = tokens.[2]
+    let databaseByThemesWithWhiteSpace = tokens.[0].Replace("\"","")
+    let infoStartsHere = firstNonWhiteCharIndex databaseByThemesWithWhiteSpace
+    let databaseByThemes = databaseByThemesWithWhiteSpace.[infoStartsHere..]
+    let data = tokens.[1].Replace("\"","")
+    let folder = tokens.[2].Replace("\"","")
     (databaseByThemes, data, folder)
 
-  let rec findFolder (rootFolders:List<Folder>, folderCode:string) =
-    match rootFolders with
-    | [] -> None
-    | head::tail -> //printfn "%s" head.DatabaseByThemes
-                    if head.DatabaseByThemes.Equals(folderCode) then
-                      head
-                    else  
-                      findFolder (head.Folders, folderCode)
-                    findFolder (tail, folderCode) 
+  // let rec findFolder2 (rootFolders:List<Folder>, folderCode:string) =
+  //   match rootFolders with
+  //     | [] -> None
+  //     | head::tail -> //printfn "%s" head.DatabaseByThemes
+  //                     if head.DatabaseByThemes.Equals(folderCode) then
+  //                       head
+  //                     else  
+  //                       findFolder (head.Folders, folderCode)
+  //                     findFolder (tail, folderCode) 
   
-  let rec findFolder2 (rootFolders:List<Folder>, folderCode:string) : Folder =
-    match rootFolders.Count with
-    | 0 -> None
-    | _ -> let head = Seq.head rootFolders
-           let tail = (Seq.tail rootFolders) |> Seq.toList
-           if head.DatabaseByThemes.Equals(folderCode) then
-             head
-           findFolder (tail, folderCode) 
+  let getTypeName (x: 'T option) =
+    typeof<'T>.Name
+    
+  // let rec findFolder (rootFolders:List<Folder>, folderCode:string) : Folder option=
+  //   let result = rootFolders |> Seq.tryFind (fun f -> f.Data.Contains(folderCode))
+  //   if result <> None then
+  //     result
+  //   else
+  //     let mutable accumulator = 0
+  //     let mutable results = null
+  //     while (results = "None" && accumulator < rootFolders.Count) do
+  //       results <- rootFolders.[accumulator].Folders |> Seq.tryFind (fun f -> f.Data.Contains(folderCode)) 
+  //       accumulator <- accumulator + 1
+  //     results
+  let rec findFolder (aFolder:Folder, folderCode:string)=
+    if (aFolder.Data.Contains(folderCode)) then
+      aFolder
+    elif (aFolder.Folders.Count = 0) then
+      { DatabaseByThemes="databaseByThemes"; Data="data"; 
+                 Folders = new List<Folder>(); 
+                 Datasets= new List<Dataset>()} 
+    else  
+      // let results = aFolder.Folders |> Seq.map(fun f1 -> f1.Folders |> Seq.tryFind (fun f2 -> f2.Data.Contains(folderCode))) 
+      // results |> Seq.iter(fun f -> printfn "Test: %A" f)
+      // { DatabaseByThemes="databaseByThemes"; Data="data"; 
+      //            Folders = new List<Folder>(); 
+      //            Datasets= new List<Dataset>()} 
+      let results = aFolder.Folders |> Seq.map(fun f -> findFolder(f, folderCode)) 
+      let filteredresults = results |> Seq.filter(fun f -> f.DatabaseByThemes <> "databaseByThemes")
+      // printfn "%i" (Seq.length filteredresults)
+      if (Seq.isEmpty filteredresults) then
+        { DatabaseByThemes="databaseByThemes"; Data="data"; 
+                 Folders = new List<Folder>(); 
+                 Datasets= new List<Dataset>()} 
+      else 
+        Seq.head filteredresults  
+      
 
+      
+                                                                  
+             
+
+  // let rec findFolder (rootFolders:List<Folder>, folderCode:string) =
+  //   if rootFolders.Count = 0 then
+  //     None
+  //   else 
+  //     let folderFound = rootFolders |> Seq.tryFind (fun f -> f.Data.Contains(folderCode))
+  //     if folderFound = None then
+  //       for f in rootFolders do
+  //         findFolder(f.Folders, folderCode)
+  //       // results
+  //     else
+  //       folderFound
+
+  // let rec findFolder (rootFolders:List<Folder>) (folderCode:string) : Folder option =
+  //   match rootFolders with
+  //     | Some t -> t |> Seq.tryFind (fun f -> f.Data.Contains(folderCode))
+
+       
+  
+  // let rec findFolder (rootFolders:List<Folder>, folderCode:string) =
+  //   let result = rootFolders |> Seq.tryFind (fun f -> f.Data.Contains(folderCode))
+  //   for child in 
+  //   result
+    
+          
+    
   let getCodePrefix (code:string) =
-    let tokens = code.Split[|'\t'|]
-    match tokens.Length with
-    | 0 -> sprintf "Not found"
-    | _ -> tokens.[0] 
+    let lastIndexOfUnderscore = code.LastIndexOf("_")
+    match lastIndexOfUnderscore with
+      | -1 -> sprintf "Not found"
+      | _ -> code.[0..lastIndexOfUnderscore-1]
+  
+  
 
   let rec readLines (contentsList, root:Folder, rootFolders:List<Folder>, rootDatasets:List<Dataset>) =
     match contentsList with 
-    | [] -> printfn "End"
-    | head :: tail -> let (databaseByThemes, data, folder) = tokenizeLineContent head
-                      match folder with
-                      | "dataset" -> let newDataset = {Title = databaseByThemes; Code=data}
-                                     rootDatasets.Add(newDataset)
-                                     readLines(tail, root, root.Folders, root.Datasets)
-                      | _ -> let newFolder = { DatabaseByThemes=databaseByThemes; Data=data; 
+      | [] -> printfn "End Reading Contents"
+      | head :: tail -> let (databaseByThemes, data, folder) = tokenizeLineContent head
+                        match folder with
+                          | "dataset" -> let newDataset = {Title = databaseByThemes; Code=data}
+                                         rootDatasets.Add(newDataset)
+                                         //printfn "Dataset: %A" rootDatasets
+                                         //readLines(tail, root, root.Folders, root.Datasets)
+                          | _ -> let newFolder = { DatabaseByThemes=databaseByThemes; Data=data; 
                                           Folders=new List<Folder>(); 
                                           Datasets=new List<Dataset>()}
-                             let prefix = getCodePrefix data
-                             match prefix with
-                             | "Not found" -> rootFolders.Add(newFolder)  
-                             | _ -> let parentFolder:Folder = findFolder(root.Folders, prefix)
-                                    parentFolder.Folders.Add(newFolder)
-                      readLines(tail, root, root.Folders, root.Datasets)
+                                 let prefix = getCodePrefix data
+                                 match prefix with
+                                   | "Not found" -> root.Folders.Add(newFolder)  
+                                   | _ -> let parentFolder = findFolder(root, prefix)
+                                          // rootFolders.Add(newFolder)  
+                                          match parentFolder.DatabaseByThemes with
+                                            | "databaseByThemes" -> rootFolders.Add(newFolder)  
+                                            | _ -> parentFolder.Folders.Add(newFolder)  
+                        readLines(tail, root, root.Folders, root.Datasets)
                                            
   let readTree =
     let rootLine = Seq.head contents
@@ -111,10 +177,10 @@ module Tree =
     let (databaseByThemes, data, folder) = tokenizeLineContent rootLine
     let root = { DatabaseByThemes=databaseByThemes; Data=data; 
                  Folders = new List<Folder>(); 
-                 Datasets= new List<Dataset>(); 
-    Folders
+                 Datasets= new List<Dataset>()} 
     readLines ((contents |> Seq.toList), root, root.Folders, root.Datasets)
-    printfn "Dataset: %A" root
+    printfn "Datasets: %A" root
+    
     
 
   
