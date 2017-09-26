@@ -62,42 +62,58 @@ module Tree =
     let folder = tokens.[2]
     (databaseByThemes, data, folder)
 
-  let rec findFolder (root:Folder, folderCode:string) =
-    match root with
-    | [] -> printfn "Not found"
-    | head:Folder :: tail -> printfn "%s" head.DatabaseByThemes 
-                             findFolder (tail, folderCode)
+  let rec findFolder (rootFolders:List<Folder>, folderCode:string) =
+    match rootFolders with
+    | [] -> None
+    | head::tail -> //printfn "%s" head.DatabaseByThemes
+                    if head.DatabaseByThemes.Equals(folderCode) then
+                      head
+                    else  
+                      findFolder (head.Folders, folderCode)
+                    findFolder (tail, folderCode) 
+  
+  let rec findFolder2 (rootFolders:List<Folder>, folderCode:string) : Folder =
+    match rootFolders.Count with
+    | 0 -> None
+    | _ -> let head = Seq.head rootFolders
+           let tail = (Seq.tail rootFolders) |> Seq.toList
+           if head.DatabaseByThemes.Equals(folderCode) then
+             head
+           findFolder (tail, folderCode) 
 
-  let rec readLines (contentsList, root:Folder, nonWhiteCharIndexOfPrevRow:int)=
+  let getCodePrefix (code:string) =
+    let tokens = code.Split[|'\t'|]
+    match tokens.Length with
+    | 0 -> sprintf "Not found"
+    | _ -> tokens.[0] 
+
+  let rec readLines (contentsList, root:Folder, rootFolders:List<Folder>, rootDatasets:List<Dataset>) =
     match contentsList with 
     | [] -> printfn "End"
     | head :: tail -> let (databaseByThemes, data, folder) = tokenizeLineContent head
-                      let nonWhiteCharIndex = firstNonWhiteCharIndex databaseByThemes
-                      if folder.Contains("dataset") then
-                        let newDataset = {Title = databaseByThemes; Code=data}
-                        root.Datasets.Add(newDataset)
-                        readLines(tail, root, nonWhiteCharIndex)
-                      else 
-                        let newFolder = { DatabaseByThemes=databaseByThemes; Data=data; 
+                      match folder with
+                      | "dataset" -> let newDataset = {Title = databaseByThemes; Code=data}
+                                     rootDatasets.Add(newDataset)
+                                     readLines(tail, root, root.Folders, root.Datasets)
+                      | _ -> let newFolder = { DatabaseByThemes=databaseByThemes; Data=data; 
                                           Folders=new List<Folder>(); 
                                           Datasets=new List<Dataset>()}
-                        
-                        root.Folders.Add(newFolder)
-                        if (nonWhiteCharIndex > nonWhiteCharIndexOfPrevRow) then
-                          readLines(tail, newFolder, nonWhiteCharIndex) 
-                        else 
-                          readLines(tail, root, nonWhiteCharIndex) 
+                             let prefix = getCodePrefix data
+                             match prefix with
+                             | "Not found" -> rootFolders.Add(newFolder)  
+                             | _ -> let parentFolder:Folder = findFolder(root.Folders, prefix)
+                                    parentFolder.Folders.Add(newFolder)
+                      readLines(tail, root, root.Folders, root.Datasets)
                                            
-                   
-
   let readTree =
     let rootLine = Seq.head contents
     let branchesLines = Seq.tail contents
     let (databaseByThemes, data, folder) = tokenizeLineContent rootLine
     let root = { DatabaseByThemes=databaseByThemes; Data=data; 
-                 Folders=new List<Folder>(); 
-                 Datasets=new List<Dataset>()}
-    readLines ((contents |> Seq.toList),root,0)
+                 Folders = new List<Folder>(); 
+                 Datasets= new List<Dataset>(); 
+    Folders
+    readLines ((contents |> Seq.toList), root, root.Folders, root.Datasets)
     printfn "Dataset: %A" root
     
 
