@@ -13,6 +13,7 @@ temp
 bin
 obj
 cache
+data
 
 config.txt
 src/worldbank/data
