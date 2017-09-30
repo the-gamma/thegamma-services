@@ -5,7 +5,7 @@
 #r "Newtonsoft.Json/lib/net40/Newtonsoft.Json.dll"
 #r "Suave/lib/net40/Suave.dll"
 #load "../serializer.fs"
-#load "eurostat-sci-domain.fs"
+#load "vocab.fs" "request.fs" "dictionary.fs" "data.fs" "tree.fs" "eurostat-sci-domain.fs"
 #else
 module Services.Eurostat
 #endif
